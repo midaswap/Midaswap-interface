@@ -2,8 +2,8 @@
 pragma solidity ^0.8.4;
 pragma abicoder v2;
 
-import "./ISwapRouter.sol";
-import "./IQuoter.sol";
+import "./interface/ISwapRouter.sol";
+import "./interface/IQuoter.sol";
 
 interface IUniswapRouter is ISwapRouter {
     function refundETH() external payable;
