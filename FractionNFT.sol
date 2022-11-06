@@ -14,8 +14,20 @@ contract FractionNFT  {
 
     mapping(address =>address) nftVTokenMap721;
     mapping(address =>mapping(uint256 =>address)) nftVTokenMap1155;
+
+
     mapping (address=>mapping (address=>uint256))  nftAmount721;
     mapping (address=> mapping (address=>mapping(uint256 =>uint256))) nftAmount1155;
+
+
+    function getVtokenAddress721(address nftAddress)public view returns(address) {
+        return nftVTokenMap721[nftAddress];
+    }
+
+    function getVtokenAddress1155(address nftAddress,uint256 id)public view returns(address) {
+        return nftVTokenMap1155[nftAddress][id];
+    }
+
 
     function exchange721(address nftAddress,uint256 tokenId )public payable{
         if(!isExistAddress(nftAddress)){
