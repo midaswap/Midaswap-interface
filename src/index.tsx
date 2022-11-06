@@ -6,8 +6,14 @@ import { Provider } from "react-redux";
 import { Store } from "./app/Store";
 import { HomePage } from './ui/pages/home';
 import { Pools } from './ui/pages/Pools';
+import { PoolsAdd } from './ui/pages/Pools_add';
+
+
 import { Swap } from './ui/pages/Swap';
 import { Pools_detail } from './ui/pages/Pools_detail';
+
+
+
 import { Nft_trade } from './ui/pages/Nft_trade';
 
 
@@ -37,8 +43,9 @@ root.render(
               <Route path='/' element={<HomePage />}></Route>
               <Route path='/Collections' element={<Collections />}></Route>
               <Route path='/Pools' element={<Pools />}></Route>
+              <Route path='/PoolsAdd/:address' element={<PoolsAdd />}></Route>
               <Route path='/Swap' element={<Swap />}></Route>
-              <Route path='/Pools_detail' element={<Pools_detail />}></Route>
+              <Route path='/Pools_detail/:address' element={<Pools_detail />}></Route>
               <Route path='/Nft_trade' element={<Nft_trade />}></Route>
             </Routes>
           </div>
