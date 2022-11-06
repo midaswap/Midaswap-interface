@@ -46,7 +46,7 @@ root.render(
               <Route path='/PoolsAdd' element={<PoolsAdd />}></Route>
               <Route path='/Swap' element={<Swap />}></Route>
               <Route path='/Pools_detail/:address' element={<Pools_detail />}></Route>
-              <Route path='/Nft_trade' element={<Nft_trade />}></Route>
+              <Route path='/Nft_trade/:address' element={<Nft_trade />}></Route>
             </Routes>
           </div>
         </div>
