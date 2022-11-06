@@ -1,0 +1,16 @@
+.connector {
+  position: relative;
+  font-size: 0.9375vw;
+  width: 6.5104vw;
+height: 2.0313vw;
+background: #2781FF;
+border-radius: 1.0417vw;
+display: flex;
+align-items: center;
+justify-content: center;
+color: #FFFFFF;
+margin-left: 1.6667vw;
+}
+
+
+

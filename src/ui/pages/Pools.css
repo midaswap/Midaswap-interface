@@ -1,0 +1,667 @@
+
+#pools[mode="web"] {
+  width: 100%;
+  color: aliceblue;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 6.6667vw;
+}
+
+#pools[mode="web"]  .pools-td{
+  width: 55.7292vw;
+  display: flex;
+  align-items: center;
+  margin-top: 5.4167vw;
+}
+
+#pools[mode="web"]  .pools-td-text{
+  font-size: 2.2917vw;
+font-family: PingFang SC;
+font-weight: 400;
+color: #FDFDFD;
+}
+
+#pools[mode="web"]  .pools-td-Create{
+  width: 8.6979vw;
+  height: 2.2917vw;
+  background: #2781FF;
+  border-radius: 0.7813vw;
+  font-size: 0.9375vw;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+  display: flex;
+justify-content: center;
+align-items: center;
+margin-left: 31.1979vw;
+}
+
+
+#pools[mode="web"]  .pools-td-NEW{
+  width: 8.6979vw;
+  height: 2.2917vw;
+  background: #2781FF;
+  border-radius: 0.7813vw;
+  font-size: 0.9375vw;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+  display: flex;
+justify-content: center;
+align-items: center;
+margin-left: 0.5729vw
+}
+
+
+#pools[mode="web"]  .pool-box{
+  width: 55.7292vw;
+  background: #282B33;
+  border: 1px solid;
+  border-radius: 1.0417vw;
+  margin-top: 0.5208vw;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+
+#pools[mode="web"]  .pool-box-td{
+  width:100%;
+  display: flex;
+  justify-content: center;
+}
+
+#pools[mode="web"]  .pool-box-mrgin{
+  margin-top: 1.3021vw;
+ 
+}
+
+
+
+
+#pools[mode="web"]  .pool-box-img{
+  width: 2.3958vw;
+  height: 2.3958vw;
+}
+
+#pools[mode="web"]  .pool-but{
+  width: 19.4271vw;
+  height: 2.6042vw;
+  background: #2781FF;
+  border-radius: 1.3021vw;
+  font-size: 20px;
+font-family: PingFang SC;
+font-weight: 400;
+color: #FEFEFE;
+display: flex;
+justify-content: center;
+align-items: center;
+margin-bottom: 0.9375vw;
+
+}
+
+
+#pools[mode="web"]  .pools-td-fotter{
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.7813vw;
+}
+
+
+#pools[mode="web"] .pools-td-Learn{
+  width: 31.6146vw;
+  height: 5.625vw;
+  border: 1px solid rgba(81,163,227,0.2);
+  border-radius: 20px;
+  display: flex;
+padding: 1.5104vw 0px 0px 2.9167vw ;
+flex-wrap: wrap;
+  }
+
+
+  #pools[mode="web"] .pools-td-Top{
+  width: 23.9063vw;
+  height: 5.625vw;
+border: 1px solid rgba(81,163,227,0.2);
+border-radius: 20px;
+display: flex;
+padding: 1.5104vw 0px 0px 2.9167vw ;
+flex-wrap: wrap;
+}
+
+
+
+#pools[mode="web"] .pools-td-Learn-text{
+    font-size: 1.0417vw;
+font-family: PingFang SC;
+font-weight: bold;
+color: #FEFEFE;
+  }
+
+
+  /* pools list */
+
+  #pools[mode="web"] .pools-list-box{
+  width: 87.0833vw;
+  height: 8.2292vw;
+  background: #282B33;
+  border: 1px solid;
+  border-radius: 0.2604vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 56px;
+  }
+
+  #pools[mode="web"] .pools-list-box-text{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size:1.1458vw;
+    font-family: PingFang SC;
+    font-weight: 400;
+    color: #FFFFFF;
+    width: 35.5208vw;
+  }
+
+  #pools[mode="web"] .pools-list-box-img-bg{
+    width: 4.4792vw;
+    height: 4.4792vw;
+    background: #020202;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #pools[mode="web"] .pools-list-box-img{
+    width: 2.2917vw;
+    height: 2.2917vw;
+  }
+
+  #pools[mode="web"] .pools-list-all-text{
+    font-size: 2.5vw;
+    font-family: PingFang SC;
+    font-weight: bold;
+    color: #FFFFFF;
+    margin-top: 3.3854vw;
+
+
+  }
+
+
+
+  #pools[mode="web"]  .pools-list-tale-header{
+    width: 87.0833vw;
+    height: 4.3229vw;
+    background: #282B33;
+    border-radius: 0.5208vw;
+    font-size: 26px;
+    font-family: PingFang SC;
+    font-weight: 400;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    padding-left: 4.5313vw;
+    margin-top: 1.3021vw;
+  }
+
+
+  #pools[mode="web"] .pools-list-tale-list{
+    border: 1px solid #4A4A4A;
+    margin-top: 1.3021vw;
+    margin-top: 25px;
+  }
+
+
+  #pools[mode="web"]  .pools-list-tale-list-item{
+    padding-left: 4.5313vw;
+    font-size: 1.3542vw;
+    font-family: PingFang SC;
+    font-weight: 400;
+    color: #FEFDFD;
+    width: 100%;
+    height: 3.1771vw;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #4A4A4A;
+  }
+  
+  #pools[mode="web"]  .pools-list-tale-list-logo{
+    width: 2.2917vw;
+    width:  2.2917vw;
+    margin-right: 0.625vw;
+  }
+ 
+
+  #pools[mode="web"] .pools-list-tale-list-img{
+    width: 1.7708vw;
+    width: 1.7708vw;
+    margin-right: 0.625vw;
+  }
+ 
+
+
+  #pools[mode="web"] .flex-center{
+    display: flex;
+    justify-content: center;
+  }
+
+  #pools[mode="web"] .flex-all-center{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+  }
+  
+
+
+
+  /* add pools */
+
+  .pools-add{
+    display: flex;
+    justify-content: flex-end;
+    width: 89.6875vw;
+  }
+
+  .pools-add-box{
+    width: 56.2396vw;
+    background: #282B33;
+    border: 1px solid;
+    border-radius: 2.0833vw;
+    padding-left: 2.1875vw;
+    padding-right: 2.1875vw;
+    padding-top: 28px;
+    font-size: 30px;
+    font-family: PingFang SC;
+    font-weight: bold;
+    color: #FCEFF7;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-top: 3.5417vw ;
+      margin-right: 3.3854vw;
+
+  }
+
+
+.pools-add-title{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.5625vw;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #FCEFF7;
+}
+
+.pools-add-setting-img{
+  width: 1.6146vw;
+  height: 1.6146vw;
+
+}
+
+.pools-add-token-erc20{
+  margin-left: 0.5208vw;
+}
+
+
+.pools-add-line{
+  width: 53.9063vw;
+  height: 1px;
+  background: #FCEFF7;
+  margin-top: 20px;
+}
+
+
+.pools-add-pair{
+  width: 48%;
+  margin-top: 1.5625vw;
+}
+
+.pools-add-amount{
+  width: 48%;
+  margin-top: 1.5625vw;
+}
+
+
+.pools-add-token-td{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.0417vw;
+
+}
+
+.pools-add-token{
+    width: 12.0833vw;
+    height: 3.0729vw;
+    background: #080808;
+    border: 1px solid;
+    border-radius: 1.4063vw;
+    font-size: 1.0417vw;
+    font-family: PingFang SC;
+    font-weight: 400;
+    color: #FEFEFE;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 2.8125vw;
+    padding-right: 1.1458vw;
+}
+
+
+.pools-add-token-name{
+  width: 12.4479vw;
+height: 2.9167vw;
+background: #2781FF;
+border: 1px solid;
+border-radius: 1.3021vw;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.5625vw;
+font-family: PingFang SC;
+font-weight: bold;
+color: #FEFEFE;
+
+}
+
+
+.pools-add-token-empty{
+  width: 24.7917vw;
+  height: 9.7396vw;
+  background: #1F2127;
+  border: 1px solid;
+  margin-top: 1.3542vw;
+}
+
+
+.pools-add-text{
+  font-size: 1.25vw;
+font-family: PingFang SC;
+font-weight: 400;
+color: #FCFCFD;
+}
+
+.pools-add-deposit{
+  font-size: 1.25vw;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #FCFCFD; 
+}
+
+
+.pools-add-deposit-amount{
+  width: 24.8958vw;
+height: 5.2083vw;
+background: #080808;
+border: 1px solid;
+border-radius: 1.0417vw;
+display: flex;
+align-items: center;
+padding-left: 3.0729vw;
+padding-right: 3.0729vw;
+}
+
+
+.pools-add-deposit-nft-name{
+  width: 9.5833vw;
+height: 2.2396vw;
+background: #2781FF;
+border: 1px solid;
+border-radius: 1.1458vw;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.25vw;
+font-family: PingFang SC;
+font-weight: bold;
+color: #FEFEFE;
+
+}
+
+
+.pools-add-deposit-amount{
+  font-size: 1.0417vw;
+font-family: PingFang SC;
+font-weight: 400;
+color: #FEFEFE;
+margin-top: 0.9375vw;
+}
+
+
+.pools-add-deposit-nft{
+  width: 24.8958vw;
+height: 4.0104vw;
+background: #080808;
+border: 1px solid;
+border-radius: 1.0417vw;
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-bottom: 2.7083vw;
+}
+
+
+.pools-add-per{
+  width: 25.2083vw;
+  height: 12.5521vw;
+  margin-top: 1.0417vw;
+  background-color: white;
+}
+
+
+
+.pools-add-full-range{
+  width: 25.0521vw;
+height: 2.5521vw;
+background: #1F2127;
+border-radius: 0.5208vw;
+font-size: 0.8333vw;
+font-family: PingFang SC;
+font-weight: 400;
+color: #FEFEFE;
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 0.6771vw;
+}
+
+
+.pools-add-but{
+  width: 25.4688vw;
+  height: 3.0208vw;
+  background: #2781FF;
+  border-radius: 1.5104vw;
+  font-size: 1.1458vw;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #FEFEFE;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.6771vw;
+}
+
+
+.pools-add-min-max{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8333vw;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #FCFCFD;
+}
+
+
+
+.pools-add-section{
+  width: 12.1354vw;
+  height: 6.7188vw;
+  background: #1F2127;
+  border: 1px solid  white ;
+  border-radius: 1.0417vw;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 0.7813vw;
+  
+
+}
+
+
+.pools-add-padding{
+  padding-left: 1.5104vw;
+  padding-right: 1.5104vw;
+  font-size: 1.3542vw;
+font-family: PingFang SC;
+font-weight: 400;
+color: #FCFCFD;
+}
+
+
+
+.pools-add-your-nfts{
+  width: 25.0521vw;
+height: 47.8125vw;
+background: #141414;
+
+}
+
+
+.pools-add-your-tokens{
+  width: 24.1146vw;
+  height: 2.2396vw;
+  background: #282B33;
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5208vw;
+}
+
+.pools-add-your-nft-list{
+  width: 100%;
+  padding:0px 1.0938vw 0px 0.5729vw;
+  height: 30.9896vw;
+  border-bottom: 1px solid white;
+}
+
+
+
+
+.pools-add-your-nft-list-item{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-top: 0.8333vw;
+}
+
+
+.pools-add-your-nft-list-item-img{
+  width: 4.2188vw;
+  height: 4.2188vw;
+}
+
+.pools-add-your-nfts-text{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-left: 0.9375vw;
+  font-size: 1.25vw;
+font-family: PingFang SC;
+font-weight: bold;
+color: #FFFFFF;
+margin-top: 2.0833vw;
+
+}
+
+.pools-add-your-nfts-setting{
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 0.7813vw;
+  margin-top: 1.7188vw
+}
+
+.pools-add-your-nfts-text-Your{
+  margin-left: 0.5208vw;
+}
+
+.pools-add-your-nfts-text-Clear{
+  margin-left: 11.6563vw;
+  width: 3.5417vw;
+  height: 1.6146vw;
+  background: #2781FF;
+  opacity: 0.74;
+  border-radius: 0.2604vw;
+  display: flex;
+  justify-content: center;
+  font-size: 0.8333vw;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+  align-items: center;
+}
+
+
+
+.pools-add-x-img{
+  width: 0.8854vw;
+  height: 0.8854vw;
+margin-left: 22;
+
+}
+
+.pools-add-your-nft-list-item-name{
+  margin-left: 0.8854vw;
+  width: 80%;
+}
+
+.pools-add-your-nft-list-item-name-text{
+  font-size: 0.7292vw;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #FCFCFD;
+}
+
+
+.pools-add-your-nft-list-item-id-text{
+  font-size: 0.9375vw;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #FCFCFD;
+}
+
+
+
+
+.pools-add-your-nft-but{
+  width: 21.7188vw;
+height: 2.7083vw;
+background: #2781FF;
+border-radius: 1.0417vw;
+font-size: 0.9896vw;
+font-family: PingFang SC;
+font-weight: 400;
+color: #FEFEFE;
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 0.5208vw;
+
+}
+
+
+.pools-add-your-nft-cost{
+  font-size: 0.9375vw;
+font-family: PingFang SC;
+font-weight: bold;
+color: #FEFEFE;
+margin-left: 1.7188vw;
+margin-top: 10px;
+}

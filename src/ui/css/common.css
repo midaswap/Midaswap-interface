@@ -1,0 +1,116 @@
+/* @font-face {
+  font-family: 'title';
+  src: url("../../assets/Maragsa.otf");
+}
+@font-face {
+  font-family: 'subtitle';
+  src: url("../../assets/Mark_Pro_Bold.ttf");
+}
+@font-face {
+  font-family: 'introduction';
+  src: url("../../assets/Mark_Pro.ttf");
+} */
+
+
+@font-face {
+  font-family:'Impact';
+  src: url("../../assets/Impact.ttf");
+}
+
+
+@font-face {
+  font-family:'Roboto';
+  src: url("../../assets/Roboto-Medium.ttf");
+}
+
+
+
+
+
+.flex-center-width-full{
+  display: flex;
+  width:100%;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.flex-center-width-full-between{
+  display: flex;
+  width:100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+
+.button {
+  position: relative;
+  width: 15vw;
+  max-width: 160px;
+  font-size: 1vmin;
+  text-align: center;
+  color: #89FFFD;
+}
+.button .label {
+  position: relative;
+  transform: translateY(2px) scaleY(0.75);
+}
+.button .effect {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(closest-side, rgba(137, 255, 253, 0.33), transparent);
+  transform: translate(-50%, -50%);
+}
+.button img {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  object-fit: contain;
+  transform: translate(0, -50%);
+}
+.blue-shine {
+  position: absolute;
+  width: 100vh;
+  height: 100vh;
+  background: radial-gradient(closest-side, #5DF5FC, transparent);
+  transform: translate(-50%, -50%);
+}
+.red-shine {
+  position: absolute;
+  width: 100vh;
+  height: 100vh;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, #F354E4, transparent);
+}
+/*video默认全屏按钮*/
+video::-webkit-media-controls-fullscreen-button {
+  display: none !important;
+}
+/*video默认aduio音量按钮*/
+video::-webkit-media-controls-mute-button {
+  display: none !important;
+}
+/*video默认setting按钮*/
+video::-internal-media-controls-overflow-button {
+  display: none !important;
+}
+/*腾讯云点播禁用firefox全屏、设置按钮*/
+.trump-button[sub-component="fullscreen_btn"],
+.trump-button[now="fullscreen"] {
+  display: none!important;
+}
+.trump-button[sub-component="setting"] {
+  display: none !important;
+}
+/*禁用video的controls（要慎重！不要轻易隐藏掉，会导致点击视频不能播放）*/
+video::-webkit-media-controls {
+  display: none !important;
+}
+/*# sourceMappingURL=common.css.map */
