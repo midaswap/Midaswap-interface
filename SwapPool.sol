@@ -11,7 +11,7 @@ interface WETHERC20Lp{
 
 contract SwapPool {
   uint private unit=10**uint(18);
-  uint private retainAmount= 10000000000000000; 
+  uint private retainAmount= 10000000000000000;
 
   uint private  totalLpTokenA;
   address private tokenA;
@@ -55,7 +55,7 @@ contract SwapPool {
       syncWorthA();
   }
 
-  
+
    function syncWorthA() private {
      uint balanceAmountA = WETHERC20Lp(tokenA).balanceOf(address(this));
     if(balanceAmountA > 0){
@@ -64,6 +64,7 @@ contract SwapPool {
       worthA=10**uint(18);
     }
   }
+
 
   function stake(uint _amountA,uint _amountB) public payable{
     require(WETHERC20Lp(tokenA).balanceOf(msg.sender) > _amountA,"Token is insufficient tokenA ");
