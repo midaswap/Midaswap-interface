@@ -44,10 +44,6 @@ contract UniswapV3Factory {
 
 
 
-
-
-
-
     function addPool721(address nft_address,address tokenB ,uint256 tokenId,uint _amountA,uint _amountB,uint scale) public {
         address vtokenAddress = FractionNFT(fractionNFTAddress).exchange721(nft_address,tokenId);
         address pools=  getPool721[nft_address][vtokenAddress][tokenB];
@@ -74,6 +70,7 @@ contract UniswapV3Factory {
         address pools=  getPool721[nft_address][vtokenAddress][tokenB];
         SwapPool(pools).unStake(lpAmount);
     }
+
 
     function unStake1155(address nft_address,uint256 id,address tokenB ,uint lpAmount) public {
         address tokenA = FractionNFT(fractionNFTAddress).getVtokenAddress1155(nft_address,id);
