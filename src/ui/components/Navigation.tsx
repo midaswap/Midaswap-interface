@@ -69,7 +69,13 @@ const settings = {
   network: Network.MATIC_MUMBAI,
 };
 
-const alchemy = new Alchemy(settings);  
+const alchemy = new Alchemy(settings); 
+
+alchemy.nft.getNftsForOwner('vitalik.eth').then(e=>{
+
+  
+});
+
 
 
 export function Navigation() {
