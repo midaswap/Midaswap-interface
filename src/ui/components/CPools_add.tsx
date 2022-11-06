@@ -1,9 +1,17 @@
 import {State, useAppDispatch, useAppSelector} from "../../app/Store";
-import {useEffect} from "react";
+import {useEffect,useState} from "react";
 import {ChainId, ethereum, web3} from "../../app/Config";
 import { useLocation } from "react-router-dom";
-
-
+import { Network, Alchemy } from 'alchemy-sdk';
+import {
+	ConnectSelectors,
+	ConnectTask,
+	disconnect,
+	SwitchTask,
+	updateAddress,
+	updateBalance,
+	updateChainId
+} from "../../slices/ConnectSlice";
 import {
   LeftOutlined,
   RightOutlined,
@@ -13,37 +21,26 @@ import {
 
 export function CPools_add() {
    const { state } = useLocation();
-   let  address =state.address;
-
+   let  nftaddress =state.address;
    const settings = {
       apiKey: "xG8dip53YYKaskagE0xWN0NkGCNGV66u",
       network: Network.MATIC_MUMBAI,
     };
 
    const alchemy = new Alchemy(settings);
-
    const {address, chainId} = useAppSelector(ConnectSelectors.userData);
-
-
-   const [myNfts, setMyNfts] = useState<myNft[]>([]);
-
-
+   const [myNfts, setMyNfts] = useState([]as Array<any>);
    alchemy.nft.getNftsForOwner(address).then(e=>{
-      console.log("getNftsForOwner 执行了");
-      if(e.ownedNfts != null){
-         let newArr = [] as Array<any>;
-         e.ownedNfts.forEach(vo =>{
-            debugger
-            if(vo.contract.address == "0x1c08236d38ea33977981a9b66fcc4db1724e5dd6"){
-               let data = { tokenUrl: "", tokenId: "", name: "" };
-               data.name = vo.contract.name
-               data.tokenUrl = vo.tokenUri?.gateway
-               data.tokenId = vo.tokenId
-               newArr.push(data);
-            }
-         })
-         setMyNfts(newArr);
+      let newArr = [] as Array<any>;
+      for (let index = 0; index < e.ownedNfts.length; index++) {
+         let data:{name:any,tokenUrl:any,tokenId:any} = {name:"",tokenUrl:'',tokenId:""};
+         let item =  e.ownedNfts[index];
+         data.name = item.contract.name;
+         data.tokenUrl = item.tokenUri?item.tokenUri.gateway:'';
+         data.tokenId = item.tokenId
+         newArr.push(data);
       }
+      setMyNfts(newArr);
    });
 
 
