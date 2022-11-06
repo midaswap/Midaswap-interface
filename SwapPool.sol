@@ -69,6 +69,8 @@ contract SwapPool {
     require(WETHERC20Lp(tokenA).balanceOf(msg.sender) > _amountA,"Token is insufficient tokenA ");
     require(WETHERC20Lp(tokenB).balanceOf(msg.sender) > _amountB,"Token is insufficient tokenB ");
     require(getTokenB(_amountA) == _amountB ,"amont is insufficient tokenB ");
+    WETHERC20Lp(tokenA).approve(address(this), _amountA);
+    WETHERC20Lp(tokenB).approve(address(this), _amountA);
     WETHERC20Lp(tokenA).transferFrom(msg.sender,address(this),_amountA);
     WETHERC20Lp(tokenB).transferFrom(msg.sender,address(this),_amountB);
     uint lpTokenA = _amountA*unit/worthA;

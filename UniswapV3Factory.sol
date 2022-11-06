@@ -10,10 +10,12 @@ interface FractionNFT {
 }
 
 contract UniswapV3Factory {
+//nft-> pools address
+mapping(address => address) public  getPool721;
 
-mapping(address => mapping(address => mapping(uint24 => address))) public  getPool;
+function addPool721(address nft_address ,uint256 tokenId) public {
 
-function addPool721(address nft_address ,uint256 tokenId,) public (){
+
     
 
 }
