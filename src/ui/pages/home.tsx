@@ -14,7 +14,7 @@ export class HomePage extends BasePage {
       <div className="home-nft" >NFT Marketplace </div>
 
       <div className="nft-list"  >
-        <Link to={'/Nft_trade/0x1c08236D38ea33977981A9B66fCC4dB1724E5DD6'} >
+        <Link to={'/Pools_detail/0x1c08236d38ea33977981a9b66fcc4db1724e5dd6'} >
           <div className="nft-list-item">
             <img className="nft-logo" src={require("../../assets/img/logo.png")} alt="" />
             <div className="nft-name">RENGA Black Box</div>

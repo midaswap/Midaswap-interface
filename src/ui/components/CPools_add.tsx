@@ -14,9 +14,42 @@ import {
 export function CPools_add() {
    const { state } = useLocation();
    let  address =state.address;
-   
+
+   const settings = {
+      apiKey: "xG8dip53YYKaskagE0xWN0NkGCNGV66u",
+      network: Network.MATIC_MUMBAI,
+    };
+
+   const alchemy = new Alchemy(settings);
+
+   const {address, chainId} = useAppSelector(ConnectSelectors.userData);
+
+
+   const [myNfts, setMyNfts] = useState<myNft[]>([]);
+
+
+   alchemy.nft.getNftsForOwner(address).then(e=>{
+      console.log("getNftsForOwner 执行了");
+      if(e.ownedNfts != null){
+         let newArr = [] as Array<any>;
+         e.ownedNfts.forEach(vo =>{
+            debugger
+            if(vo.contract.address == "0x1c08236d38ea33977981a9b66fcc4db1724e5dd6"){
+               let data = { tokenUrl: "", tokenId: "", name: "" };
+               data.name = vo.contract.name
+               data.tokenUrl = vo.tokenUri?.gateway
+               data.tokenId = vo.tokenId
+               newArr.push(data);
+            }
+         })
+         setMyNfts(newArr);
+      }
+   });
+
+
+
 	return <div className="pools-content" >
-  <div className="pools-add" >
+      <div className="pools-add" >
         <div className="pools-add-box" >
            <div  className="pools-add-title" >
                <LeftOutlined />
@@ -38,7 +71,7 @@ export function CPools_add() {
                  </div>
               </div>
               <div  className="pools-add-token-empty" >
-                 
+
               </div>
               <div  className="pools-add-deposit" >Deposit Amounts</div>
               <div  className="pools-add-deposit-amount" >
@@ -92,11 +125,11 @@ export function CPools_add() {
 
 
         <div className="pools-add-your-nfts" >
-              <div className="pools-add-your-nfts-setting"  > 
+              <div className="pools-add-your-nfts-setting"  >
                  <img   className="pools-add-setting-img"  src={require("../../assets/img/setting.png")}  alt="" />
               </div>
 
-              <div  className="pools-add-your-nfts-text" > 
+              <div  className="pools-add-your-nfts-text" >
                <LeftOutlined />
                <div className="pools-add-your-nfts-text-Your"  >Your NFTs</div>
                 <div className="pools-add-your-nfts-text-Clear"  >Clear</div>
@@ -127,7 +160,7 @@ export function CPools_add() {
                        </div>
                        <img className="pools-add-x-img" src={require("../../assets/img/x.png")}   alt=""  />
                  </div>
-                 
+
               </div>
 
               <div className="pools-add-your-nft-cost" >
