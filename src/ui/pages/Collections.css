@@ -1,0 +1,114 @@
+
+#collections[mode="web"] {
+  width: 100%;
+  color: aliceblue;
+}
+#collections[mode="web"] .Collections-text{
+  width: 100%;
+  display: flex;justify-content: center;
+  font-size: 5.4167vw;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color:  #FDFCFD ;
+  margin-top: 1.5625vw;
+}
+
+#collections[mode="web"] .Collections-text-1{
+  width: 100%;
+  display: flex;justify-content: center;
+  font-size: 30px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+
+
+#collections[mode="web"] .Collections-table{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 3.3333vw;
+}
+
+
+#collections[mode="web"] .Collections-table-header{
+  width: 87.0833vw;
+  height: 4.3229vw;
+  background: #282B33;
+  border-radius: 0.5208vw;
+  display: flex;
+  align-items: center;
+  padding: 0px 5.4167vw  0px 4.5313vw  ;
+}
+
+#collections[mode="web"] .Collections-table-header{
+  width: 87.0833vw;
+  height: 4.3229vw;
+  background: #282B33;
+  border-radius: 0.5208vw;
+  display: flex;
+  align-items: center;
+  padding: 0px 5.4167vw  0px 4.5313vw  ;
+}
+
+
+
+#collections[mode="web"] .Collections-table-font{
+  font-size: 26px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+
+
+
+#collections[mode="web"] .Collections-table-td-list{
+  border: 1px solid #4A4A4A;
+  margin-top: 1.3021vw;
+}
+
+#collections[mode="web"] .Collections-table-td{
+  width: 87.0833vw;
+  height: 3.1771vw;
+  display: flex;
+  align-items: center;
+  padding: 0px 5.4167vw  0px 4.5313vw  ;
+  border-bottom: 1px solid #4A4A4A;
+}
+
+
+#collections[mode="web"] .Collections-table-td-img{
+  width: 2.2396vw;
+  height: 2.2396vw;
+  margin-right: 0.5208vw;
+}
+
+
+#collections[mode="web"] .Collections-table-page{
+  width: 87.0833vw;
+  height: 4.3229vw;
+  background: #282B33;
+  border-radius: 0.5208vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.3542vw;
+}
+
+
+
+#collections[mode="web"] .Collections-table-page-text{
+  width: 7.8646vw;
+  font-size: 1.25vw;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #FDFDFD;
+  margin-right: 1.0208vw;
+  margin-left: 1.0208vw;
+}
+
+
+
+
+

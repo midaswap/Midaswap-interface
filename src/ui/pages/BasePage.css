@@ -1,0 +1,8 @@
+.page[mode=web] {
+ 
+}
+.page[mode=mobile] {
+  position: relative;
+  width: 100vw;
+  height: fit-content;
+}
