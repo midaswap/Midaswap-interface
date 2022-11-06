@@ -34,6 +34,7 @@ color: #FDFDFD;
 justify-content: center;
 align-items: center;
 margin-left: 31.1979vw;
+cursor:pointer;
 }
 
 
@@ -49,7 +50,8 @@ margin-left: 31.1979vw;
   display: flex;
 justify-content: center;
 align-items: center;
-margin-left: 0.5729vw
+margin-left: 0.5729vw;
+cursor:pointer;
 }
 
 
@@ -297,6 +299,7 @@ color: #FEFEFE;
   font-family: PingFang SC;
   font-weight: bold;
   color: #FCEFF7;
+  cursor: pointer;
 }
 
 .pools-add-setting-img{

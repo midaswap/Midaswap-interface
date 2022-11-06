@@ -13,7 +13,7 @@ import {
 
 export function CPools_add() {
    const { state } = useLocation();
-   console.log(state.address);
+   let  address =state.address;
    
 	return <div className="pools-content" >
   <div className="pools-add" >
