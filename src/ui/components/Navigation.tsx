@@ -91,7 +91,7 @@ export function Navigation() {
               <Link to={'/Collections'}><div className="nav-item " onClick={() => jump(NavItems[1])}>{NavItems[1].name}</div></Link>
               <Link to={'/Swap'}><div className="nav-item " onClick={() => jump(NavItems[2])}>{NavItems[2].name}</div></Link>
               <Link to={'/Pools'}><div className="nav-item " onClick={() => jump(NavItems[3])}>{NavItems[3].name}</div></Link>
-              <Link to={'/NfPoolt'}><div className="nav-item " onClick={() => jump(NavItems[4])}>{NavItems[4].name}</div></Link>
+              {/* <Link to={'/NfPoolt'}><div className="nav-item " onClick={() => jump(NavItems[4])}>{NavItems[4].name}</div></Link> */}
             </div> 
           </div>
           

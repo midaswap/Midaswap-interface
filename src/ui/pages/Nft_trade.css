@@ -166,9 +166,15 @@ margin-top: 1.3542vw;
 
 .Nft_trade_tabs_td{
   display:flex;
-  width: 51.0417vw;
+  width: 31.0417vw;
   align-items: center;
   justify-content: space-between;
+}
+
+
+.nft_trade-add-setting-img{
+  width: 1.25vw;
+  height:  1.25vw;
 }
 
 
@@ -280,6 +286,7 @@ height:9.0625vw ;
   width: 25.0521vw;
 height: 47.8125vw;
 background: #141414;
+
 
 }
 

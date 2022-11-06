@@ -19,7 +19,7 @@ export function CNft_trade() {
   const params = useParams();
 
   function addNft(){
-     console.log("=====================");
+     setOpen(true);
   }
 
 	return <div className="Nft_trade_content" >
@@ -75,12 +75,15 @@ export function CNft_trade() {
     <div className="Nft_trade_tab" >
     Sell
     </div>
+    
+    <Link to={'/Swap'}   state={{ address: '0x1c08236D38ea33977981A9B66fCC4dB1724E5DD6' }}   >
     <div className="Nft_trade_tab" >
-    Swap
-    </div>
-    <div className="Nft_trade_tab" >
-    Actiyity
-    </div>
+       Swap
+     </div>
+    </Link>
+       
+
+    
   </div>
 </div>
 <div className="Nft_trade_nft_list"  >
@@ -208,13 +211,11 @@ export function CNft_trade() {
     </div>
 </div>
 
-    <Drawer headerStyle={{backgroundColor:"#141414",color:"wheat"}}  bodyStyle={{backgroundColor:"#141414"}}  className="nft_drawer"   mask={false}  width={'25.0521vw'} closable={true}  onClose={()=>{ setOpen(false)}} open={open}>
+    <Drawer headerStyle={{backgroundColor:"#141414",color:"wheat"}}  bodyStyle={{backgroundColor:"#141414"}}  className="nft_drawer"   mask={false}  width={'26.0521vw'} closable={true}  onClose={()=>{ setOpen(false)}} open={open}>
         <div className="nft_trade-add-your-nfts" >
               <div className="nft_trade-add-your-nfts-setting"  > 
                  <img   className="nft_trade-add-setting-img"  src={require("../../assets/img/setting.png")}  alt="" />
               </div>
-
-
               <div  className="nft_trade-add-your-nfts-text" > 
                <LeftOutlined />
                <div className="nft_trade-add-your-nfts-text-Your"  >Buy 1NFTs</div>
