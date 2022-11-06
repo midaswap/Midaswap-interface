@@ -13,7 +13,7 @@ import {
 export class Pools extends BasePage {
   protected webContent() {
     return <div className="pools-content" >
-      <div>
+      {/* <div>
          <div className="pools-td" >
             <div className="pools-td-text" > Pools</div>
             <Link to={'/PoolsAdd'}   state={{ address: '0x1c08236D38ea33977981A9B66fCC4dB1724E5DD6' }}   >
@@ -44,9 +44,9 @@ export class Pools extends BasePage {
                <div>Explore Midaswap Analytics.</div>
             </div>
          </div>
-      </div>
+      </div> */}
 
-      {/* <div className="pools-list" >
+      <div className="pools-list" >
          <div  className="pools-list-box"  >
             <div className="pools-list-box-img-bg" >
                  <img  className="pools-list-box-img" src={require("../../assets/img/pools-list-box.png")} alt="" />
@@ -70,6 +70,7 @@ export class Pools extends BasePage {
          </div>
 
          <div  className="pools-list-tale-list" >
+         <Link to={'/Pools_detail/0x1c08236D38ea33977981A9B66fCC4dB1724E5DD6'} >
             <div className="pools-list-tale-list-item">
                <div style={{width:"18.3854vw"}} >
                         <img  className="pools-list-tale-list-logo"  src={require("../../assets/img/azuki.png")} />
@@ -96,8 +97,9 @@ export class Pools extends BasePage {
                   </div>                           
                   <div> #15 </div>
             </div>
+            </Link>
          </div>
-      </div> */}
+      </div>
 
 
       

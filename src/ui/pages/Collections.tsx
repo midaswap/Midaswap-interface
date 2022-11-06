@@ -5,7 +5,7 @@ import {
    RightOutlined
  } from '@ant-design/icons';
 
-
+ import {Link} from "react-router-dom";
 
 
 @page("Collections")
@@ -31,8 +31,11 @@ export class Collections extends BasePage {
                <div style={{width:"11.5104vw"}} > Offer TVL </div>                    
                <div> Listings </div>
             </div>
+
+            <Link to={'/Pools_detail/0x1c08236D38ea33977981A9B66fCC4dB1724E5DD6'} >
+
           <div className="Collections-table-td-list" >
-                  <div   className="Collections-table-font Collections-table-td">
+                  <div    className="Collections-table-font Collections-table-td">
                      <div style={{width:"17.6563vw"}} >
                         <img  className="Collections-table-td-img"  src={require("../../assets/img/azuki.png")} />
                         Azuki                                 
@@ -62,6 +65,36 @@ export class Collections extends BasePage {
                      </div>
                   </div> 
 
+                 
+                        <div   className="Collections-table-font Collections-table-td">
+                           <div style={{width:"17.6563vw"}} >
+                              <img  className="Collections-table-td-img"  src={require("../../assets/img/azuki.png")} />
+                              Azuki                                 
+                           </div>
+                           <div style={{width:"12.3958vw"}}>
+                              <img className="Collections-table-td-img"  src={require("../../assets/img/eth.png")}  />
+                              1826.93                                 
+                           </div>
+
+                           <div style={{width:"9.0625vw"}}>
+                           +9.8%                     
+                           </div>
+                           <div style={{width:"11.3542vw"}}>
+                              <img className="Collections-table-td-img"  src={require("../../assets/img/eth.png")}  />
+                              11.053                             
+                           </div>
+                           <div style={{width:"11.5104vw"}}>
+                              <img className="Collections-table-td-img"  src={require("../../assets/img/eth.png")}  />
+                              10.043                          
+                           </div >
+                           <div style={{width:"11.5104vw"}}>
+                              <img className="Collections-table-td-img"  src={require("../../assets/img/eth.png")}  />
+                              307.30                          
+                           </div>
+                           <div >
+                              #15                          
+                           </div>
+                        </div> 
                   <div   className="Collections-table-font Collections-table-td">
                      <div style={{width:"17.6563vw"}} >
                         <img  className="Collections-table-td-img"  src={require("../../assets/img/azuki.png")} />
@@ -91,41 +124,8 @@ export class Collections extends BasePage {
                         #15                          
                      </div>
                   </div> 
-
-
-                  <div   className="Collections-table-font Collections-table-td">
-                     <div style={{width:"17.6563vw"}} >
-                        <img  className="Collections-table-td-img"  src={require("../../assets/img/azuki.png")} />
-                        Azuki                                 
-                     </div>
-                     <div style={{width:"12.3958vw"}}>
-                        <img className="Collections-table-td-img"  src={require("../../assets/img/eth.png")}  />
-                        1826.93                                 
-                     </div>
-
-                     <div style={{width:"9.0625vw"}}>
-                     +9.8%                     
-                     </div>
-                     <div style={{width:"11.3542vw"}}>
-                        <img className="Collections-table-td-img"  src={require("../../assets/img/eth.png")}  />
-                        11.053                             
-                     </div>
-                     <div style={{width:"11.5104vw"}}>
-                        <img className="Collections-table-td-img"  src={require("../../assets/img/eth.png")}  />
-                        10.043                          
-                     </div >
-                     <div style={{width:"11.5104vw"}}>
-                        <img className="Collections-table-td-img"  src={require("../../assets/img/eth.png")}  />
-                        307.30                          
-                     </div>
-                     <div >
-                        #15                          
-                     </div>
-                  </div> 
-
-                
           </div>
-
+            </Link>
 
 
 
