@@ -43,7 +43,7 @@ root.render(
               <Route path='/' element={<HomePage />}></Route>
               <Route path='/Collections' element={<Collections />}></Route>
               <Route path='/Pools' element={<Pools />}></Route>
-              <Route path='/PoolsAdd/:address' element={<PoolsAdd />}></Route>
+              <Route path='/PoolsAdd' element={<PoolsAdd />}></Route>
               <Route path='/Swap' element={<Swap />}></Route>
               <Route path='/Pools_detail/:address' element={<Pools_detail />}></Route>
               <Route path='/Nft_trade' element={<Nft_trade />}></Route>

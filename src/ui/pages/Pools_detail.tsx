@@ -2,6 +2,7 @@ import { BasePage, page } from "./BasePage";
 
 import { CPools_detail } from "../components/CPools_detail";
 
+
 @page("Pools_detail")
 export class Pools_detail extends BasePage {
 

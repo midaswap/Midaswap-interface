@@ -1,7 +1,7 @@
 import {State, useAppDispatch, useAppSelector} from "../../app/Store";
 import {useEffect} from "react";
 import {ChainId, ethereum, web3} from "../../app/Config";
-import { useParams ,Link} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 
 import {
@@ -12,10 +12,9 @@ import {
 
 
 export function CPools_add() {
-
-  const params = useParams();
-
-
+   const { state } = useLocation();
+   console.log(state.address);
+   
 	return <div className="pools-content" >
   <div className="pools-add" >
         <div className="pools-add-box" >

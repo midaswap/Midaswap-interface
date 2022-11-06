@@ -22,7 +22,7 @@ export function CPools_detail() {
     <div className="Pools_detail_token_name" >
      Azuki/ETH
     </div>
-    <Link to={'/PoolsAdd/'+params.address} >
+    <Link to={'/PoolsAdd'}   state={{ address: params.address }}   >
         <div  className="Pools_detail_add" >
           + Add Liquidity
         </div>
