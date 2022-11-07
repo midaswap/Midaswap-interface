@@ -5,7 +5,7 @@ import { useParams ,Link} from "react-router-dom";
 import { Button, Drawer } from 'antd';
 import { Input } from 'antd';
 import { getErc20Contract,getErc721Contract,getUniswapV3Router } from "../../app/Contract";
-
+import erc20 from "../../store/team.json";
 
 import {
 	ConnectSelectors,
@@ -21,6 +21,17 @@ import {
   RightOutlined,
   DownOutlined
 } from '@ant-design/icons';
+
+
+
+interface PoolInfo {
+  poolsAddress: any,
+  nft_address: any,
+  tokenA:any,
+  tokenB:any
+}
+
+
 
 export function CSwap() {
   const dispatch = useAppDispatch();
@@ -50,9 +61,9 @@ const onClick = isLoading ? undefined :
   undefined : switch_ : connect;
 
 const [swapOrder, setSwapOrder] = useState({
-  nft_address:"0xC20D9e5c96A263d62B2Edc8C99592A8C68776916",
-  tokenB:"0x56223BAe67e6B26E6d1FC8B10431536235eD5B18  ",
+  nft_address:"",
   tokenA:"",
+  tokenB:"  ",
   _amountA:"",
   _amountB:"",
   approveAmontB:"",
@@ -60,47 +71,34 @@ const [swapOrder, setSwapOrder] = useState({
   poolsAddress:""
  });
 
-
-
-
+ const [poolInfoArray, setPoolInfoArray] = useState([]as Array<PoolInfo>);
  
  function textTre(text:any){
     return "SWITCH,CONNECT".indexOf(text) == -1;
   }
   
 
-
   async function initSwap() {
-    const uniswapV3Router = await getUniswapV3Router();
-    swapOrder.poolsAddress= await uniswapV3Router.methods.getPool721Address().call({nft_address:swapOrder.nft_address,tokenB:swapOrder.tokenB});
-    swapOrder.tokenA= await uniswapV3Router.methods.getVtokenAddress721().call({nft_address:swapOrder.nft_address});
-    
+     const uniswapV3Router = await getUniswapV3Router();
+     let  poolInfoList =await uniswapV3Router.methods.getPoolInfoArray();
+     for (let index = 0; index < poolInfoList.length; index++) {
+       const element = poolInfoList[index];
+       let pools:PoolInfo ={poolsAddress:element[0],nft_address:element[1],tokenA:element[2],tokenB:element[3]}
+       poolInfoArray.push(pools);
+     }
+  }
+
+  async function changeHandler(){
     const tokenAContract = await getErc20Contract(swapOrder.tokenA);
     swapOrder.approveAmontB=await tokenAContract.methods.allowance().call({ owner: address,spender: swapOrder.poolsAddress});
-
     const tokenBContract = await getErc20Contract(swapOrder.tokenB);
     swapOrder.approveAmontA=await tokenBContract.methods.allowance().call({ owner: address,spender: swapOrder.poolsAddress});
-
-
-    
-
     setSwapOrder(swapOrder);
   }
 
-
-
   
 
-
-
-
-
-
-
-
-
 	return  <div className="Swap-content" >
-            
   <div  className="swap-box" >
     <div className="swap-td"  >
       <div className="swap-flex-50-left" >Midaswap</div>

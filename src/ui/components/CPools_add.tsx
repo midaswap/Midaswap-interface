@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { ChainId, ethereum, web3 } from "../../app/Config";
 import { useLocation } from "react-router-dom";
 import { Network, Alchemy } from 'alchemy-sdk';
+import {  Modal } from 'antd';
 import {
    ConnectSelectors,
    ConnectTask,
@@ -22,18 +23,18 @@ import {
 export function CPools_add() {
    const { state } = useLocation();
    let nftaddress = state.address;
-
+   const [isModalOpen, setModalOpen] = useState(false);
    const { address, chainId } = useAppSelector(ConnectSelectors.userData);
    const [myNfts, setMyNfts] = useState([] as Array<any>);
 
-   useEffect(() => {
+   async function getNftsForOwner(){
       const settings = {
          apiKey: "xG8dip53YYKaskagE0xWN0NkGCNGV66u",
          network: Network.MATIC_MUMBAI,
       };
       const alchemy = new Alchemy(settings);
-		alchemy.nft.getNftsForOwner(address).then(e => {
-         let newArr = [] as Array<any>;
+	   let 	e = await alchemy.nft.getNftsForOwner(address);
+      let newArr = [] as Array<any>;
          for (let index = 0; index < e.ownedNfts.length; index++) {
             let item = e.ownedNfts[index];
             if(item.contract.address == nftaddress){
@@ -45,12 +46,18 @@ export function CPools_add() {
             }
          }
          setMyNfts(newArr);
-      });
+   }
 
-      alchemy.nft.getNftsForContract("0xC20D9e5c96A263d62B2Edc8C99592A8C68776916",{pageSize:100}).then(e => {
-         debugger
-         console.log(e);
-      });
+
+   
+
+
+
+   useEffect(() => {
+        getNftsForOwner();
+
+
+     
 	});
 
 
@@ -73,8 +80,8 @@ export function CPools_add() {
                      <div>ETH</div>
                      <DownOutlined />
                   </div>
-                  <div className="pools-add-token-name" >
-                     Azuki
+                  <div  onClick={e=>{setModalOpen(true)}} className="pools-add-token-name" >
+                      Azuki
                   </div>
                </div>
                <div className="pools-add-token-empty" >
@@ -177,6 +184,13 @@ export function CPools_add() {
             </div>
          </div>
       </div>
+
+
+      {/* <Modal   style={{backgroundColor:"#141414",color:"wheat"}}  bodyStyle={{backgroundColor:"#141414"}}  open={isModalOpen} footer={null} onCancel={()=>setModalOpen(false)}  >
+             
+      </Modal> */}
+
+
    </div>
 
 }

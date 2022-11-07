@@ -74,7 +74,7 @@ const alchemy = new Alchemy(settings);
 
 
 
-alchemy.nft.getNftsForOwner('vitalik.eth').then(e=>{
+alchemy.nft.getNftsForContract('vitalik.eth').then(e=>{
 
 
 });

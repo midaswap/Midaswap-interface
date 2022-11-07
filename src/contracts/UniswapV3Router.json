@@ -1,5 +1,5 @@
 {
-     "address":"",
+     "address":"0x45316beCe2C448c05182158e08165DC31e717EdF",
     "abi":[
         {
             "inputs": [],
@@ -31,11 +31,6 @@
                 {
                     "internalType": "uint256",
                     "name": "_amountB",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "scale",
                     "type": "uint256"
                 }
             ],
@@ -85,6 +80,11 @@
                     "type": "address"
                 },
                 {
+                    "internalType": "uint256",
+                    "name": "id",
+                    "type": "uint256"
+                },
+                {
                     "internalType": "address",
                     "name": "tokenB",
                     "type": "address"
@@ -95,101 +95,7 @@
                     "type": "uint256"
                 }
             ],
-            "name": "createPool721",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "nft_address",
-                    "type": "address"
-                },
-                {
-                    "internalType": "address",
-                    "name": "tokenB",
-                    "type": "address"
-                }
-            ],
-            "name": "getPool721Address",
-            "outputs": [
-                {
-                    "internalType": "address",
-                    "name": "",
-                    "type": "address"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "nft_address",
-                    "type": "address"
-                }
-            ],
-            "name": "getPool721Vtoken",
-            "outputs": [
-                {
-                    "internalType": "address",
-                    "name": "",
-                    "type": "address"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "nft_address",
-                    "type": "address"
-                },
-                {
-                    "internalType": "address",
-                    "name": "tokenB",
-                    "type": "address"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "id",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "_amountB",
-                    "type": "uint256"
-                }
-            ],
-            "name": "swapToA_1155",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "nft_address",
-                    "type": "address"
-                },
-                {
-                    "internalType": "address",
-                    "name": "tokenB",
-                    "type": "address"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "_amountB",
-                    "type": "uint256"
-                }
-            ],
-            "name": "swapToA_721",
+            "name": "createPool",
             "outputs": [],
             "stateMutability": "nonpayable",
             "type": "function"
@@ -210,16 +116,81 @@
                     "internalType": "uint256",
                     "name": "id",
                     "type": "uint256"
+                }
+            ],
+            "name": "getPoolAddress",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "getPoolInfoArray",
+            "outputs": [
+                {
+                    "components": [
+                        {
+                            "internalType": "address",
+                            "name": "poolsAddress",
+                            "type": "address"
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "nft_address",
+                            "type": "address"
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "tokenA",
+                            "type": "address"
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "tokenB",
+                            "type": "address"
+                        }
+                    ],
+                    "internalType": "struct UniswapV3Router.PoolInfo[]",
+                    "name": "",
+                    "type": "tuple[]"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "pools",
+                    "type": "address"
+                },
+                {
+                    "internalType": "address",
+                    "name": "toAddress",
+                    "type": "address"
                 },
                 {
                     "internalType": "uint256",
-                    "name": "_amountA",
+                    "name": "amountA",
                     "type": "uint256"
                 }
             ],
-            "name": "swapToB_1155",
-            "outputs": [],
-            "stateMutability": "nonpayable",
+            "name": "getToken",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
             "type": "function"
         },
         {
@@ -230,17 +201,41 @@
                     "type": "address"
                 },
                 {
+                    "internalType": "uint256",
+                    "name": "id",
+                    "type": "uint256"
+                }
+            ],
+            "name": "getVtoken",
+            "outputs": [
+                {
                     "internalType": "address",
-                    "name": "tokenB",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "pools",
+                    "type": "address"
+                },
+                {
+                    "internalType": "address",
+                    "name": "toAddress",
                     "type": "address"
                 },
                 {
                     "internalType": "uint256",
-                    "name": "_amountA",
+                    "name": "_amount",
                     "type": "uint256"
                 }
             ],
-            "name": "swapToB_721",
+            "name": "swap",
             "outputs": [],
             "stateMutability": "nonpayable",
             "type": "function"
