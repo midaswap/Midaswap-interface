@@ -23,29 +23,31 @@ export function CPools_add() {
    const { state } = useLocation();
    let nftaddress = state.address;
 
-   const settings = {
-      apiKey: "xG8dip53YYKaskagE0xWN0NkGCNGV66u",
-      network: Network.MATIC_MUMBAI,
-   };
-
-   const alchemy = new Alchemy(settings);
    const { address, chainId } = useAppSelector(ConnectSelectors.userData);
    const [myNfts, setMyNfts] = useState([] as Array<any>);
 
-   alchemy.nft.getNftsForOwner(address).then(e => {
-      let newArr = [] as Array<any>;
-      for (let index = 0; index < e.ownedNfts.length; index++) {
-         let item = e.ownedNfts[index];
-         if(item.contract.address == nftaddress){
-            let data: { name: any, tokenUrl: any, tokenId: any } = { name: "", tokenUrl: '', tokenId: "" };
-            data.name = item.contract.name;
-            data.tokenUrl = item.tokenUri ? item.tokenUri.gateway : '';
-            data.tokenId = item.tokenId
-            newArr.push(data);
+   useEffect(() => {
+      const settings = {
+         apiKey: "xG8dip53YYKaskagE0xWN0NkGCNGV66u",
+         network: Network.MATIC_MUMBAI,
+      };
+      const alchemy = new Alchemy(settings);
+		alchemy.nft.getNftsForOwner(address).then(e => {
+         let newArr = [] as Array<any>;
+         for (let index = 0; index < e.ownedNfts.length; index++) {
+            let item = e.ownedNfts[index];
+            if(item.contract.address == nftaddress){
+               let data: { name: any, tokenUrl: any, tokenId: any } = { name: "", tokenUrl: '', tokenId: "" };
+               data.name = item.contract.name;
+               data.tokenUrl = item.tokenUri ? item.tokenUri.gateway : '';
+               data.tokenId = item.tokenId
+               newArr.push(data);
+            }
          }
-      }
-      setMyNfts(newArr);
-   });
+         setMyNfts(newArr);
+      });
+	});
+
 
 
    return <div className="pools-content" >
