@@ -3,7 +3,9 @@ import {useEffect,useState} from "react";
 import {ChainId, ethereum, web3} from "../../app/Config";
 import { useParams ,Link} from "react-router-dom";
 import { Button, Drawer } from 'antd';
-
+import {
+	ConnectSelectors,
+} from "../../slices/ConnectSlice";
 
 import {
   LeftOutlined,
@@ -14,12 +16,16 @@ import {
 export function CNft_trade() {
 
   const [open, setOpen] = useState(false);
+  const dispatch = useAppDispatch();
+	const isConnected = useAppSelector(ConnectSelectors.isConnected);
+  const {address, chainId} = useAppSelector(ConnectSelectors.userData);
 
 
   const params = useParams();
 
   function addNft(){
      setOpen(true);
+
   }
 
 	return <div className="Nft_trade_content" >
@@ -55,7 +61,7 @@ export function CNft_trade() {
 
 <div className="Nft_trade_address_td" >
   <div className="Nft_trade_address" >
-     <div>0xED5AF388653567Af2F388E6224dC7C4b3241C544</div>  
+     <div>0x1c08236D38ea33977981A9B66fCC4dB1724E5DD6</div>  
      <img  className="Nft_trade_copy"  src={require("../../assets/img/copy.png")}  alt=""  />
   </div>
   <div  className="share-logo" >

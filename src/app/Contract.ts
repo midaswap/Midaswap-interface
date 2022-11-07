@@ -1,20 +1,36 @@
 
-
-import impact from "../contracts/impact.json";
+import erc20 from "../contracts/erc20.json";
+import erc721 from "../contracts/erc721.json";
+import UniswapV3Router from "../contracts/UniswapV3Router.json";
 import {ChainId, web3} from "./Config";
 import {AbiItem} from "web3-utils";
 import {Contract} from "web3-eth-contract";
 
-let contract: Contract;
-export async function getContract() {
-	if (!contract) {
+
+export async function getErc20Contract(address:any) {
+		// @ts-ignore
+		return  new web3.eth.Contract(
+			erc20.abi as AbiItem[],
+			address
+		);
+
+}
+
+export async function getErc721Contract(address:any) {
 		const networkId = ChainId;
 		// @ts-ignore
-		contract = new web3.eth.Contract(
-			impact.abi as AbiItem[],
-			impact.address
+		return new web3.eth.Contract(
+			erc721.abi as AbiItem[],
+			address
 		);
-		console.log("== contract ==", {contract, networkId});
-	}
-	return contract;
 }
+
+export async function getUniswapV3Router() {
+		// @ts-ignore
+		return new web3.eth.Contract(
+			erc20.abi as AbiItem[],
+			UniswapV3Router.address
+		);
+}
+
+

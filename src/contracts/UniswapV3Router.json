@@ -1,0 +1,300 @@
+{
+     "address":"",
+    "abi":[
+        {
+            "inputs": [],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "nft_address",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "id",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "address",
+                    "name": "tokenB",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_amountA",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_amountB",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "scale",
+                    "type": "uint256"
+                }
+            ],
+            "name": "addPool1155",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "nft_address",
+                    "type": "address"
+                },
+                {
+                    "internalType": "address",
+                    "name": "tokenB",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "tokenId",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_amountA",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_amountB",
+                    "type": "uint256"
+                }
+            ],
+            "name": "addPool721",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "nft_address",
+                    "type": "address"
+                },
+                {
+                    "internalType": "address",
+                    "name": "tokenB",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "scale",
+                    "type": "uint256"
+                }
+            ],
+            "name": "createPool721",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "nft_address",
+                    "type": "address"
+                },
+                {
+                    "internalType": "address",
+                    "name": "tokenB",
+                    "type": "address"
+                }
+            ],
+            "name": "getPool721Address",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "nft_address",
+                    "type": "address"
+                }
+            ],
+            "name": "getPool721Vtoken",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "nft_address",
+                    "type": "address"
+                },
+                {
+                    "internalType": "address",
+                    "name": "tokenB",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "id",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_amountB",
+                    "type": "uint256"
+                }
+            ],
+            "name": "swapToA_1155",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "nft_address",
+                    "type": "address"
+                },
+                {
+                    "internalType": "address",
+                    "name": "tokenB",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_amountB",
+                    "type": "uint256"
+                }
+            ],
+            "name": "swapToA_721",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "nft_address",
+                    "type": "address"
+                },
+                {
+                    "internalType": "address",
+                    "name": "tokenB",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "id",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_amountA",
+                    "type": "uint256"
+                }
+            ],
+            "name": "swapToB_1155",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "nft_address",
+                    "type": "address"
+                },
+                {
+                    "internalType": "address",
+                    "name": "tokenB",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_amountA",
+                    "type": "uint256"
+                }
+            ],
+            "name": "swapToB_721",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "nft_address",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "id",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "address",
+                    "name": "tokenB",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "lpAmount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "unStake1155",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "nft_address",
+                    "type": "address"
+                },
+                {
+                    "internalType": "address",
+                    "name": "tokenB",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "lpAmount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "unStake721",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        }
+    ]
+}
