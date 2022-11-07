@@ -211,7 +211,7 @@ export function CNft_trade() {
     </div>
 </div>
 
-    <Drawer headerStyle={{backgroundColor:"#141414",color:"wheat"}}  bodyStyle={{backgroundColor:"#141414"}}  className="nft_drawer"   mask={false}  width={'26.0521vw'} closable={true}  onClose={()=>{ setOpen(false)}} open={open}>
+    <Drawer headerStyle={{backgroundColor:"#141414",color:"wheat"}}  bodyStyle={{backgroundColor:"#141414"}} open={open}  className="nft_drawer"   mask={false}  width={'26.0521vw'} closable={true}  onClose={()=>{ setOpen(false)}}>
         <div className="nft_trade-add-your-nfts" >
               <div className="nft_trade-add-your-nfts-setting"  > 
                  <img   className="nft_trade-add-setting-img"  src={require("../../assets/img/setting.png")}  alt="" />
