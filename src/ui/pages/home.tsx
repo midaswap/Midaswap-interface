@@ -14,7 +14,7 @@ export class HomePage extends BasePage {
       <div className="home-nft" >NFT Marketplace </div>
 
       <div className="nft-list"  >
-        <Link to={'/Nft_trade/0x1c08236d38ea33977981a9b66fcc4db1724e5dd6'} >
+        <Link to={'/Nft_trade/0xC20D9e5c96A263d62B2Edc8C99592A8C68776916'} >
           <div className="nft-list-item">
             <img className="nft-logo" src={require("../../assets/img/logo.png")} alt="" />
             <div className="nft-name">RENGA Black Box</div>
@@ -63,7 +63,7 @@ export class HomePage extends BasePage {
           </div>
         </Link>
 
-        <Link  to={'/Nft_trade/0x1c08236D38ea33977981A9B66fCC4dB1724E5DD6'} >
+        <Link  to={'/Nft_trade/0xC20D9e5c96A263d62B2Edc8C99592A8C68776916'} >
           <div className="nft-list-item" >
             <img className="nft-logo" src={require("../../assets/img/sudo.png")} alt="" />
             <div className="nft-name">Sudo Inu</div>
@@ -112,7 +112,7 @@ export class HomePage extends BasePage {
           </div>
         </Link>
 
-        <Link to={'/Nft_trade/0x1c08236D38ea33977981A9B66fCC4dB1724E5DD6'} >
+        <Link to={'/Nft_trade/0xC20D9e5c96A263d62B2Edc8C99592A8C68776916'} >
           <div className="nft-list-item" >
             <img className="nft-logo" src={require("../../assets/img/0xmons.png")} alt="" />
             <div className="nft-name">0xmons</div>
@@ -161,7 +161,7 @@ export class HomePage extends BasePage {
           </div>
         </Link>
 
-        <Link to={'/Nft_trade/0x1c08236D38ea33977981A9B66fCC4dB1724E5DD6'} >
+        <Link to={'/Nft_trade/0xC20D9e5c96A263d62B2Edc8C99592A8C68776916'} >
           <div className="nft-list-item" >
             <img className="nft-logo" src={require("../../assets/img/based.png")} alt="" />
             <div className="nft-name">Based Ghouls</div>

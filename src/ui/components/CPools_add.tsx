@@ -46,6 +46,11 @@ export function CPools_add() {
          }
          setMyNfts(newArr);
       });
+
+      alchemy.nft.getNftsForContract("0xC20D9e5c96A263d62B2Edc8C99592A8C68776916",{pageSize:100}).then(e => {
+         debugger
+         console.log(e);
+      });
 	});
 
 
