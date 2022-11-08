@@ -28,7 +28,7 @@ export async function getErc721Contract(address:any) {
 export async function getUniswapV3Router() {
 		// @ts-ignore
 		return new web3.eth.Contract(
-			erc20.abi as AbiItem[],
+			UniswapV3Router.abi as AbiItem[],
 			UniswapV3Router.address
 		);
 }

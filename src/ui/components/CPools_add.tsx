@@ -5,7 +5,8 @@ import { useLocation } from "react-router-dom";
 import { Network, Alchemy } from 'alchemy-sdk';
 import { getErc20Contract,getErc721Contract,getUniswapV3Router,getTokenB } from "../../app/Contract";
 import { Progress,message } from 'antd';
-import {  Modal } from 'antd';
+import {  Modal,Radio  } from 'antd';
+import type { RadioChangeEvent } from 'antd';
 
 import {
    ConnectSelectors,
@@ -22,12 +23,15 @@ import {
    DownOutlined
 } from '@ant-design/icons';
 import create from "@ant-design/icons/lib/components/IconFont";
+import { url } from "inspector";
 
 interface PoolInfo {
    poolsAddress: any,
    nft_address: any,
+   id:any,
    tokenA:any,
-   tokenB:any
+   tokenB:any,
+   fractionNFTAddress:any
  }
 
 
@@ -37,7 +41,7 @@ interface PoolInfo {
    tokenId:any,
    _amountA:any,
    _amountB:any,
-   nftApprove:any,
+   nftApprove:false,
    tokenBApprove:any,
    tokenAApprove:any
  }
@@ -56,17 +60,7 @@ export function CPools_add() {
    const [myNfts, setMyNfts] = useState([] as Array<any>);
     
 
-   async function initSwap() {
-      const uniswapV3Router = await getUniswapV3Router();
-      let  info =await uniswapV3Router.methods.getPoolInfo(nftaddress,"0x56223BAe67e6B26E6d1FC8B10431536235eD5B18",0);
-      if(info.length > 0 ){
-         poolInfo.poolsAddress=info[0];
-         poolInfo.nft_address=info[1];
-         poolInfo.tokenA=info[2];
-         poolInfo.tokenB=info[3];
-         setPoolInfo(poolInfo);
-      }
-   }
+  
 
    async function getNftsForOwner(){
       if(!address){
@@ -92,12 +86,39 @@ export function CPools_add() {
          setMyNfts(newArr);
    }
 
-   async function getApprove(){
-      const tokenBContract = await getErc20Contract(poolInfo.tokenA);
-      poolOrder.tokenBApprove=await tokenBContract.methods.allowance().call({ owner: address,spender: poolInfo.poolsAddress});
+
+   async function initSwap() {
+      const uniswapV3Router = await getUniswapV3Router();
+      let  info =await uniswapV3Router.methods.getPoolInfo(nftaddress,"0x56223BAe67e6B26E6d1FC8B10431536235eD5B18",0).call();
+      console.log(info);
+      if(info.length > 0 ){
+         poolInfo.poolsAddress=info[0];
+         poolInfo.nft_address=info[1];
+         poolInfo.id=info[2];
+         poolInfo.tokenA=info[3];
+         poolInfo.tokenB=info[4];
+         poolInfo.fractionNFTAddress=info[5];
+         setPoolInfo(poolInfo);
+         getErc20Approve();
+         getErc721Approve();
+      }
+   }
+
+   async function getErc20Approve(){
+      const tokenBContract = await getErc20Contract(poolInfo.tokenB);
+      poolOrder.tokenBApprove=await tokenBContract.methods.allowance(address,poolInfo.poolsAddress).call();
       const tokenAContract = await getErc20Contract(poolInfo.tokenA);
-      poolOrder.tokenAApprove=await tokenAContract.methods.allowance().call({ owner: address,spender: poolInfo.poolsAddress});
+      poolOrder.tokenAApprove=await tokenAContract.methods.allowance(address,poolInfo.poolsAddress).call();
+      setPoolOrder({...poolOrder});
     }
+
+    async function getErc721Approve(){
+      const contract= await getErc721Contract(poolInfo.nft_address);
+      poolOrder.nftApprove=await contract.methods.isApprovedForAll(address,poolInfo.fractionNFTAddress).call();
+      setPoolOrder({...poolOrder});
+    
+    }
+
 
 
     async function approveErc20(address:any){
@@ -106,14 +127,30 @@ export function CPools_add() {
          from: address
        }).on('error', (error: any) =>{
          message.error(error);
-          getApprove();
+         getErc20Approve();
        }).on('transactionHash', (txHash: any) => {
          console.warn("transactionHash", txHash)
        }).on('receipt', (receipt: any) => {
            message.success("Success");
-           getApprove();
+           getErc20Approve();
        })
     }
+
+    async function approve721(){
+      debugger
+      const contract= await getErc721Contract(poolInfo.nft_address);
+      contract.methods.setApprovalForAll(poolInfo.fractionNFTAddress,true).send({
+       from: address
+     }).on('error', (error: any) =>{
+       message.error(error);
+       getErc721Approve();
+     }).on('transactionHash', (txHash: any) => {
+       console.warn("transactionHash", txHash)
+     }).on('receipt', (receipt: any) => {
+         message.success("Success");
+         getErc721Approve();
+     })
+  }
 
    
    async function addPool(){
@@ -149,12 +186,19 @@ export function CPools_add() {
 
 
 
+    const onChange = (e:any) => {
+        poolOrder.tokenId= e.target.value;
+        setPoolOrder({...poolOrder});
+    }
 
 
    const text = poolInfo.poolsAddress ? <div onClick={addPool} >ADD POOL</div> : <div  onClick={createPool}  >CREATE POOL</div> 
 	
    useEffect(() => {
-      getNftsForOwner();
+      if(address){
+         getNftsForOwner();
+         initSwap();
+      }
 	}, [address, dispatch]);
 
 
@@ -257,10 +301,14 @@ export function CPools_add() {
 
 
             <div className="pools-add-your-nft-list" >
+                <Radio.Group  onChange={e=>onChange(e)}  style={{width:"100%"}} >
                { myNfts.length > 0 ?
                   myNfts.map(item => {
                      return <div className="pools-add-your-nft-list-item" >
-                        <img className="pools-add-your-nft-list-item-img" src={item.tokenUrl} alt="" />
+                        <div className="pools-add-your-nft-list-item-img" style={{backgroundImage:"url("+item.tokenUrl+")"}} >
+                           <Radio value={item.tokenId}></Radio>
+                        </div>
+
                         <div className="pools-add-your-nft-list-item-name" >
                            <div className="pools-add-your-nft-list-item-name-text">{item.name}</div>
                            <div className="pools-add-your-nft-list-item-id-text" >name #{item.tokenId}</div>
@@ -271,15 +319,15 @@ export function CPools_add() {
                   :
                   <div></div>
                }
+               </Radio.Group>
             </div>
 
             <div className="pools-add-your-nft-cost" >
                Net Cost:
             </div>
             <div className="flex-center-width-full" >
-
                <div className="pools-add-your-nft-but" >
-                  {text}
+                 {poolOrder.nftApprove ? <div>TOKEN ID:#{poolOrder.tokenId}</div>:<div onClick={approve721} >Approve</div> }
                </div>
             </div>
          </div>
