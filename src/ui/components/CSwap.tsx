@@ -69,7 +69,7 @@ const [swapOrder, setSwapOrder] = useState({
   nft_address:"",
   tokenA:"",
   tokenB:"  ",
-  teams:[{ addres:"",amount:0 ,name:''}, {addres:"", amount:0,name:''}]
+  teams:[{ addres:"",amount:0 ,name:'',logo:''}, {addres:"", amount:0,name:'',logo:''}]
  });
 
  const [poolInfoArray, setPoolInfoArray] = useState([]as Array<PoolInfo>);
@@ -107,7 +107,7 @@ const [swapOrder, setSwapOrder] = useState({
   async function changeTeams(){
      let tema0=swapOrder.teams[0];
      let tema1=swapOrder.teams[1];
-     let teams=[]as Array<{addres:any,amount:any,name:any}>;
+     let teams=[]as Array<{addres:any,amount:any,name:any,logo:any}>;
      teams.push(tema1);
      teams.push(tema0);
      swapOrder.teams=teams;
@@ -115,10 +115,6 @@ const [swapOrder, setSwapOrder] = useState({
   }
 
   async function createSwapOrder(poolInfo:PoolInfo){
-    
-    
-
-
     swapOrder.tokenA=poolInfo.tokenA;
     swapOrder.tokenB=poolInfo.tokenB;
     swapOrder.nft_address=poolInfo.nft_address;
@@ -127,14 +123,13 @@ const [swapOrder, setSwapOrder] = useState({
     swapOrder.tokenBApprove=await tokenBContract.methods.allowance(address,swapOrder.poolsAddress).call();
     const tokenAContract = await getErc20Contract(swapOrder.tokenA);
     swapOrder.tokenAApprove=await tokenAContract.methods.allowance(address,swapOrder.poolsAddress).call();
-     let teams=[]as Array<{addres:any,amount:any,name:any}>
-     teams.push({addres:swapOrder.tokenB,amount:0,name:teamJSON[poolInfo.tokenB].name});
-     teams.push({addres:swapOrder.tokenA,amount:0,name:teamJSON[poolInfo.nft_address].name});
+    
+     let teams=[]as Array<{addres:any,amount:any,name:any,logo:any}>
+     teams.push({addres:swapOrder.tokenB,amount:0,name:teamJSON[poolInfo.tokenB].name,logo:teamJSON[poolInfo.tokenB].logo});
+     teams.push({addres:swapOrder.tokenA,amount:0,name:teamJSON[poolInfo.nft_address].name,logo:teamJSON[poolInfo.nft_address].logo});
      swapOrder.teams=teams;
     setSwapOrder({...swapOrder});
   }
-
-  
 
 	return  <div className="Swap-content" >
   <div  className="swap-box" >
@@ -151,13 +146,13 @@ const [swapOrder, setSwapOrder] = useState({
     <div className="swap-token-one"  >
        <div className="swap-flex-50-left" >
           <div className="swap-token-select" >
-              <img  className="swap-token-img"  src={require("../../assets/img/eth.png")} alt="" />
-              <div>ETH</div>
+            {swapOrder.teams[0].logo?  <img  className="swap-token-img"  src={require("../../assets/img/"+swapOrder.teams[0].logo)} alt="" /> :""}
+              <div>{swapOrder.teams[0].name}</div>
               <DownOutlined />
           </div>
        </div>
        <div  className="swap-flex-50-right" >
-          <InputNumber  bordered={false}  controls={false} value={swapOrder.teams[0].amount}  onChange={(e)=>{changeInput(swapOrder.teams[0].addres,e,0,1)}} className="swap-input"  />
+          <InputNumber  bordered={false}  controls={false} value={swapOrder.teams[0].amount}  onChange={(e)=>{changeInput(swapOrder.teams[1].addres,e,0,1)}} className="swap-input"  />
       </div>
     </div>
 
@@ -171,13 +166,14 @@ const [swapOrder, setSwapOrder] = useState({
     <div className="swap-token-tow"  >
     <div className="swap-flex-50-left" >
           <div className="swap-token-select" >
-              <img  className="swap-token-img"  src={require("../../assets/img/logo_r.png")} alt="" />
-              <div>Azuki</div>
+            {swapOrder.teams[1].logo ? <img  className="swap-token-img"  src={require("../../assets/img/"+swapOrder.teams[1].logo)} alt="" /> : '' }
+              
+              <div>{swapOrder.teams[1].name}</div>
               <DownOutlined />
           </div>
        </div>
        <div  className="swap-flex-50-right" >
-          <InputNumber  bordered={false}  controls={false} value={swapOrder.teams[1].amount}  onChange={(e)=>{changeInput(swapOrder.teams[1].addres,e,1,0)}} className="swap-input"  />
+          <InputNumber  bordered={false}  controls={false} value={swapOrder.teams[1].amount}  onChange={(e)=>{changeInput(swapOrder.teams[0].addres,e,1,0)}} className="swap-input"  />
       </div>
     </div>
     <div className="swap-text"  >
