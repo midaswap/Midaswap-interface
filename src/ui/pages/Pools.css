@@ -473,7 +473,8 @@ margin-bottom: 2.7083vw;
   width: 25.2083vw;
   height: 12.5521vw;
   margin-top: 1.0417vw;
-  background-color: white;
+  background-image: url("../../assets/img/depost.png");
+  background-size:100% 100%;  
 }
 
 

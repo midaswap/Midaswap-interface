@@ -7,10 +7,16 @@ export const Common = {
 	 isMobilex: mobileAgents.some(ag => userAgent.includes(ag)),
 	isMobile: false,
 	toDiscord() {
-		window.open('https://discord.gg/yxNhMAQ5XG', '_block');
+		window.open('https://discord.gg/FNkFwBQNaT', '_block');
 	},
 	toTwitter() {
-		window.open('https://twitter.com/impactopia_net', '_block');
+		window.open('https://twitter.com/Midaswap_', '_block');
+	},
+	toGithup() {
+		window.open('https://github.com/midaswap', '_block');
+	},
+	toDocs() {
+		window.open('https://midaswap.gitbook.io/untitled/', '_block');
 	},
 	closeNavigationTab() {
 	// 	const el = document.querySelector('.nav-dropdown') as HTMLElement;

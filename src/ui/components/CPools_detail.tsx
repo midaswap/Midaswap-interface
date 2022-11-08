@@ -71,7 +71,7 @@ export function CPools_detail() {
             $10.53m
         </div>
         <div className="Pools_detail_tokens_charts_but_box">
-          <div  className="Pools_detail_tokens_charts_but_box_bt"  >Volume</div>
+          <div  className="Pools_detail_tokens_charts_but_box_bt "  >Volume</div>
           <div className="Pools_detail_tokens_charts_but_box_bt" >Liquidity</div>
           <div className="Pools_detail_tokens_charts_but_box_bt" >Fees</div>
         </div>

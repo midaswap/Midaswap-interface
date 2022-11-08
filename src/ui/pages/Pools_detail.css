@@ -65,15 +65,18 @@ border-radius: 15px;
 }
 
 .Pools_detail_tokens_charts{
+
   margin-top: 1.7708vw;
   width: 57.3438vw;
-background: #1F2127;
-border: 1px solid #FFFFFF;
-border-radius: 1.0417vw;
-display:flex;
-justify-content: center;
-flex-wrap: wrap;
-padding:1.8229vw 1.4063vw  2.3438vw 0.9896vw ;
+  background: #1F2127;
+  border: 1px solid #FFFFFF;
+  border-radius: 1.0417vw;
+  display:flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding:1.8229vw 1.4063vw  2.3438vw 0.9896vw ;
+
+
 }
 
 .Pools_detail_tokens_chart{
@@ -81,6 +84,8 @@ padding:1.8229vw 1.4063vw  2.3438vw 0.9896vw ;
   height: 19.5313vw;
   margin-top: 1.875vw;
   background-color: #40444F;
+  background-image: url("../../assets/img/chearts.png");
+  background-size:100% 100%;  
 }
 
 .Pools_detail_tokens_charts_but_box{

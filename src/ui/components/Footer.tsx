@@ -11,9 +11,10 @@ export function Footer() {
 	const Web = <div id="footer"  mode="web"  >
 		<div  className="footer" >
 			<div className="footer-img"  >
-				{/* <img   onClick={Common.toTwitter}  className="img-tg img-marg" src={require("../../assets/impactopia/tg.png")} />
-				<img   onClick={Common.toDiscord}   className="img-tg img-marg" src={require("../../assets/impactopia/discode.png")} />
-				<img  className="img-tg img-marg" src={require("../../assets/impactopia/mail.png")} /> */}
+				<img   onClick={Common.toTwitter}  className="img-tg img-marg" src={require("../../assets/img/tg.png")} />
+				<img   onClick={Common.toDiscord}   className="img-tg img-marg" src={require("../../assets/img/discode.png")} />
+				<img   onClick={Common.toGithup} className="img-tg img-marg" src={require("../../assets/img/email.png")} />
+				<div  className="footer_Docs" >Docs</div>
 			</div>
 		</div>
 	</div>

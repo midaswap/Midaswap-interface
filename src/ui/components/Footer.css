@@ -9,24 +9,6 @@
 
 
 
-@media (min-width: 1920px) {
-  #footer[mode=web] .footer {
-     display: flex;
-     flex-wrap: wrap;
-
-  }
-}
-
-@media (max-width: 1920px) {
-  #footer[mode=web] .footer {
-     display: flex;
-    flex-wrap: wrap;
-    color: #3F4140;
-  }
-}
-
-
-
 #footer[mode=web]  .footer-img {
   display: flex;
   align-items: center;
@@ -57,4 +39,15 @@ height: 84px;
 background: #718183;
 margin-left: 70px;
 }
+
+
+#footer[mode=web]  .footer_Docs {
+  width: 2px;
+height: 84px;
+background: #718183;
+margin-left: 70px;
+}
+
+
+
 
