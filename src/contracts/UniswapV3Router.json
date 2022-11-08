@@ -1,5 +1,5 @@
 {
-     "address":"0x69779354bbb59F432b1bFfC64cEA73646Ebd0964",
+     "address":"0x246B53723Fe2f36B511584D1062d86893f756afF",
     "abi":[
         {
             "inputs": [
@@ -323,11 +323,11 @@
                 },
                 {
                     "internalType": "uint256",
-                    "name": "amountA",
+                    "name": "amountFrom",
                     "type": "uint256"
                 }
             ],
-            "name": "getToken",
+            "name": "getTokenOut",
             "outputs": [
                 {
                     "internalType": "uint256",

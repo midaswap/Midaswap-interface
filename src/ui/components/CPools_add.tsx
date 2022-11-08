@@ -129,8 +129,6 @@ export function CPools_add() {
     }
 
 
-
-
     async function approveErc20(address:any){
         const contract= await getErc20Contract(address);
         contract.methods.approve(poolInfo.poolsAddress,web3.utils.toWei("999999999")).send({
