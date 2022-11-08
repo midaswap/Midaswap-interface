@@ -14,42 +14,161 @@ import {
   DownOutlined
 } from '@ant-design/icons';
 
+
 export function CNft_trade() {
 
+  const [contractAddress, setContractAddress] = useState("0x4AD9607e706e99Bc6E4D5FDF72f322aa26730300");
   const [open, setOpen] = useState(false);
   const dispatch = useAppDispatch();
   const isConnected = useAppSelector(ConnectSelectors.isConnected);
   const { address, chainId } = useAppSelector(ConnectSelectors.userData);
-
+  const [checkLabel, setCheckLabel] = useState("Buy");
+  const [myNfts, setMyNfts] = useState([] as Array<any>);
+  const [buyNftList, setBuyNftList] = useState([] as Array<any>);
+  const [sellNftList, setSellNftList] = useState([] as Array<any>);
+  const [nftList, setNftList] = useState([] as Array<any>);
 
   const params = useParams();
 
-  function addNft() {
-    setOpen(true);
-
+  function switckLabel(tabName: string) {
+    setCheckLabel(tabName);
   }
 
-  const [nftList, setNftList] = useState([] as Array<any>);
+  function addNft(item: any) {
+    let rel = true;
+    for (let index = 0; index < buyNftList.length; index++) {
+      let nft = buyNftList[index];
+      if (nft.tokenId == item.tokenId) {
+        rel = false;
+      }
+    }
+    if (rel) {
+      let newArr = [] as Array<any>;
+      for (let index = 0; index < buyNftList.length; index++) {
+        let nft = buyNftList[index];
+        let data: { name: any, tokenUrl: any, tokenId: any } = { name: "", tokenUrl: '', tokenId: "" };
+        data.name = nft.name;
+        data.tokenUrl = nft.tokenUrl;
+        data.tokenId = nft.tokenId
+        newArr.push(data);
+      }
+      newArr.push(item);
+      setBuyNftList(newArr);
+    }
+    setOpen(true);
+  }
 
-  useEffect(() => {
+  function addSellNft(item: any) {
+    let rel = true;
+    for (let index = 0; index < sellNftList.length; index++) {
+      let nft = sellNftList[index];
+      if (nft.tokenId == item.tokenId) {
+        rel = false;
+      }
+    }
+    if (rel) {
+      let newArr = [] as Array<any>;
+      for (let index = 0; index < sellNftList.length; index++) {
+        let nft = sellNftList[index];
+        let data: { name: any, tokenUrl: any, tokenId: any } = { name: "", tokenUrl: '', tokenId: "" };
+        data.name = nft.name;
+        data.tokenUrl = nft.tokenUrl;
+        data.tokenId = nft.tokenId
+        newArr.push(data);
+      }
+      newArr.push(item);
+      setSellNftList(newArr);
+    }
+    setOpen(true);
+  }
+
+  function clearBuy() {
+    setBuyNftList([] as Array<any>);
+  }
+
+  function clearSell(){
+    setSellNftList([] as Array<any>);
+  }
+
+  function clearBuySingle(tokenId: any) {
+    let newArr = [] as Array<any>;
+    for (let index = 0; index < buyNftList.length; index++) {
+      let nft = buyNftList[index];
+      if (nft.tokenId != tokenId) {
+        let data: { name: any, tokenUrl: any, tokenId: any } = { name: "", tokenUrl: '', tokenId: "" };
+        data.name = nft.name;
+        data.tokenUrl = nft.tokenUrl;
+        data.tokenId = nft.tokenId
+        newArr.push(data);
+      }
+    }
+    setBuyNftList(newArr);
+  }
+
+  function clearSellSingle(tokenId: any) {
+    let newArr = [] as Array<any>;
+    for (let index = 0; index < sellNftList.length; index++) {
+      let nft = sellNftList[index];
+      if (nft.tokenId != tokenId) {
+        let data: { name: any, tokenUrl: any, tokenId: any } = { name: "", tokenUrl: '', tokenId: "" };
+        data.name = nft.name;
+        data.tokenUrl = nft.tokenUrl;
+        data.tokenId = nft.tokenId
+        newArr.push(data);
+      }
+    }
+    setSellNftList(newArr);
+  }
+
+  async function getNftsForContract() {
     const settings = {
       apiKey: "xG8dip53YYKaskagE0xWN0NkGCNGV66u",
       network: Network.MATIC_MUMBAI,
     };
     const alchemy = new Alchemy(settings);
-    alchemy.nft.getNftsForContract("0xC20D9e5c96A263d62B2Edc8C99592A8C68776916", { pageSize: 100 }).then(e => {
-      let newArr = [] as Array<any>;
-      for (let index = 0; index < e.nfts.length; index++) {
-        let item = e.nfts[index];
+    let e = await alchemy.nft.getNftsForOwner(contractAddress);
+    let newArr = [] as Array<any>;
+    for (let index = 0; index < e.ownedNfts.length; index++) {
+      let item = e.ownedNfts[index];
+      if (item.contract.address == "0xc20d9e5c96a263d62b2edc8c99592a8c68776916") {
         let data: { name: any, tokenUrl: any, tokenId: any } = { name: "", tokenUrl: '', tokenId: "" };
         data.name = item.contract.name;
         data.tokenUrl = item.tokenUri ? item.tokenUri.gateway : '';
         data.tokenId = item.tokenId
         newArr.push(data);
       }
-      setNftList(newArr);
-    });
-  });
+    }
+    setNftList(newArr);
+  }
+
+  async function getNftsForOwner() {
+    if (!address) {
+      return;
+    }
+    const settings = {
+      apiKey: "xG8dip53YYKaskagE0xWN0NkGCNGV66u",
+      network: Network.MATIC_MUMBAI,
+    };
+    const alchemy = new Alchemy(settings);
+    let e = await alchemy.nft.getNftsForOwner(address);
+    let newArr = [] as Array<any>;
+    for (let index = 0; index < e.ownedNfts.length; index++) {
+      let item = e.ownedNfts[index];
+      if (item.contract.address == "0xc20d9e5c96a263d62b2edc8c99592a8c68776916") {
+        let data: { name: any, tokenUrl: any, tokenId: any } = { name: "", tokenUrl: '', tokenId: "" };
+        data.name = item.contract.name;
+        data.tokenUrl = item.tokenUri ? item.tokenUri.gateway : '';
+        data.tokenId = item.tokenId
+        newArr.push(data);
+      }
+    }
+    setMyNfts(newArr);
+  }
+
+  useEffect(() => {
+    getNftsForContract();
+    getNftsForOwner();
+  }, [address, dispatch]);
 
 
   return <div className="Nft_trade_content" >
@@ -98,12 +217,13 @@ export function CNft_trade() {
     </div>
     <div className="Nft_trade_tabs"  >
       <div className="Nft_trade_tabs_td" >
-        <div className="Nft_trade_tab Nft_trade_tab_active" >
+        <div className={checkLabel == 'Buy' ? "Nft_trade_tab Nft_trade_tab_active" : "Nft_trade_tab"} onClick={() => { switckLabel('Buy') }}>
           Buy
-          <div className="Nft_trade_tabs_tag">12</div>
+          <div className="Nft_trade_tabs_tag">{nftList.length}</div>
         </div>
-        <div className="Nft_trade_tab" >
+        <div className={checkLabel == 'Sell' ? "Nft_trade_tab Nft_trade_tab_active" : "Nft_trade_tab"} onClick={() => { switckLabel('Sell') }}>
           Sell
+          <div className="Nft_trade_tabs_tag">{myNfts.length}</div>
         </div>
 
         <Link to={'/Swap'} state={{ address: '0xC20D9e5c96A263d62B2Edc8C99592A8C68776916' }}   >
@@ -116,79 +236,142 @@ export function CNft_trade() {
 
       </div>
     </div>
-    <div className="Nft_trade_nft_list"  >
-      {nftList.length > 0 ?
-        nftList.map(item => {
-          return <div onClick={() => { addNft() }} className="Nft_trade_nft_list_item" >
-            <div className="Nft_trade_nft_list_item_img_box" >
-              <img className="Nft_trade_nft_list_item_img" src={item.tokenUrl} alt="" />
+    {checkLabel == 'Buy' ?
+      < div className="Nft_trade_nft_list"  >
+        {nftList.length > 0 ?
+          nftList.map(item => {
+            return <div onClick={() => { addNft(item) }} className="Nft_trade_nft_list_item" >
+              <div className="Nft_trade_nft_list_item_img_box" >
+                <img className="Nft_trade_nft_list_item_img" src={item.tokenUrl} alt="" />
+              </div>
+              <div className="Nft_trade_nft_list_item_id" > #{item.tokenId} </div>
+              <div className="Nft_trade_nft_list_item_name" > {item.name} #{item.tokenId} </div>
+              <div className="Nft_trade_nft_price_items"  >
+                <div>Items 10</div>
+                <img className="Nft_trade_nft_price_items_eth_img" src={require("../../assets/img/eth.png")} alt="" />
+                <div>46.686</div>
+              </div>
             </div>
-            <div className="Nft_trade_nft_list_item_id" > #{item.tokenId} </div>
-            <div className="Nft_trade_nft_list_item_name" > {item.name} #{item.tokenId} </div>
-            <div className="Nft_trade_nft_price_items"  >
-              <div>Items 10</div>
-              <img className="Nft_trade_nft_price_items_eth_img" src={require("../../assets/img/eth.png")} alt="" />
-              <div>46.686</div>
-            </div>
-          </div>
-        })
-        :
-        <div></div>
-      }
-
-    </div>
-
-    <Drawer headerStyle={{ backgroundColor: "#141414", color: "wheat" }} bodyStyle={{ backgroundColor: "#141414" }} open={open} className="nft_drawer" mask={false} width={'26.0521vw'} closable={true} onClose={() => { setOpen(false) }}>
-      <div className="nft_trade-add-your-nfts" >
-        <div className="nft_trade-add-your-nfts-setting"  >
-          <img className="nft_trade-add-setting-img" src={require("../../assets/img/setting.png")} alt="" />
-        </div>
-        <div className="nft_trade-add-your-nfts-text" >
-          <LeftOutlined />
-          <div className="nft_trade-add-your-nfts-text-Your"  >Buy 1NFTs</div>
-          <div className="nft_trade-add-your-nfts-text-Clear"  >Clear</div>
-        </div>
-
-        <div className="flex-center-width-full" >
-          <div className="nft_trade-add-your-tokens" >
-            Buy Total:
-          </div>
-        </div>
-
-
-        <div className="nft_trade-add-your-nft-list" >
-          <div className="nft_trade-add-your-nft-list-item" >
-            <img className="nft_trade-add-your-nft-list-item-img" src={require("../../assets/img/nft.png")} alt="" />
-            <div className="nft_trade-add-your-nft-list-item-name" >
-              <div className="nft_trade-add-your-nft-list-item-name-text">Azuki </div>
-              <div className="nft_trade-add-your-nft-list-item-id-text" >Azuki #7073</div>
-            </div>
-            <img className="nft_trade-add-x-img" src={require("../../assets/img/x.png")} alt="" />
-          </div>
-
-          <div className="nft_trade-add-your-nft-list-item" >
-            <img className="nft_trade-add-your-nft-list-item-img" src={require("../../assets/img/nft.png")} alt="" />
-            <div className="nft_trade-add-your-nft-list-item-name" >
-              <div className="nft_trade-add-your-nft-list-item-name-text">Azuki </div>
-              <div className="nft_trade-add-your-nft-list-item-id-text" >Azuki #7073</div>
-            </div>
-            <img className="nft_trade-add-x-img" src={require("../../assets/img/x.png")} alt="" />
-          </div>
-        </div>
-
-        <div className="nft_trade-add-your-nft-cost" >
-          Net Cost:
-        </div>
-        <div className="flex-center-width-full" >
-
-          <div className="nft_trade-add-your-nft-but" >
-            BUY
-          </div>
-        </div>
+          })
+          :
+          <div></div>
+        }
       </div>
-    </Drawer>
+      :
+      < div className="Nft_trade_nft_list"  >
+        {myNfts.length > 0 ?
+          myNfts.map(item => {
+            return <div onClick={() => { addSellNft(item) }} className="Nft_trade_nft_list_item" >
+              <div className="Nft_trade_nft_list_item_img_box" >
+                <img className="Nft_trade_nft_list_item_img" src={item.tokenUrl} alt="" />
+              </div>
+              <div className="Nft_trade_nft_list_item_id" > #{item.tokenId} </div>
+              <div className="Nft_trade_nft_list_item_name" > {item.name} #{item.tokenId} </div>
+              <div className="Nft_trade_nft_price_items"  >
+                <div>Items 10</div>
+                <img className="Nft_trade_nft_price_items_eth_img" src={require("../../assets/img/eth.png")} alt="" />
+                <div>46.686</div>
+              </div>
+            </div>
+          })
+          :
+          <div></div>
+        }
+      </div>
+    }
+
+    {checkLabel == 'Buy' ?
+      <Drawer headerStyle={{ backgroundColor: "#141414", color: "wheat" }} bodyStyle={{ backgroundColor: "#141414" }} open={open} className="nft_drawer" mask={false} width={'26.0521vw'} closable={true} onClose={() => { setOpen(false) }}>
+        <div className="nft_trade-add-your-nfts" >
+          <div className="nft_trade-add-your-nfts-setting"  >
+            <img className="nft_trade-add-setting-img" src={require("../../assets/img/setting.png")} alt="" />
+          </div>
+          <div className="nft_trade-add-your-nfts-text" >
+            <LeftOutlined />
+            <div className="nft_trade-add-your-nfts-text-Your"  >Buy {buyNftList.length}NFTs</div>
+            <div className="nft_trade-add-your-nfts-text-Clear" onClick={() => { clearBuy() }}>Clear</div>
+          </div>
+          <div className="flex-center-width-full" >
+            <div className="nft_trade-add-your-tokens" >
+              Buy Total:
+            </div>
+          </div>
+          <div className="nft_trade-add-your-nft-list" >
+            {buyNftList.length > 0 ?
+              buyNftList.map(item => {
+                return <div className="nft_trade-add-your-nft-list-item" >
+                  <img className="nft_trade-add-your-nft-list-item-img" src={item.tokenUrl} alt="" />
+                  <div className="nft_trade-add-your-nft-list-item-name" >
+                    <div className="nft_trade-add-your-nft-list-item-name-text">{item.name} </div>
+                    <div className="nft_trade-add-your-nft-list-item-id-text" >{item.name} #{item.tokenId}</div>
+                  </div>
+                  <img className="nft_trade-add-x-img" src={require("../../assets/img/x.png")} alt="" onClick={() => { clearBuySingle(item.tokenId) }} />
+                </div>
+              })
+              :
+              <div></div>
+            }
+          </div>
+
+          <div className="nft_trade-add-your-nft-cost" >
+            Net Cost:
+          </div>
+          <div className="flex-center-width-full" >
+
+            <div className="nft_trade-add-your-nft-but" >
+              BUY
+            </div>
+          </div>
+        </div>
+      </Drawer>
+      :
+      <Drawer headerStyle={{ backgroundColor: "#141414", color: "wheat" }} bodyStyle={{ backgroundColor: "#141414" }} open={open} className="nft_drawer" mask={false} width={'26.0521vw'} closable={true} onClose={() => { setOpen(false) }}>
+        <div className="nft_trade-add-your-nfts" >
+          <div className="nft_trade-add-your-nfts-setting"  >
+            <img className="nft_trade-add-setting-img" src={require("../../assets/img/setting.png")} alt="" />
+          </div>
+          <div className="nft_trade-add-your-nfts-text" >
+            <LeftOutlined />
+            <div className="nft_trade-add-your-nfts-text-Your"  >Sell {sellNftList.length}NFTs</div>
+            <div className="nft_trade-add-your-nfts-text-Clear" onClick={() => { clearSell() }}>Clear</div>
+          </div>
+          <div className="flex-center-width-full" >
+            <div className="nft_trade-add-your-tokens" >
+              Sell Total:
+            </div>
+          </div>
+          <div className="nft_trade-add-your-nft-list" >
+            {sellNftList.length > 0 ?
+              sellNftList.map(item => {
+                return <div className="nft_trade-add-your-nft-list-item" >
+                  <img className="nft_trade-add-your-nft-list-item-img" src={item.tokenUrl} alt="" />
+                  <div className="nft_trade-add-your-nft-list-item-name" >
+                    <div className="nft_trade-add-your-nft-list-item-name-text">{item.name} </div>
+                    <div className="nft_trade-add-your-nft-list-item-id-text" >{item.name} #{item.tokenId}</div>
+                  </div>
+                  <img className="nft_trade-add-x-img" src={require("../../assets/img/x.png")} alt="" onClick={() => { clearSellSingle(item.tokenId) }} />
+                </div>
+              })
+              :
+              <div></div>
+            }
+          </div>
+
+          <div className="nft_trade-add-your-nft-cost" >
+            Net Cost:
+          </div>
+          <div className="flex-center-width-full" >
+
+            <div className="nft_trade-add-your-nft-but" >
+              SELL
+            </div>
+          </div>
+        </div>
+      </Drawer>
+    }
 
 
-  </div>
+
+  </div >
 
 }
