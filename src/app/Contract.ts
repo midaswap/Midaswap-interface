@@ -34,3 +34,9 @@ export async function getUniswapV3Router() {
 }
 
 
+export async function getTokenB() {
+	// @ts-ignore
+	return '0x56223BAe67e6B26E6d1FC8B10431536235eD5B18';
+}
+
+

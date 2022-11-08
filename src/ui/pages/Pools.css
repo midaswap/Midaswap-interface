@@ -382,11 +382,22 @@ color: #FEFEFE;
 
 
 .pools-add-token-empty{
-  width: 24.7917vw;
-  height: 9.7396vw;
+  width: 476px;
+  height: 103px;
   background: #1F2127;
-  border: 1px solid;
+  border: 1px solid #FFFFFF;
+  border-radius: 20px;
   margin-top: 1.3542vw;
+  font-size: 22px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #FCFCFD;
+  display: flex;
+  padding-left: 2.7083vw ;
+  padding-top: 1.021vw;
+  padding-bottom: 1.3021vw;
+  flex-wrap: wrap;
+
 }
 
 
@@ -402,6 +413,7 @@ color: #FCFCFD;
   font-family: PingFang SC;
   font-weight: 400;
   color: #FCFCFD; 
+  margin-top: 4.4271vw;
 }
 
 

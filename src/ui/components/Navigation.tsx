@@ -64,20 +64,6 @@ function toggleMenu() {
   if (menu) menu.className = Menu.opened ? "opened" : "";
 }
 
-const settings = {
-  apiKey: "xG8dip53YYKaskagE0xWN0NkGCNGV66u",
-  network: Network.MATIC_MUMBAI,
-};
-
-const alchemy = new Alchemy(settings); 
-
-
-
-
-alchemy.nft.getNftsForContract('vitalik.eth').then(e=>{
-
-
-});
 
 
 
