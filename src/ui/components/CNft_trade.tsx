@@ -4,6 +4,8 @@ import { ChainId, ethereum, web3 } from "../../app/Config";
 import { useParams, Link } from "react-router-dom";
 import { Button, Drawer } from 'antd';
 import { Network, Alchemy } from 'alchemy-sdk';
+import copy from 'copy-to-clipboard';
+
 import {
   ConnectSelectors,
 } from "../../slices/ConnectSlice";
@@ -32,6 +34,10 @@ export function CNft_trade() {
 
   function switckLabel(tabName: string) {
     setCheckLabel(tabName);
+  }
+
+  function copyText(val: any){
+    copy(val);
   }
 
   function addNft(item: any) {
@@ -205,7 +211,7 @@ export function CNft_trade() {
     <div className="Nft_trade_address_td" >
       <div className="Nft_trade_address" >
         <div>0xC20D9e5c96A263d62B2Edc8C99592A8C68776916</div>
-        <img className="Nft_trade_copy" src={require("../../assets/img/copy.png")} alt="" />
+        <img className="Nft_trade_copy" src={require("../../assets/img/copy.png")} alt="" onClick={() => { copyText("0xC20D9e5c96A263d62B2Edc8C99592A8C68776916") }}/>
       </div>
       <div className="share-logo" >
         <img className="share-logo-img" src={require("../../assets/img/logo-etherscan.png")} alt="" />
@@ -239,8 +245,8 @@ export function CNft_trade() {
     {checkLabel == 'Buy' ?
       < div className="Nft_trade_nft_list"  >
         {nftList.length > 0 ?
-          nftList.map(item => {
-            return <div onClick={() => { addNft(item) }} className="Nft_trade_nft_list_item" >
+          nftList.map((item, i) => {
+            return <div key={i} onClick={() => { addNft(item) }} className="Nft_trade_nft_list_item" >
               <div className="Nft_trade_nft_list_item_img_box" >
                 <img className="Nft_trade_nft_list_item_img" src={item.tokenUrl} alt="" />
               </div>
@@ -260,8 +266,8 @@ export function CNft_trade() {
       :
       < div className="Nft_trade_nft_list"  >
         {myNfts.length > 0 ?
-          myNfts.map(item => {
-            return <div onClick={() => { addSellNft(item) }} className="Nft_trade_nft_list_item" >
+          myNfts.map((item, i) => {
+            return <div key={i} onClick={() => { addSellNft(item) }} className="Nft_trade_nft_list_item" >
               <div className="Nft_trade_nft_list_item_img_box" >
                 <img className="Nft_trade_nft_list_item_img" src={item.tokenUrl} alt="" />
               </div>
@@ -298,8 +304,8 @@ export function CNft_trade() {
           </div>
           <div className="nft_trade-add-your-nft-list" >
             {buyNftList.length > 0 ?
-              buyNftList.map(item => {
-                return <div className="nft_trade-add-your-nft-list-item" >
+              buyNftList.map((item, i) => {
+                return <div key={i} className="nft_trade-add-your-nft-list-item" >
                   <img className="nft_trade-add-your-nft-list-item-img" src={item.tokenUrl} alt="" />
                   <div className="nft_trade-add-your-nft-list-item-name" >
                     <div className="nft_trade-add-your-nft-list-item-name-text">{item.name} </div>
@@ -342,8 +348,8 @@ export function CNft_trade() {
           </div>
           <div className="nft_trade-add-your-nft-list" >
             {sellNftList.length > 0 ?
-              sellNftList.map(item => {
-                return <div className="nft_trade-add-your-nft-list-item" >
+              sellNftList.map((item, i) => {
+                return <div key={i} className="nft_trade-add-your-nft-list-item" >
                   <img className="nft_trade-add-your-nft-list-item-img" src={item.tokenUrl} alt="" />
                   <div className="nft_trade-add-your-nft-list-item-name" >
                     <div className="nft_trade-add-your-nft-list-item-name-text">{item.name} </div>
