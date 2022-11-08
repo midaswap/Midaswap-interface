@@ -6,7 +6,7 @@ import { Button, Drawer } from 'antd';
 import { Input,InputNumber  } from 'antd';
 import { getErc20Contract,getErc721Contract,getUniswapV3Router } from "../../app/Contract";
 import teamJSON from "../../store/team.json";
-
+import { Progress,message } from 'antd';
 import {
 	ConnectSelectors,
 	ConnectTask,
@@ -63,13 +63,11 @@ const onClick = isLoading ? undefined :
   undefined : switch_ : connect;
 
 const [swapOrder, setSwapOrder] = useState({
-  tokenBApprove:"",
-  tokenAApprove:"",
   poolsAddress:"",
   nft_address:"",
   tokenA:"",
   tokenB:"  ",
-  teams:[{ addres:"",amount:0 ,name:'',logo:''}, {addres:"", amount:0,name:'',logo:''}]
+  teams:[{ addres:"",amount:0 ,name:'',logo:'',approve:0}, {addres:"", amount:0,name:'',logo:'',approve:0}]
  });
 
  const [poolInfoArray, setPoolInfoArray] = useState([]as Array<PoolInfo>);
@@ -83,6 +81,35 @@ const [swapOrder, setSwapOrder] = useState({
        initSwap();
     }
 }, [address, dispatch]);
+
+async function approveErc20(address:any){
+  const contract= await getErc20Contract(address);
+  contract.methods.approve(swapOrder.poolsAddress,web3.utils.toWei("999999999")).send({
+   from: address
+ }).on('error', (error: any) =>{
+   message.error(error);
+   getApprove();
+ }).on('transactionHash', (txHash: any) => {
+   console.warn("transactionHash", txHash)
+ }).on('receipt', (receipt: any) => {
+     message.success("Success");
+     getApprove();
+ })
+}
+
+async function swap(){
+  const uniswapV3Router = await getUniswapV3Router();
+  uniswapV3Router.methods.swap(swapOrder.poolsAddress,swapOrder.teams[1].addres,web3.utils.toWei(swapOrder.teams[0].amount+"")).send({
+   from: address
+ }).on('error', (error: any) =>{
+   message.error(error);
+ }).on('transactionHash', (txHash: any) => {
+   console.warn("transactionHash", txHash)
+ }).on('receipt', (receipt: any) => {
+     message.success("Success");
+ })
+}
+
 
 
   async function initSwap() {
@@ -107,11 +134,19 @@ const [swapOrder, setSwapOrder] = useState({
   async function changeTeams(){
      let tema0=swapOrder.teams[0];
      let tema1=swapOrder.teams[1];
-     let teams=[]as Array<{addres:any,amount:any,name:any,logo:any}>;
+     let teams=[]as Array<{addres:any,amount:any,name:any,logo:any,approve:any}>;
      teams.push(tema1);
      teams.push(tema0);
      swapOrder.teams=teams;
      setSwapOrder({...swapOrder});
+  }
+
+  async  function getApprove(){
+    const tokenBContract = await getErc20Contract(swapOrder.tokenB);
+    swapOrder.teams[0].approve=await tokenBContract.methods.allowance(address,swapOrder.poolsAddress).call();
+    const tokenAContract = await getErc20Contract(swapOrder.tokenA);
+    swapOrder.teams[1].approve=await tokenAContract.methods.allowance(address,swapOrder.poolsAddress).call();
+    setSwapOrder({...swapOrder});
   }
 
   async function createSwapOrder(poolInfo:PoolInfo){
@@ -119,17 +154,16 @@ const [swapOrder, setSwapOrder] = useState({
     swapOrder.tokenB=poolInfo.tokenB;
     swapOrder.nft_address=poolInfo.nft_address;
     swapOrder.poolsAddress=poolInfo.poolsAddress;
-    const tokenBContract = await getErc20Contract(swapOrder.tokenB);
-    swapOrder.tokenBApprove=await tokenBContract.methods.allowance(address,swapOrder.poolsAddress).call();
-    const tokenAContract = await getErc20Contract(swapOrder.tokenA);
-    swapOrder.tokenAApprove=await tokenAContract.methods.allowance(address,swapOrder.poolsAddress).call();
-    
-     let teams=[]as Array<{addres:any,amount:any,name:any,logo:any}>
-     teams.push({addres:swapOrder.tokenB,amount:0,name:teamJSON[poolInfo.tokenB].name,logo:teamJSON[poolInfo.tokenB].logo});
-     teams.push({addres:swapOrder.tokenA,amount:0,name:teamJSON[poolInfo.nft_address].name,logo:teamJSON[poolInfo.nft_address].logo});
+     let teams=[]as Array<{addres:any,amount:any,name:any,logo:any,approve:any}>
+     teams.push({addres:swapOrder.tokenB,amount:0,name:teamJSON[poolInfo.tokenB].name,logo:teamJSON[poolInfo.tokenB].logo,approve:""});
+     teams.push({addres:swapOrder.tokenA,amount:0,name:teamJSON[poolInfo.nft_address].name,logo:teamJSON[poolInfo.nft_address].logo,approve:""});
      swapOrder.teams=teams;
     setSwapOrder({...swapOrder});
+    getApprove();
   }
+
+
+
 
 	return  <div className="Swap-content" >
   <div  className="swap-box" >
@@ -182,7 +216,7 @@ const [swapOrder, setSwapOrder] = useState({
 
 
     <div className="swap-but"  >
-       {textTre(text)?'Approval':<div  onClick={onClick} >{text}</div>} 
+       {textTre(text)?  swapOrder.teams[0].approve > 0 ? <div onClick={swap}  >Swap</div> : <div  onClick={()=>{approveErc20(swapOrder.teams[0].addres)}}  >Approval</div>:<div  onClick={onClick} >{text}</div>} 
     </div>
 
   </div>
