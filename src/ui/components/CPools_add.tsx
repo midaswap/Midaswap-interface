@@ -23,7 +23,6 @@ import {
 } from '@ant-design/icons';
 import create from "@ant-design/icons/lib/components/IconFont";
 
-
 interface PoolInfo {
    poolsAddress: any,
    nft_address: any,
@@ -40,7 +39,7 @@ interface PoolInfo {
    _amountB:any,
    nftApprove:any,
    tokenBApprove:any,
-   tokenApprove:any
+   tokenAApprove:any
  }
 
 
@@ -49,10 +48,13 @@ export function CPools_add() {
    const { state } = useLocation();
    let nftaddress = state.address;
    const [poolInfo,setPoolInfo] = useState({} as PoolInfo);
+   const [poolOrder,setPoolOrder] = useState({} as PoolOrder);
+   
+
    const [isModalOpen, setModalOpen] = useState(false);
    const { address, chainId } = useAppSelector(ConnectSelectors.userData);
    const [myNfts, setMyNfts] = useState([] as Array<any>);
-
+    
 
    async function initSwap() {
       const uniswapV3Router = await getUniswapV3Router();
@@ -90,10 +92,27 @@ export function CPools_add() {
          setMyNfts(newArr);
    }
 
-   async function approve(){
-      const tokenBContract = await getErc20Contract(getTokenB());
-      let approveB=await tokenBContract.methods.allowance().call({ owner: address,spender: poolInfo.poolsAddress});
-      
+   async function getApprove(){
+      const tokenBContract = await getErc20Contract(poolInfo.tokenA);
+      poolOrder.tokenBApprove=await tokenBContract.methods.allowance().call({ owner: address,spender: poolInfo.poolsAddress});
+      const tokenAContract = await getErc20Contract(poolInfo.tokenA);
+      poolOrder.tokenAApprove=await tokenAContract.methods.allowance().call({ owner: address,spender: poolInfo.poolsAddress});
+    }
+
+
+    async function approveErc20(address:any){
+        const contract= await getErc20Contract(address);
+        contract.methods.approve(poolInfo.poolsAddress,web3.utils.toWei("999999999")).send({
+         from: address
+       }).on('error', (error: any) =>{
+         message.error(error);
+          getApprove();
+       }).on('transactionHash', (txHash: any) => {
+         console.warn("transactionHash", txHash)
+       }).on('receipt', (receipt: any) => {
+           message.success("Success");
+           getApprove();
+       })
     }
 
    
