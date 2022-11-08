@@ -137,7 +137,6 @@ export function CPools_add() {
     }
 
     async function approve721(){
-      debugger
       const contract= await getErc721Contract(poolInfo.nft_address);
       contract.methods.setApprovalForAll(poolInfo.fractionNFTAddress,true).send({
        from: address
@@ -187,6 +186,9 @@ export function CPools_add() {
 
 
     const onChange = (e:any) => {
+      if(!poolOrder.nftApprove){
+         approve721();
+      }
         poolOrder.tokenId= e.target.value;
         setPoolOrder({...poolOrder});
     }
@@ -290,7 +292,7 @@ export function CPools_add() {
             <div className="pools-add-your-nfts-text" >
                <LeftOutlined />
                <div className="pools-add-your-nfts-text-Your"  >Your NFTs</div>
-               <div className="pools-add-your-nfts-text-Clear"  >Clear</div>
+             
             </div>
 
             <div className="flex-center-width-full" >
@@ -303,8 +305,8 @@ export function CPools_add() {
             <div className="pools-add-your-nft-list" >
                 <Radio.Group  onChange={e=>onChange(e)}  style={{width:"100%"}} >
                { myNfts.length > 0 ?
-                  myNfts.map(item => {
-                     return <div className="pools-add-your-nft-list-item" >
+                  myNfts.map((item, i) => {
+                     return <div key={i} className="pools-add-your-nft-list-item" >
                         <div className="pools-add-your-nft-list-item-img" style={{backgroundImage:"url("+item.tokenUrl+")"}} >
                            <Radio value={item.tokenId}></Radio>
                         </div>
@@ -313,7 +315,6 @@ export function CPools_add() {
                            <div className="pools-add-your-nft-list-item-name-text">{item.name}</div>
                            <div className="pools-add-your-nft-list-item-id-text" >name #{item.tokenId}</div>
                         </div>
-                        <img className="pools-add-x-img" src={require("../../assets/img/x.png")} alt="" />
                      </div>
                   })
                   :
@@ -323,13 +324,13 @@ export function CPools_add() {
             </div>
 
             <div className="pools-add-your-nft-cost" >
-               Net Cost:
+               TOKEN ID:{poolOrder.tokenId ? '#' + poolOrder.tokenId : ''}
             </div>
-            <div className="flex-center-width-full" >
+            {/* <div className="flex-center-width-full" >
                <div className="pools-add-your-nft-but" >
                  {poolOrder.nftApprove ? <div>TOKEN ID:#{poolOrder.tokenId}</div>:<div onClick={approve721} >Approve</div> }
                </div>
-            </div>
+            </div> */}
          </div>
       </div>
 
