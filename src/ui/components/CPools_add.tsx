@@ -101,6 +101,7 @@ export function CPools_add() {
          setPoolInfo(poolInfo);
          getErc20Approve();
          getErc721Approve();
+        
       }
    }
 
@@ -116,8 +117,17 @@ export function CPools_add() {
       const contract= await getErc721Contract(poolInfo.nft_address);
       poolOrder.nftApprove=await contract.methods.isApprovedForAll(address,poolInfo.fractionNFTAddress).call();
       setPoolOrder({...poolOrder});
-    
     }
+
+    async function initOrder(){
+      console.log(poolOrder);
+      const contract= await getUniswapV3Router();
+      poolOrder._amountA=web3.utils.toWei("1");
+      poolOrder._amountB=await contract.methods.getToken(poolInfo.poolsAddress,poolInfo.tokenB,web3.utils.toWei("1")).call();
+      setPoolOrder({...poolOrder});
+      console.log(poolOrder);
+    }
+
 
 
 
@@ -185,12 +195,17 @@ export function CPools_add() {
 
 
 
+
+
     const onChange = (e:any) => {
       if(!poolOrder.nftApprove){
          approve721();
       }
-        poolOrder.tokenId= e.target.value;
-        setPoolOrder({...poolOrder});
+      poolOrder.tokenId= e.target.value;
+      setPoolOrder({...poolOrder});
+      initOrder();
+
+
     }
 
 
