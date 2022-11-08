@@ -12,6 +12,8 @@
 #footer[mode=web]  .footer-img {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 18.625vw;
 }
 
 
@@ -42,10 +44,10 @@ margin-left: 70px;
 
 
 #footer[mode=web]  .footer_Docs {
-  width: 2px;
-height: 84px;
-background: #718183;
-margin-left: 70px;
+
+color: aliceblue;
+font-size: 24px;
+font-weight: 600;
 }
 
 
