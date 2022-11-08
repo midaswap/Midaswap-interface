@@ -170,12 +170,6 @@ export function CPools_add() {
          return;
       }
       const uniswapV3Router = await getUniswapV3Router();
-      console.log("nftaddr==>" + nftaddress);
-      console.log("tokenB==>" + await getTokenB());
-      console.log("tokenId==>" + poolOrder.tokenId);
-      console.log("toA==>" + web3.utils.toWei("1"));
-      console.log("toB==>" + web3.utils.toWei("80"));
-      debugger;
       await uniswapV3Router.methods.addPool721(nftaddress, await getTokenB(), poolOrder.tokenId, web3.utils.toWei("1"), web3.utils.toWei("80")).send({
          from: address
       }).on('error', (error: any) => {
