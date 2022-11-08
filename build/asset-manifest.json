@@ -1,11 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.de051ab5.css",
-    "main.js": "/static/js/main.3f6127a8.js",
+    "main.css": "/static/css/main.47f0390f.css",
+    "main.js": "/static/js/main.22e0e042.js",
     "static/js/537.f062bcf0.chunk.js": "/static/js/537.f062bcf0.chunk.js",
     "static/js/536.ca77ebb2.chunk.js": "/static/js/536.ca77ebb2.chunk.js",
     "static/media/bg.png": "/static/media/bg.186dcfe2e84e19b708de.png",
     "static/media/home-bg.png": "/static/media/home-bg.9d46f828c28ae512d866.png",
+    "static/media/chearts.png": "/static/media/chearts.b4d1ecc8896e197ef003.png",
+    "static/media/depost.png": "/static/media/depost.6800b552ccce4251b5b4.png",
     "static/media/Roboto-Medium.ttf": "/static/media/Roboto-Medium.d2d7f0c01bffaa5ec8f7.ttf",
     "static/media/Impact.ttf": "/static/media/Impact.75d2f46366d0b0bd58aa.ttf",
     "static/media/sudo.png": "/static/media/sudo.d512565174c356408224.png",
@@ -22,13 +24,13 @@
     "static/media/logo_r.png": "/static/media/logo_r.9a774481de5e86d314a2.png",
     "static/media/pool-box.png": "/static/media/pool-box.a23251a8eb622665d08e.png",
     "index.html": "/index.html",
-    "main.de051ab5.css.map": "/static/css/main.de051ab5.css.map",
-    "main.3f6127a8.js.map": "/static/js/main.3f6127a8.js.map",
+    "main.47f0390f.css.map": "/static/css/main.47f0390f.css.map",
+    "main.22e0e042.js.map": "/static/js/main.22e0e042.js.map",
     "537.f062bcf0.chunk.js.map": "/static/js/537.f062bcf0.chunk.js.map",
     "536.ca77ebb2.chunk.js.map": "/static/js/536.ca77ebb2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.de051ab5.css",
-    "static/js/main.3f6127a8.js"
+    "static/css/main.47f0390f.css",
+    "static/js/main.22e0e042.js"
   ]
 }
