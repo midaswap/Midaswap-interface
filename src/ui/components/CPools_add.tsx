@@ -51,7 +51,6 @@ export function CPools_add() {
    const dispatch = useAppDispatch();
    const { state } = useLocation();
    let nftaddress = state.address;
-   console.log("nftaddress==================>" + nftaddress);
    const [poolInfo, setPoolInfo] = useState({} as PoolInfo);
    const [poolOrder, setPoolOrder] = useState({} as PoolOrder);
 
@@ -90,7 +89,7 @@ export function CPools_add() {
 
    async function initSwap() {
       const uniswapV3Router = await getUniswapV3Router();
-      let info = await uniswapV3Router.methods.getPoolInfo(nftaddress, "0x56223BAe67e6B26E6d1FC8B10431536235eD5B18", 0).call();
+      let info = await uniswapV3Router.methods.getPoolInfo(nftaddress, "0xD5e240836E500a099D0504107432C7aC52C82cB8", 0).call();
       console.log(info);
       if (info.length > 0) {
          poolInfo.poolsAddress = info[0];
@@ -170,9 +169,14 @@ export function CPools_add() {
          message.error("Please select the NFT to be added");
          return;
       }
-      debugger;
       const uniswapV3Router = await getUniswapV3Router();
-      await uniswapV3Router.methods.addPool721(nftaddress, getTokenB(), 12, web3.utils.toWei("1"), web3.utils.toWei("80")).send({
+      console.log("nftaddr==>" + nftaddress);
+      console.log("tokenB==>" + await getTokenB());
+      console.log("tokenId==>" + poolOrder.tokenId);
+      console.log("toA==>" + web3.utils.toWei("1"));
+      console.log("toB==>" + web3.utils.toWei("80"));
+      debugger;
+      await uniswapV3Router.methods.addPool721(nftaddress, await getTokenB(), poolOrder.tokenId, web3.utils.toWei("1"), web3.utils.toWei("80")).send({
          from: address
       }).on('error', (error: any) => {
          message.error(error);

@@ -32,7 +32,7 @@ export class Collections extends BasePage {
                <div> Listings </div>
             </div>
 
-            <Link to={'/Pools_detail/0xC20D9e5c96A263d62B2Edc8C99592A8C68776916'} >
+            <Link to={'/Pools_detail/0x7b105443a0f176dF53FB5CBA5A0AecB8A61C468F'} >
 
           <div className="Collections-table-td-list" >
                   <div    className="Collections-table-font Collections-table-td">

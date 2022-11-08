@@ -136,7 +136,7 @@ export function CNft_trade() {
     let newArr = [] as Array<any>;
     for (let index = 0; index < e.ownedNfts.length; index++) {
       let item = e.ownedNfts[index];
-      if (item.contract.address == "0xc20d9e5c96a263d62b2edc8c99592a8c68776916") {
+      if (item.contract.address == "0x7b105443a0f176dF53FB5CBA5A0AecB8A61C468F") {
         let data: { name: any, tokenUrl: any, tokenId: any } = { name: "", tokenUrl: '', tokenId: "" };
         data.name = item.contract.name;
         data.tokenUrl = item.tokenUri ? item.tokenUri.gateway : '';
@@ -160,7 +160,7 @@ export function CNft_trade() {
     let newArr = [] as Array<any>;
     for (let index = 0; index < e.ownedNfts.length; index++) {
       let item = e.ownedNfts[index];
-      if (item.contract.address == "0xc20d9e5c96a263d62b2edc8c99592a8c68776916") {
+      if (item.contract.address == "0x7b105443a0f176dF53FB5CBA5A0AecB8A61C468F") {
         let data: { name: any, tokenUrl: any, tokenId: any } = { name: "", tokenUrl: '', tokenId: "" };
         data.name = item.contract.name;
         data.tokenUrl = item.tokenUri ? item.tokenUri.gateway : '';
@@ -210,8 +210,8 @@ export function CNft_trade() {
 
     <div className="Nft_trade_address_td" >
       <div className="Nft_trade_address" >
-        <div>0xC20D9e5c96A263d62B2Edc8C99592A8C68776916</div>
-        <img className="Nft_trade_copy" src={require("../../assets/img/copy.png")} alt="" onClick={() => { copyText("0xC20D9e5c96A263d62B2Edc8C99592A8C68776916") }}/>
+        <div>0x7b105443a0f176dF53FB5CBA5A0AecB8A61C468F</div>
+        <img className="Nft_trade_copy" src={require("../../assets/img/copy.png")} alt="" onClick={() => { copyText("0x7b105443a0f176dF53FB5CBA5A0AecB8A61C468F") }}/>
       </div>
       <div className="share-logo" >
         <img className="share-logo-img" src={require("../../assets/img/logo-etherscan.png")} alt="" />
@@ -232,7 +232,7 @@ export function CNft_trade() {
           <div className="Nft_trade_tabs_tag">{myNfts.length}</div>
         </div>
 
-        <Link to={'/Swap'} state={{ address: '0xC20D9e5c96A263d62B2Edc8C99592A8C68776916' }}   >
+        <Link to={'/Swap'} state={{ address: '0x7b105443a0f176dF53FB5CBA5A0AecB8A61C468F' }}   >
           <div className="Nft_trade_tab" >
             Swap
           </div>
