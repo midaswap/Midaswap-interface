@@ -80,3 +80,10 @@ body {
     transform: scale(0.4);
   }
 }
+
+
+
+.ant-input-number-input{
+  height: 2.6042vw !important;
+  text-align: right !important;
+}
