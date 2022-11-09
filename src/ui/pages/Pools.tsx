@@ -16,12 +16,12 @@ export class Pools extends BasePage {
       <div>
          <div className="pools-td" >
             <div className="pools-td-text" > Pools</div>
-            <Link to={'/PoolsAdd'}   state={{ address: '0x7b105443a0f176dF53FB5CBA5A0AecB8A61C468F' }}   >
+            {/* <Link to={'/PoolsAdd'}   state={{ address: '0x7b105443a0f176dF53FB5CBA5A0AecB8A61C468F' }}   >
                <div className="pools-td-Create" > + Create Pool</div>
-            </Link>
+            </Link> */}
 
             <Link to={'/PoolsAdd'}   state={{ address: '0x7b105443a0f176dF53FB5CBA5A0AecB8A61C468F' }}   >
-               <div className="pools-td-NEW"> + New Position</div>
+               <div className="pools-td-Create" > + New Position</div>
             </Link>
          </div>
          <div className="pool-box" >
@@ -87,7 +87,7 @@ export class Pools extends BasePage {
                     </div>
                </div>
 
-               
+
              
             </div>
 

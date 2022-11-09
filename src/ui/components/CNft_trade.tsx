@@ -18,7 +18,6 @@ import {
 
 
 export function CNft_trade() {
-
   const [contractAddress, setContractAddress] = useState("0x4AD9607e706e99Bc6E4D5FDF72f322aa26730300");
   const [open, setOpen] = useState(false);
   const dispatch = useAppDispatch();
@@ -136,7 +135,7 @@ export function CNft_trade() {
     let newArr = [] as Array<any>;
     for (let index = 0; index < e.ownedNfts.length; index++) {
       let item = e.ownedNfts[index];
-      if (item.contract.address == "0x7b105443a0f176dF53FB5CBA5A0AecB8A61C468F") {
+      if (item.contract.address == "0x7b105443a0f176dF53FB5CBA5A0AecB8A61C468F".toLowerCase()) {
         let data: { name: any, tokenUrl: any, tokenId: any } = { name: "", tokenUrl: '', tokenId: "" };
         data.name = item.contract.name;
         data.tokenUrl = item.tokenUri ? item.tokenUri.gateway : '';
@@ -160,7 +159,7 @@ export function CNft_trade() {
     let newArr = [] as Array<any>;
     for (let index = 0; index < e.ownedNfts.length; index++) {
       let item = e.ownedNfts[index];
-      if (item.contract.address == "0x7b105443a0f176dF53FB5CBA5A0AecB8A61C468F") {
+      if (item.contract.address == "0x7b105443a0f176dF53FB5CBA5A0AecB8A61C468F".toLowerCase()) {
         let data: { name: any, tokenUrl: any, tokenId: any } = { name: "", tokenUrl: '', tokenId: "" };
         data.name = item.contract.name;
         data.tokenUrl = item.tokenUri ? item.tokenUri.gateway : '';
