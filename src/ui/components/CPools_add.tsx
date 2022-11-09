@@ -55,7 +55,7 @@ export function CPools_add() {
    const [poolOrder, setPoolOrder] = useState({} as PoolOrder);
 
 
-   const [addPoolModalOpen, setAddPoolModalOpen] = useState(true);
+   const [addPoolModalOpen, setAddPoolModalOpen] = useState(false);
    const { address, chainId } = useAppSelector(ConnectSelectors.userData);
    const [myNfts, setMyNfts] = useState([] as Array<any>);
 

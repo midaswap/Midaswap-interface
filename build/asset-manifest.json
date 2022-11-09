@@ -1,11 +1,12 @@
 {
   "files": {
-    "main.css": "/static/css/main.47f0390f.css",
-    "main.js": "/static/js/main.22e0e042.js",
+    "main.css": "/static/css/main.1530f8d6.css",
+    "main.js": "/static/js/main.6d6eaa1a.js",
     "static/js/537.f062bcf0.chunk.js": "/static/js/537.f062bcf0.chunk.js",
     "static/js/536.ca77ebb2.chunk.js": "/static/js/536.ca77ebb2.chunk.js",
     "static/media/bg.png": "/static/media/bg.186dcfe2e84e19b708de.png",
     "static/media/home-bg.png": "/static/media/home-bg.9d46f828c28ae512d866.png",
+    "static/media/position.png": "/static/media/position.639f9eb857791436c56a.png",
     "static/media/chearts.png": "/static/media/chearts.b4d1ecc8896e197ef003.png",
     "static/media/depost.png": "/static/media/depost.6800b552ccce4251b5b4.png",
     "static/media/Roboto-Medium.ttf": "/static/media/Roboto-Medium.d2d7f0c01bffaa5ec8f7.ttf",
@@ -20,17 +21,17 @@
     "static/media/nft2.png": "/static/media/nft2.cd0328b69d15099b014c.png",
     "static/media/0xmons.png": "/static/media/0xmons.d2031457704f7049ec20.png",
     "static/media/nft.png": "/static/media/nft.acf6d524497576ad2f71.png",
-    "static/media/AZUKE.png": "/static/media/AZUKE.9a774481de5e86d314a2.png",
     "static/media/logo_r.png": "/static/media/logo_r.9a774481de5e86d314a2.png",
+    "static/media/AZUKE.png": "/static/media/AZUKE.0842e85973fe90190afd.png",
     "static/media/pool-box.png": "/static/media/pool-box.a23251a8eb622665d08e.png",
     "index.html": "/index.html",
-    "main.47f0390f.css.map": "/static/css/main.47f0390f.css.map",
-    "main.22e0e042.js.map": "/static/js/main.22e0e042.js.map",
+    "main.1530f8d6.css.map": "/static/css/main.1530f8d6.css.map",
+    "main.6d6eaa1a.js.map": "/static/js/main.6d6eaa1a.js.map",
     "537.f062bcf0.chunk.js.map": "/static/js/537.f062bcf0.chunk.js.map",
     "536.ca77ebb2.chunk.js.map": "/static/js/536.ca77ebb2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.47f0390f.css",
-    "static/js/main.22e0e042.js"
+    "static/css/main.1530f8d6.css",
+    "static/js/main.6d6eaa1a.js"
   ]
 }
