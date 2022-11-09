@@ -13,7 +13,7 @@ import {
 export class Pools extends BasePage {
   protected webContent() {
     return <div className="pools-content" >
-      {/* <div>
+      <div>
          <div className="pools-td" >
             <div className="pools-td-text" > Pools</div>
             <Link to={'/PoolsAdd'}   state={{ address: '0x7b105443a0f176dF53FB5CBA5A0AecB8A61C468F' }}   >
@@ -23,15 +23,79 @@ export class Pools extends BasePage {
             <Link to={'/PoolsAdd'}   state={{ address: '0x7b105443a0f176dF53FB5CBA5A0AecB8A61C468F' }}   >
                <div className="pools-td-NEW"> + New Position</div>
             </Link>
-           
          </div>
          <div className="pool-box" >
-         <div className="pool-box-td  pool-box-mrgin " > 
-            <img className="pool-box-img" src={require("../../assets/img/pool-box.png")}  alt=""  />
-         </div>
+            {/* <div  className="pool-box-e" >
+               <div className="pool-box-td  pool-box-mrgin " > 
+                  <img className="pool-box-img" src={require("../../assets/img/pool-box.png")}  alt=""  />
+               </div>
+               <div className="pool-box-td  pool-box-mrgin" >Your active  liquidity positions </div>
+               <div className="pool-box-td"  > will appear here.</div>
+            </div> */}
 
-            <div className="pool-box-td  pool-box-mrgin" >Your active  liquidity positions </div>
-            <div className="pool-box-td"  > will appear here.</div>
+
+            <div  className="pool-list" >
+
+               <div  className="pool-box-item"  >
+                  <div  className="pool-box-item-1" >
+                     <img  className="pool-box-item-1_img" src={require("../../assets/img/AZUKE.png")}  alt="" />
+                     <img  className="pool-box-item-1_img" src={require("../../assets/img/eth.png")}  alt="" />
+                     <div  className="pool-box-item-1-text">Auzik/ETH</div>
+                     <div className="pool-box-item-1-bt" >0.5%</div>
+                     <div  className="pool-box-item-1-bt"  >5%</div>
+                  </div>
+                     <div   className="pool-box-item-2" >
+                        <div  className="pool-box-item-2-title" >
+                        Min：
+                        </div>
+                        <div className="pool-box-item-2-text" >
+                        1AUZIK per ETH
+                        </div>
+                        <img className="pool-box-item_img" src={require("../../assets/img/my_change.png")}  alt="" />
+                        <div className="pool-box-item-2-title" >
+                        Min：
+                        </div>
+                        <div className="pool-box-item-2-text" >
+                        1AUZIK per ETH
+                        </div>
+                    </div>
+               </div>
+
+
+               <div  className="pool-box-item"  >
+                  <div  className="pool-box-item-1" >
+                     <img  className="pool-box-item-1_img" src={require("../../assets/img/AZUKE.png")}  alt="" />
+                     <img  className="pool-box-item-1_img" src={require("../../assets/img/eth.png")}  alt="" />
+                     <div  className="pool-box-item-1-text">Auzik/ETH</div>
+                     <div className="pool-box-item-1-bt" >0.5%</div>
+                     <div  className="pool-box-item-1-bt"  >5%</div>
+                  </div>
+                     <div   className="pool-box-item-2" >
+                        <div  className="pool-box-item-2-title" >
+                        Min：
+                        </div>
+                        <div className="pool-box-item-2-text" >
+                        1AUZIK per ETH
+                        </div>
+                        <img className="pool-box-item_img" src={require("../../assets/img/my_change.png")}  alt="" />
+                        <div className="pool-box-item-2-title" >
+                        Min：
+                        </div>
+                        <div className="pool-box-item-2-text" >
+                        1AUZIK per ETH
+                        </div>
+                    </div>
+               </div>
+
+               
+             
+            </div>
+
+
+
+
+
+         
          </div>
 
          <div className="pools-td-fotter" >
@@ -44,9 +108,9 @@ export class Pools extends BasePage {
                <div>Explore Midaswap Analytics.</div>
             </div>
          </div>
-      </div> */}
+      </div>
 
-      <div className="pools-list" >
+      {/* <div className="pools-list" >
          <div  className="pools-list-box"  >
             <div className="pools-list-box-img-bg" >
                  <img  className="pools-list-box-img" src={require("../../assets/img/pools-list-box.png")} alt="" />
@@ -99,7 +163,7 @@ export class Pools extends BasePage {
             </div>
             </Link>
          </div>
-      </div>
+      </div> */}
 
 
       
