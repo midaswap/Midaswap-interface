@@ -106,6 +106,13 @@ padding: 10px;
 .CPools_my_detailc_img{
   width: 1.7188vw;
   height: 1.7188vw;
+  margin-right: 7.083vw;
+
+}
+
+.CPools_my_detailc_text{
+  width: 10.4167vw;
+  text-align: right;
 }
 
 .CPools_my_detailc_content_1_text{

@@ -183,7 +183,9 @@ export function CPools_add() {
          console.warn("transactionHash", txHash)
       }).on('receipt', (receipt: any) => {
          message.success("Success");
+         getNftsForOwner();
          initSwap();
+         setAddPoolModalOpen(false);
       })
    }
 

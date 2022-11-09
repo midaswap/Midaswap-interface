@@ -1,5 +1,5 @@
 {
-    "address":"0x609753cB98cF556f9B7EE294D00638b7F04A6d52",
+    "address":"0xA58968485731998380F2122b4F31B6f8e1e79883",
     "abi":[
         {
             "inputs": [
@@ -117,6 +117,11 @@
                     "internalType": "address",
                     "name": "pools",
                     "type": "address"
+                },
+                {
+                    "internalType": "address",
+                    "name": "owner",
+                    "type": "address"
                 }
             ],
             "name": "getLpToken",
@@ -130,6 +135,57 @@
                     "internalType": "uint256",
                     "name": "",
                     "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "owner",
+                    "type": "address"
+                }
+            ],
+            "name": "getMyAddPoolArr",
+            "outputs": [
+                {
+                    "components": [
+                        {
+                            "internalType": "address",
+                            "name": "poolsAddress",
+                            "type": "address"
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "nft_address",
+                            "type": "address"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "id",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "tokenA",
+                            "type": "address"
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "tokenB",
+                            "type": "address"
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "fractionNFTAddress",
+                            "type": "address"
+                        }
+                    ],
+                    "internalType": "struct UniswapV3Router.PoolInfo[]",
+                    "name": "",
+                    "type": "tuple[]"
                 }
             ],
             "stateMutability": "view",
