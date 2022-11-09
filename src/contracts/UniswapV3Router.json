@@ -1,5 +1,5 @@
 {
-    "address":"0xB26d58A28eF36C85408d69d37b89D459255A4ab8",
+    "address":"0x609753cB98cF556f9B7EE294D00638b7F04A6d52",
     "abi":[
         {
             "inputs": [
@@ -109,6 +109,30 @@
             "name": "createPool",
             "outputs": [],
             "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "pools",
+                    "type": "address"
+                }
+            ],
+            "name": "getLpToken",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
             "type": "function"
         },
         {
