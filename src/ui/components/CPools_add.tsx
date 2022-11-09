@@ -55,7 +55,7 @@ export function CPools_add() {
    const [poolOrder, setPoolOrder] = useState({} as PoolOrder);
 
 
-   const [isModalOpen, setModalOpen] = useState(false);
+   const [addPoolModalOpen, setAddPoolModalOpen] = useState(true);
    const { address, chainId } = useAppSelector(ConnectSelectors.userData);
    const [myNfts, setMyNfts] = useState([] as Array<any>);
 
@@ -274,7 +274,7 @@ export function CPools_add() {
                      <div>ETH</div>
                      <DownOutlined />
                   </div>
-                  <div onClick={e => { setModalOpen(true) }} className="pools-add-token-name" >
+                  <div  className="pools-add-token-name" >
                      Azuki
                   </div>
                </div>
@@ -292,7 +292,7 @@ export function CPools_add() {
                </div>
                <div className="pools-add-deposit-nft pools-add-deposit-amount" >
                   <div>{poolOrder._amountA ? fromWei(poolOrder._amountA) : 0.00}</div>
-                  <div className="pools-add-deposit-nft-name " >
+                  <div  onClick={()=>{setAddPoolModalOpen(true)}} className="pools-add-deposit-nft-name " >
                      Azuki
                   </div>
                </div>
@@ -383,10 +383,75 @@ export function CPools_add() {
          </div>
       </div>
 
+      <Modal  width={578}   style={{backgroundColor:"#141414",width:"578px", color:"wheat",height:"827px",borderRadius:"20px"}}  bodyStyle={{backgroundColor:"#141414"}}  open={addPoolModalOpen} footer={null} onCancel={()=>setAddPoolModalOpen(false)}  >
+            <div className="modal_content">
+                  <div className="modal_content_1">
+                     <img  className="modal_img" src={require("../../assets/img/AZUKE.png")}  alt="" />
+                     <img  className="modal_img" src={require("../../assets/img/eth.png")}  alt="" />
+                     <div className="modal_content_1_text" >Auzik/ETH</div>
+                  </div>
+                  
+                  <div  className="model_box" >
+                        <div className="model_box_1" >
+                               <img  className="modal_img" src={require("../../assets/img/AZUKE.png")} alt="" />
+                               <div  style={{marginRight:"290px",marginLeft:"10px"}} >Auzik</div>
+                               <div style={{width:"100px",textAlign:"right"}} >12</div>
+                        </div>
+                        <div className="model_box_1" >
+                              <img  className="modal_img" src={require("../../assets/img/eth.png")} alt="" />
+                               <div   style={{marginRight:"300px",marginLeft:"10px"}}  >ETH</div>
+                               <div  style={{width:"100px",textAlign:"right"}} >12</div>
+                        </div>
 
-      {/* <Modal   style={{backgroundColor:"#141414",color:"wheat"}}  bodyStyle={{backgroundColor:"#141414"}}  open={isModalOpen} footer={null} onCancel={()=>setModalOpen(false)}  >
+                        <div className="model_box_1 model_box_line" ></div>
 
-      </Modal> */}
+                         <div className="model_box_1 model_box_1_text" >
+                              <div style={{marginRight:"290px",color:"#FDFDFD"}} >Swap Fee</div>
+                              <div  style={{width:"100px",textAlign:"right"}} >0.5%</div>
+                         </div>
+
+
+                         <div className="model_box_1 model_box_1_text" >
+                              <div style={{marginRight:"270px"}}>Royalty Fee</div>
+                              <div  style={{width:"100px",textAlign:"right"}} >5%</div>
+                         </div>
+                  </div>
+
+                  <div className="model_Range" >
+                     <div className="" >Selected Range</div>
+                     <div className="model_Range_but" >
+                        <div style={{width:"50%",textAlign:"center"}} >Auzik</div>
+                        <div  style={{width:"50%",textAlign:"center"}}>ETH</div>
+                     </div>
+                  </div>
+
+                  <div  className="model_min_max" >
+                     <div  className="model_min" >
+                           <div>Min Pric</div>
+                           <div style={{fontSize:"24px"}} >0</div>
+                           <div style={{fontSize:"20px"}} >ETH per Auzik</div>
+                           <div>Your position will be 100%</div>
+                           <div>composed of Auzik at this prise</div>
+                     </div>
+                     <div  className="model_max" >
+                           <div>Max Pric</div>
+                           <div  style={{fontSize:"24px"}} >0</div>
+                           <div  style={{fontSize:"24px"}} >ETH per Auzik</div>
+                           <div>Your position will be 100%</div>
+                           <div>composed of Auzik at this prise</div>
+                      </div>
+                  </div>
+                  <div  className="model_price" >
+                      <div className="model_price_1" >Current price</div>
+                      <div className="model_price_2">0.00854353</div>
+                      <div className="model_price_3" >ETH per Auzik</div>
+                  </div>
+                  <div  className="model_but" >
+                            Add
+                   </div>
+            </div>
+
+      </Modal>
 
 
    </div>
