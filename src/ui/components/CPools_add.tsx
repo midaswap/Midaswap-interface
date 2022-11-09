@@ -55,7 +55,7 @@ export function CPools_add() {
    const [poolOrder, setPoolOrder] = useState({} as PoolOrder);
 
 
-   const [addPoolModalOpen, setAddPoolModalOpen] = useState(true);
+   const [addPoolModalOpen, setAddPoolModalOpen] = useState(false);
    const { address, chainId } = useAppSelector(ConnectSelectors.userData);
    const [myNfts, setMyNfts] = useState([] as Array<any>);
 
@@ -163,12 +163,16 @@ export function CPools_add() {
       })
    }
 
-
-   async function addPool() {
+   function addHandle(){
       if (!poolOrder.tokenId) {
          message.error("Please select the NFT to be added");
          return;
       }
+      setAddPoolModalOpen(true);
+   }
+
+
+   async function addPool() {
       const uniswapV3Router = await getUniswapV3Router();
       await uniswapV3Router.methods.addPool721(nftaddress, await getTokenB(), poolOrder.tokenId, web3.utils.toWei("1"), web3.utils.toWei("80")).send({
          from: address
@@ -206,9 +210,12 @@ export function CPools_add() {
       poolOrder.tokenId = e.target.value;
       setPoolOrder({ ...poolOrder });
       initOrder();
+      if(minPrice == 0){
+         initPrice();
+      }
    }
 
-   const text = poolInfo.poolsAddress ? <div onClick={addPool} >ADD POOL</div> : <div onClick={createPool}  >CREATE POOL</div>
+   const text = poolInfo.poolsAddress ? <div onClick={addHandle} >ADD POOL</div> : <div onClick={createPool}  >CREATE POOL</div>
 
    const text1 = poolOrder.tokenAApprove == '0' ? <div onClick={e => { approveErc20(poolInfo.tokenA) }}>Approve</div>
       : poolOrder.tokenBApprove == '0' ? <div onClick={e => { approveErc20(poolInfo.tokenB) }}>Approve</div> : text
@@ -231,7 +238,9 @@ export function CPools_add() {
                setMinPrice(price);
             }
          } else {
-            setMinPrice(minPrice - 1);
+            if(minPrice - 1 > 0){
+               setMinPrice(minPrice - 1);
+            }
          }
       } else {
          if (orientation == 'add') {
@@ -395,12 +404,12 @@ export function CPools_add() {
                         <div className="model_box_1" >
                                <img  className="modal_img" src={require("../../assets/img/AZUKE.png")} alt="" />
                                <div  style={{marginRight:"290px",marginLeft:"10px"}} >Auzik</div>
-                               <div style={{width:"100px",textAlign:"right"}} >12</div>
+                               <div style={{width:"100px",textAlign:"right"}} >1</div>
                         </div>
                         <div className="model_box_1" >
                               <img  className="modal_img" src={require("../../assets/img/eth.png")} alt="" />
                                <div   style={{marginRight:"300px",marginLeft:"10px"}}  >ETH</div>
-                               <div  style={{width:"100px",textAlign:"right"}} >12</div>
+                               <div  style={{width:"100px",textAlign:"right"}} >80</div>
                         </div>
 
                         <div className="model_box_1 model_box_line" ></div>
@@ -428,14 +437,14 @@ export function CPools_add() {
                   <div  className="model_min_max" >
                      <div  className="model_min" >
                            <div>Min Pric</div>
-                           <div style={{fontSize:"24px"}} >0</div>
+                           <div style={{fontSize:"24px"}} >{minPrice}</div>
                            <div style={{fontSize:"20px"}} >ETH per Auzik</div>
                            <div>Your position will be 100%</div>
                            <div>composed of Auzik at this prise</div>
                      </div>
                      <div  className="model_max" >
                            <div>Max Pric</div>
-                           <div  style={{fontSize:"24px"}} >0</div>
+                           <div  style={{fontSize:"24px"}} >{maxPrice}</div>
                            <div  style={{fontSize:"24px"}} >ETH per Auzik</div>
                            <div>Your position will be 100%</div>
                            <div>composed of Auzik at this prise</div>
@@ -443,10 +452,10 @@ export function CPools_add() {
                   </div>
                   <div  className="model_price" >
                       <div className="model_price_1" >Current price</div>
-                      <div className="model_price_2">0.00854353</div>
+                      <div className="model_price_2">0.0125</div>
                       <div className="model_price_3" >ETH per Auzik</div>
                   </div>
-                  <div  className="model_but" >
+                  <div  className="model_but" onClick={()=>{addPool()}}>
                             Add
                    </div>
             </div>
