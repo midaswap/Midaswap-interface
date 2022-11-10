@@ -14,7 +14,7 @@ export function Footer() {
 				<img   onClick={Common.toTwitter}  className="img-tg img-marg" src={require("../../assets/img/f_twitter.png")} />
 				<img   onClick={Common.toDiscord}   className="img-tg img-marg" src={require("../../assets/img/f_discode.png")} />
 				<img   onClick={Common.toGithup} className="img-tg img-marg" src={require("../../assets/img/f_githup.png")} />
-				<div   onClick={Common.toDocs}  className="footer_Docs" >Docs</div>
+				<img   onClick={Common.toDocs} className="img-tg img-marg rund" src={require("../../assets/img/docs.png")} />
 			</div>
 		</div>
 	</div>

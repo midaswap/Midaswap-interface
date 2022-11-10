@@ -129,12 +129,13 @@ justify-content: center;
 
 #navigation[mode=web] .nav-search-input {
   font-size: 0.9375vw;
+  width: 12.625vw;
   font-family: PingFang SC;
   font-weight: 400;
   color: #FFFFFF;
   border: 0; 
-outline: none; 
-background-color: rgba(0, 0, 0, 0);
+  outline: none; 
+  background-color: #0F0F19 !important;
 }
 
 
@@ -143,3 +144,48 @@ background-color: rgba(0, 0, 0, 0);
 
 
 
+
+
+
+
+
+
+.ant-menu.ant-menu-dark, .ant-menu-dark .ant-menu-sub, .ant-menu.ant-menu-dark .ant-menu-sub {
+  color: rgba(255, 255, 255, 0.65);
+  background-color: rgba(0, 0, 0, 0.6) !important;
+}
+
+.ant-drawer-close {
+  display: inline-block;
+  margin-right: 12px;
+  color: #ffff !important;
+  font-weight: 700;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 1;
+  text-align: center;
+  text-transform: none;
+  text-decoration: none;
+  background: #040506;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  transition: color 0.3s;
+  text-rendering: auto;
+  }
+
+.Icon_img-search {
+  width: 1.0417vw ;
+  height:20px;
+  margin-right: 10px;
+}
+.Menuitem{
+  display: flex;
+  align-items: center;
+}
+
+
+
+.ant-drawer-header {
+  border-bottom: 1px solid transparent !important;
+}

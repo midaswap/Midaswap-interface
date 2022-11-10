@@ -5,15 +5,16 @@ import { BasePage, getPageSetting } from "../pages/BasePage";
 import { Common } from "../../app/Common";
 import { Link } from 'react-router-dom'
 import moreSvg from '../../assets/more.svg'
-import { useEffect } from 'react'
+import { useEffect,useState } from 'react'
 import { Connector } from "./Connector";
-import { Network, Alchemy } from 'alchemy-sdk';
 
 import {
   DownOutlined,
-  SearchOutlined
+  SearchOutlined,
 } from '@ant-design/icons';
-import { Tooltip } from 'antd';
+import {Menu,Image,Input,Select,AutoComplete} from 'antd';
+
+
 import {
   TwitterShareButton,
   TwitterIcon,
@@ -36,7 +37,7 @@ const NavItems: NavItem[] = [
     name: "Pool", page: '/Pools'
   },
   {
-    name: "Analytics",  page: '/Analytics'
+    name: "Overview",  page: '/Overview'
   },
 ];
 
@@ -52,22 +53,25 @@ function jump(nav: NavItem) {
   dom?.scrollIntoView({ behavior: "smooth", block: "start" })
 }
 
-const Menu = {
+const CMenu = {
   menu: "menu",
   opened: false
 };
 function toggleMenu() {
-  Menu.opened = !Menu.opened;
+  CMenu.opened = !CMenu.opened;
 
-  const menu = document.getElementById(Menu.menu);
+  const menu = document.getElementById(CMenu.menu);
   console.log("toggle", menu);
-  if (menu) menu.className = Menu.opened ? "opened" : "";
+  if (menu) menu.className = CMenu.opened ? "opened" : "";
 }
 
 
-
-
 export function Navigation() {
+  const { Option } = Select;
+  const [changeToken, setChangeToken] = useState(false);
+
+
+
   // @ts-ignore
   const Web = <div id="navigation" mode="web">
     <div className="nav-content" >
@@ -77,24 +81,59 @@ export function Navigation() {
               <Link to={'/Collections'}><div className="nav-item " onClick={() => jump(NavItems[1])}>{NavItems[1].name}</div></Link>
               <Link to={'/Swap'}><div className="nav-item " onClick={() => jump(NavItems[2])}>{NavItems[2].name}</div></Link>
               <Link to={'/Pools'}><div className="nav-item " onClick={() => jump(NavItems[3])}>{NavItems[3].name}</div></Link>
-              {/* <Link to={'/NfPoolt'}><div className="nav-item " onClick={() => jump(NavItems[4])}>{NavItems[4].name}</div></Link> */}
+              <Link to={'/Overview'}><div className="nav-item " onClick={() => jump(NavItems[4])}>{NavItems[4].name}</div></Link>
             </div> 
           </div>
           
           <div  className="nav-search"  >
               <div>
-                <input type="text" className="nav-search-input" placeholder="Search Collections " />
+              <Input.Group  >
+                <AutoComplete
+                  className="nav-search-input"
+                  bordered={false}
+                  placeholder="Search Collections "
+                  options={[{ value: 'text 1' }, { value: 'text 2' }]}
+                />
+              </Input.Group>
+                {/* <input type="text" className="nav-search-input" placeholder="Search Collections " /> */}
               </div>
               <img className="nav-search-img"  src={require("../../assets/img/search.png")}   alt="" />
           </div>
-           <div  className="nav-token"  >
-               <div className="token_text" >ETH</div>
-               <img src={require("../../assets/img/eth.png")}   className="img-search" alt=""  />
+           <div    >
+             {changeToken?
+              <div  className="nav-token"   onClick={()=>{
+                  setChangeToken(!changeToken);
+              }} >
+                <div className="token_text" >ETH</div>
+               <img src={require("../../assets/img/eth.png")}   className="img-search" alt=""  /> 
+              </div>:
+              <div  className="nav-token"   onClick={()=>{
+                setChangeToken(!changeToken);
+            }} >
+                   <img src={require("../../assets/img/usd.png")}   className="img-search" alt=""  />
+                   <div className="token_text" >USD</div>
+              </div>
+            }
+
+               
             </div>
 
             <div  className="nav-token-select"  >
-               <img src={require("../../assets/img/eth.png")}   className="img-search" alt=""  />
-                <div  className="token-select-text" >Ethereum</div>
+                <img src={require("../../assets/img/eth.png")}   className="img-search" alt=""  />
+                <Menu  theme="dark"  mode="horizontal" >
+                <Menu.SubMenu key="SubMenu"  className="token-select-text"  title="Ethereum" >
+                  <Menu.Item key="two" className=""  >
+                    <div   className="Menuitem">
+                    <img src={require("../../assets/img/eth.png")}   className="Icon_img-search" alt=""  />    Ethereum
+                    </div>
+                  </Menu.Item>
+                  <Menu.Item key="three"  >
+                  <div   className="Menuitem">
+                    <img src={require("../../assets/img/polygon.png")}   className="Icon_img-search" alt=""  />    Polygon
+                    </div>    
+                  </Menu.Item>
+                </Menu.SubMenu>
+              </Menu>
                 <DownOutlined />
             </div>
              <Connector/>

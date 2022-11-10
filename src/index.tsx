@@ -13,6 +13,7 @@ import { Pools_detail } from './ui/pages/Pools_detail';
 import { Pools_my_detail } from './ui/pages/Pools_my_detail';
 
 import { Nft_trade } from './ui/pages/Nft_trade';
+import { Overview } from './ui/pages/Overview';
 
 
 
@@ -46,6 +47,8 @@ root.render(
               <Route path='/Pools_detail/:address' element={<Pools_detail />}></Route>
               <Route path='/Nft_trade/:address' element={<Nft_trade />}></Route>
               <Route path='/Pools_my_detail/:address' element={<Pools_my_detail />}></Route>
+
+              <Route path='/Overview' element={<Overview />}></Route>
             </Routes>
           </div>
         </div>
