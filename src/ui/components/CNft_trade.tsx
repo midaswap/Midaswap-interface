@@ -5,7 +5,7 @@ import { useParams, Link } from "react-router-dom";
 import { Button, Drawer } from 'antd';
 import { Network, Alchemy } from 'alchemy-sdk';
 import copy from 'copy-to-clipboard';
-
+import { getErc20Contract, getErc721Contract, getUniswapV3Router } from "../../app/Contract";
 import {
   ConnectSelectors,
 } from "../../slices/ConnectSlice";
@@ -15,6 +15,7 @@ import {
   RightOutlined,
   DownOutlined
 } from '@ant-design/icons';
+
 
 
 export function CNft_trade() {
@@ -34,6 +35,7 @@ export function CNft_trade() {
   function switckLabel(tabName: string) {
     setCheckLabel(tabName);
   }
+
 
   function copyText(val: any){
     copy(val);
@@ -126,12 +128,14 @@ export function CNft_trade() {
   }
 
   async function getNftsForContract() {
+    const uniswapV3Router = await getUniswapV3Router();
+    let fractionNFTAddress = await uniswapV3Router.methods.getFractionNFTAddress().call();
     const settings = {
       apiKey: "xG8dip53YYKaskagE0xWN0NkGCNGV66u",
       network: Network.MATIC_MUMBAI,
     };
     const alchemy = new Alchemy(settings);
-    let e = await alchemy.nft.getNftsForOwner(contractAddress);
+    let e = await alchemy.nft.getNftsForOwner(fractionNFTAddress);
     let newArr = [] as Array<any>;
     for (let index = 0; index < e.ownedNfts.length; index++) {
       let item = e.ownedNfts[index];
