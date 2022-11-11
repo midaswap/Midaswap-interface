@@ -1,5 +1,5 @@
 {
-    "address":"0xA58968485731998380F2122b4F31B6f8e1e79883",
+    "address":"0x92D31B936378faF6549918186A04eAE7e1990357",
     "abi":[
         {
             "inputs": [
@@ -109,6 +109,19 @@
             "name": "createPool",
             "outputs": [],
             "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "getFractionNFTAddress",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
             "type": "function"
         },
         {

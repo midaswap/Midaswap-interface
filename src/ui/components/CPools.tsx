@@ -53,7 +53,7 @@ export function CPools() {
       <div>
          <div className="pools-td" >
             <div className="pools-td-text" > Pools</div>
-            <Link to={'/PoolsAdd'} state={{ address: '0x7b105443a0f176dF53FB5CBA5A0AecB8A61C468F' }}>
+            <Link to={'/PoolsAdd'} state={{ address: '0xcBF0C718a28e904b4f3101E29AEb44193F0C6340' }}>
                <div className="pools-td-Create" > + New Position</div>
             </Link>
          </div>
@@ -136,7 +136,7 @@ export function CPools() {
    </div>
 
    <div  className="pools-list-tale-list" >
-   <Link to={'/Pools_detail/0x7b105443a0f176dF53FB5CBA5A0AecB8A61C468F'} >
+   <Link to={'/Pools_detail/0xcBF0C718a28e904b4f3101E29AEb44193F0C6340'} >
       <div className="pools-list-tale-list-item">
          <div style={{width:"18.3854vw"}} >
                   <img  className="pools-list-tale-list-logo"  src={require("../../assets/img/azuki.png")} />
