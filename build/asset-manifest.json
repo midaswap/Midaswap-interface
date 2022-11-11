@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.c669b7c4.css",
-    "main.js": "/static/js/main.232734d2.js",
+    "main.css": "/static/css/main.6fa58930.css",
+    "main.js": "/static/js/main.ce1b24f8.js",
     "static/js/537.f062bcf0.chunk.js": "/static/js/537.f062bcf0.chunk.js",
     "static/js/536.ca77ebb2.chunk.js": "/static/js/536.ca77ebb2.chunk.js",
     "static/media/bg.png": "/static/media/bg.186dcfe2e84e19b708de.png",
@@ -19,6 +19,7 @@
     "static/media/nf5.png": "/static/media/nf5.322df03448aea84c0cad.png",
     "static/media/nft3.png": "/static/media/nft3.e4a6bfc3c25321133e60.png",
     "static/media/nft2.png": "/static/media/nft2.cd0328b69d15099b014c.png",
+    "static/media/usdc.png": "/static/media/usdc.7212c246a515d75fe662.png",
     "static/media/0xmons.png": "/static/media/0xmons.d2031457704f7049ec20.png",
     "static/media/nft.png": "/static/media/nft.acf6d524497576ad2f71.png",
     "static/media/logo_r.png": "/static/media/logo_r.9a774481de5e86d314a2.png",
@@ -27,13 +28,13 @@
     "static/media/pool-box.png": "/static/media/pool-box.a23251a8eb622665d08e.png",
     "static/media/polygon-matic-logo.svg": "/static/media/polygon-matic-logo.97ff139cc7379a42cf14.svg",
     "index.html": "/index.html",
-    "main.c669b7c4.css.map": "/static/css/main.c669b7c4.css.map",
-    "main.232734d2.js.map": "/static/js/main.232734d2.js.map",
+    "main.6fa58930.css.map": "/static/css/main.6fa58930.css.map",
+    "main.ce1b24f8.js.map": "/static/js/main.ce1b24f8.js.map",
     "537.f062bcf0.chunk.js.map": "/static/js/537.f062bcf0.chunk.js.map",
     "536.ca77ebb2.chunk.js.map": "/static/js/536.ca77ebb2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c669b7c4.css",
-    "static/js/main.232734d2.js"
+    "static/css/main.6fa58930.css",
+    "static/js/main.ce1b24f8.js"
   ]
 }

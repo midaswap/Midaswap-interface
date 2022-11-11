@@ -110,8 +110,8 @@ export function Navigation() {
               <div  className="nav-token"   onClick={()=>{
                 setChangeToken(!changeToken);
             }} >
-                   <img src={require("../../assets/img/usd.png")}   className="img-search" alt=""  />
-                   <div className="token_text" >USD</div>
+                   <img src={require("../../assets/img/usdc.png")}   className="img-search" alt=""  />
+                   <div className="token_text" >USDC</div>
               </div>
             }
 
