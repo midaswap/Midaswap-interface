@@ -405,8 +405,53 @@ color: #FEFEFE;
   padding-top: 1.021vw;
   padding-bottom: 1.3021vw;
   flex-wrap: wrap;
+}
+
+
+.pools-add-token-free{
+  width: 24.7917vw;
+  height: 5.3646vw;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.3542vw;
+}
+
+.pools-add-token-free-min{
+  width: 12.1354vw;
+  height: 6.25vw;
+  background: #1F2127;
+  border: 1px solid rgba(255,255,255,0.29);
+  border-radius: .625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px;
+  font-size: 1.5625vw;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #FCFCFD;
+}
+
+.pools-add-token-free-max{
+  width: 12.1354vw;
+  height: 6.25vw;
+  background: #1F2127;
+  border: 1px solid rgba(255,255,255,0.29);
+  border-radius: .625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 1.5625vw;
+font-family: PingFang SC;
+font-weight: bold;
+color: #FCFCFD;
 
 }
+
+
+
 
 
 .pools-add-text{
@@ -415,6 +460,69 @@ font-family: PingFang SC;
 font-weight: 400;
 color: #FCFCFD;
 }
+
+
+.pools-add-per-text{
+  width: 25.1563vw;
+  height: 7.2917vw;
+  background: #080808;
+  border: 1px solid #FFFFFF;
+  border-radius: .625rem;
+  font-size: 14px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #2781FF;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  padding: 1.5625vw;
+}
+
+.pools-add-per-input{
+  width: 25.0521vw;
+  height: 2.5521vw;
+  border: .0625rem solid #FFFFFF ;
+  border-radius: 10px;
+  margin-top: .5625rem;
+  display: flex;
+  align-items: center;
+
+}
+
+
+.pools-input{
+  font-size: 2.2917vw;
+  width: 100%;
+font-family: PingFang SC;
+font-weight: 400;
+color: #96989A;
+border: 0; 
+outline: none; 
+background-color: rgba(0, 0, 0, 0);
+text-align: left;
+}
+
+
+.pools-add-per-current-text{
+  width: 25.0521vw;
+  height: 2.5521vw;
+  background: #1F2127;
+  border-radius: 10px;
+  margin-top: .625rem;
+  font-size: 0.8333vw;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #FEFEFE;
+  display: flex;
+  align-items: center;
+  padding-left: 1.6667vw;
+  margin-bottom :  1.6146vw ;
+}
+
+
+
+
+
 
 .pools-add-deposit{
   font-size: 1.25vw;
@@ -426,16 +534,64 @@ color: #FCFCFD;
 
 
 .pools-add-deposit-amount{
-  width: 24.8958vw;
-height: 5.2083vw;
-background: #080808;
-border: 1px solid;
-border-radius: 1.0417vw;
-display: flex;
-align-items: center;
-padding-left: 3.0729vw;
-padding-right: 3.0729vw;
+  width: 25.1563vw;
+  height: 6.1979vw;
+  background: #080808;
+  border: 1px solid;
+  border-radius: 1.0417vw;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-left: 3.0729vw;
+  padding-right: 3.0729vw;
 }
+
+.pools-add-deposit-banlace{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 0.8333vw;
+font-family: PingFang SC;
+font-weight: 400;
+color: #FCFCFD;
+
+}
+
+.pools-add-deposit-banlace-text{
+  opacity: 0.38;
+}
+
+.pools-add-deposit-max{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1354vw;
+  height: 1.0417vw;
+  background: #2781FF;
+  border-radius: .625rem;
+  font-size: .75rem;
+  margin-left: .3125rem;
+  color: #FEFEFE;
+}
+
+.pools-add-deposit-amount-2{
+  display: flex;
+  width: 50%;
+  align-content: center;
+  justify-content: flex-end;
+}
+.pools-add-deposit-box{
+  width: 6.5104vw !important;
+  height: 2.2396vw;
+  background: #282B33;
+  border: 1px solid #FFFFFF;
+  border-radius: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 
 
 .pools-add-deposit-nft-name{

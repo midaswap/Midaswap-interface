@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom'
 import moreSvg from '../../assets/more.svg'
 import { useEffect,useState } from 'react'
 import { Connector } from "./Connector";
-
 import {
   DownOutlined,
   SearchOutlined,
@@ -69,6 +68,14 @@ function toggleMenu() {
 export function Navigation() {
   const { Option } = Select;
   const [changeToken, setChangeToken] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
+  
+  const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' },
+  ];
+
 
 
 
@@ -87,18 +94,19 @@ export function Navigation() {
           
           <div  className="nav-search"  >
               <div>
-              <Input.Group  >
-                <AutoComplete
-                  className="nav-search-input"
-                  bordered={false}
-                  placeholder="Search Collections "
-                  options={[{ value: 'text 1' }, { value: 'text 2' }]}
+               <Select
+               showSearch
+               defaultOpen={true}
+                   className="nav-search-input"
+                  defaultValue={selectedOption}
+                  onChange={setSelectedOption}
+                  options={options}
                 />
-              </Input.Group>
-                {/* <input type="text" className="nav-search-input" placeholder="Search Collections " /> */}
               </div>
               <img className="nav-search-img"  src={require("../../assets/img/search.png")}   alt="" />
           </div>
+
+          
            <div    >
              {changeToken?
               <div  className="nav-token"   onClick={()=>{

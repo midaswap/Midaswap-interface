@@ -65,8 +65,8 @@ export class HomePage extends BasePage {
 
         <Link  to={'/Nft_trade/0xcBF0C718a28e904b4f3101E29AEb44193F0C6340'}  >
           <div className="nft-list-item" >
-            <img className="nft-logo" src={require("../../assets/img/sudo.png")} alt="" />
-            <div className="nft-name">Sudo Inu</div>
+            <img className="nft-logo" src={require("../../assets/img/bayc.avif")} alt="" />
+            <div className="nft-name">Bored Ape Yacht Club</div>
             <div className="nft-zx">
               <img className="nft-up" src={require("../../assets/img/up.png")} alt="" />
               <div className="nft-up-text" >24.00%</div>
@@ -114,8 +114,8 @@ export class HomePage extends BasePage {
 
         <Link to={'/Nft_trade/0xcBF0C718a28e904b4f3101E29AEb44193F0C6340'}  >
           <div className="nft-list-item" >
-            <img className="nft-logo" src={require("../../assets/img/0xmons.png")} alt="" />
-            <div className="nft-name">0xmons</div>
+            <img className="nft-logo" src={require("../../assets/img/orm.avif")} alt="" />
+            <div className="nft-name">ORI by James Merrill</div>
             <div className="nft-zx">
               <img className="nft-up" src={require("../../assets/img/down.png")} alt="" />
               <div className="nft-down-text" >24.00%</div>
@@ -153,7 +153,6 @@ export class HomePage extends BasePage {
               <div style={{ width: "50%" }} className="flex-center nft-eth-text2" >
                 Listings
               </div>
-
               <div style={{ width: "50%" }} className="flex-center nft-eth-text2" >
                 Offer Tvl
               </div>
@@ -163,8 +162,8 @@ export class HomePage extends BasePage {
 
         <Link to={'/Nft_trade/0xcBF0C718a28e904b4f3101E29AEb44193F0C6340'}  >
           <div className="nft-list-item" >
-            <img className="nft-logo" src={require("../../assets/img/based.png")} alt="" />
-            <div className="nft-name">Based Ghouls</div>
+            <img className="nft-logo" src={require("../../assets/img/punk.avif")} alt="" />
+            <div className="nft-name">CryptoPunks</div>
             <div className="nft-zx">
               <img className="nft-up" src={require("../../assets/img/down.png")} alt="" />
               <div className="nft-down-text" >24.00%</div>

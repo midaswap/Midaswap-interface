@@ -45,6 +45,9 @@ font-weight: bold;
 color: #FFFFFF;
 width: 100%;
 display: flex;
+background: linear-gradient(0deg, #FDFCFD 0%, #134266 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 justify-content: center;
 }
 
@@ -111,6 +114,7 @@ justify-content: center;
   position: relative;
   top:-3.2292vw;
   left:4.1146vw ;
+  border-radius: 50%;
 }
 
 #home-page[mode=web] .nft-name{

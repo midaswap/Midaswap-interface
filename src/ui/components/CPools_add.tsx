@@ -4,7 +4,7 @@ import { ChainId, ethereum, web3 } from "../../app/Config";
 import { useLocation } from "react-router-dom";
 import { Network, Alchemy } from 'alchemy-sdk';
 import { getErc20Contract, getErc721Contract, getUniswapV3Router, getTokenB } from "../../app/Contract";
-import { Progress, message } from 'antd';
+import { Progress, message,InputNumber } from 'antd';
 import { Modal, Radio } from 'antd';
 import type { RadioChangeEvent } from 'antd';
 
@@ -289,28 +289,88 @@ export function CPools_add() {
                      Azuki
                   </div>
                </div>
+
+
+{/*                
                <div className="pools-add-token-empty" >
                   <div style={{ width: "100%" }} >0.5%   swap fee</div>
                   <div>5% royalty fee</div>
+               </div> */}
+
+
+               <div className="pools-add-token-free" >
+                  <div className="pools-add-token-free-min" >
+                        <div>
+                        0.5%
+                        </div>
+                        <div>
+                        SWAP FEE
+                        </div>
+                  </div>
+
+                  <div className="pools-add-token-free-max" >
+                         <div>
+                         5% 
+                        </div>
+                        <div>
+                         ROYALTY FEE
+                        </div>
+                  </div>
                </div>
+
+
+
+
                <div className="pools-add-deposit" >Deposit Amounts</div>
                <div className="pools-add-deposit-amount" >
-                  <div>{poolOrder._amountB ? fromWei(poolOrder._amountB) : 0.00}</div>
-                  <div className="flex-all-center" >
-                     <img className="pools-add-setting-img" src={require("../../assets/img/eth.png")} alt="" />
-                     <div className="pools-add-token-erc20"   >ETH</div>
+                  <div  style={{width:"50%"}} >{poolOrder._amountB ? fromWei(poolOrder._amountB) : 0.00}</div>
+                  <div  className="pools-add-deposit-amount-2" >
+                     <div className=" pools-add-deposit-box" >
+                        <img className="pools-add-setting-img" src={require("../../assets/img/eth.png")} alt="" />
+                        <div className="pools-add-token-erc20"   >ETH</div>
+                     </div>
+                  </div>
+                  <div  className="pools-add-deposit-banlace" >
+                        <div   className="pools-add-deposit-banlace-text"  >Balance:2.78</div>
+                        <div  className="pools-add-deposit-max" >MAX</div>
                   </div>
                </div>
-               <div className="pools-add-deposit-nft pools-add-deposit-amount" >
-                  <div>{poolOrder._amountA ? fromWei(poolOrder._amountA) : 0.00}</div>
-                  <div  onClick={()=>{setAddPoolModalOpen(true)}} className="pools-add-deposit-nft-name " >
-                     Azuki
+
+               <div className=" pools-add-deposit-amount" >
+                  <div  style={{width:"50%"}} >{poolOrder._amountA ? fromWei(poolOrder._amountA) : 0.00}</div>
+                  <div  className="pools-add-deposit-amount-2" >
+                     <div className=" pools-add-deposit-box" >
+                        <img className="pools-add-setting-img" src={require("../../assets/img/AZUKE.png")} alt="" />
+                        <div className="pools-add-token-erc20"   >Azuki</div>
+                     </div>
                   </div>
+                  {/* <div  className="pools-add-deposit-banlace" >
+                        <div   className="pools-add-deposit-banlace-text"  >Balance:2.78</div>
+                        <div  className="pools-add-deposit-max" >MAX</div>
+                  </div> */}
                </div>
+
             </div>
+
+
+
             <div className="pools-add-amount" >
-               <div className="pools-add-text" >Deposit Amounts</div>
-               <div className="pools-add-per" ></div>
+               {/* <div className="pools-add-text" >Deposit Amounts</div> */}
+               <div className="pools-add-text" >Set Starting Price</div>
+               {/* <div className="pools-add-per" ></div> */}
+
+               <div  className="pools-add-per-text" >
+                 This pool must be initialized before you can add liquidity. To initialize, select a starting price for the pool. Then, enter your liquidity price range and deposit amount. Gas fees will be higher than usual due to the initialization transaction.
+               </div>
+               <div  className="pools-add-per-input" >
+                 <InputNumber bordered={false} controls={false}  className="pools-input" />
+               </div>
+
+               <div  className="pools-add-per-current-text" >
+                   Current AZUKI Price 
+               </div>
+               
+               <div className="pools-add-text" >Set Price Range</div>
                <div className="pools-add-min-max" >
                   <div className="pools-add-section">
                      <div className="flex-center-width-full" >Min Price</div>
