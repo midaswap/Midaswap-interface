@@ -96,7 +96,7 @@ export function Navigation() {
               <div>
                <Select
                showSearch
-               defaultOpen={true}
+               defaultOpen={false}
                    className="nav-search-input"
                   defaultValue={selectedOption}
                   onChange={setSelectedOption}
