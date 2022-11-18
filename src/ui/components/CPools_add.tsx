@@ -255,10 +255,12 @@ export function CPools_add() {
       poolOrder.tokenId = e.target.value;
       setPoolOrder({ ...poolOrder });
       initOrder();
-      if(minPrice == 0){
-         initPrice();
-      }
+      // if(minPrice == 0){
+      //    initPrice();
+      // }
    }
+
+   
 
    const text = poolInfo.poolsAddress ? <div onClick={addHandle} >ADD POOL</div> : <div onClick={createPool}  >CREATE POOL</div>
 
@@ -269,10 +271,20 @@ export function CPools_add() {
 
    const [minPrice, setMinPrice] = useState(0);
    const [maxPrice, setMaxPrice] = useState(0);
+   const [initPrice, setInitPrice] = useState(0);
 
-   function initPrice() {
-      setMinPrice(78);
-      setMaxPrice(81);
+   function initPriceChange(e:any){
+      setInitPrice(e);
+   }
+
+   function initPriceRange() {
+      setMinPrice(Number(web3.utils.fromWei(parms.amount1Desired)));
+      setMaxPrice(Number(Number(web3.utils.fromWei(parms.amount0Desired)).toFixed(2)));
+   }
+
+   function  full(){
+      setMinPrice(initPrice-1 == 0 ? 0:initPrice-1);
+      setMaxPrice(initPrice+1);
    }
 
    function changePrice(type: any, orientation: any) {
@@ -343,8 +355,8 @@ export function CPools_add() {
 
                <div className="pools-add-token-free" >
                   <div className="pools-add-token-free-min" >
-                        <div>
-                        0.5%
+                        <div style={{width:"200px",textAlign:"center"}}>
+                         1%
                         </div>
                         <div>
                         SWAP FEE
@@ -366,7 +378,7 @@ export function CPools_add() {
 
                <div className="pools-add-deposit" >Deposit Amounts</div>
                <div className="pools-add-deposit-amount" >
-                  <div  style={{width:"50%"}} >{poolOrder._amountB ? fromWei(poolOrder._amountB) : 0.00}</div>
+                  <div  style={{width:"50%"}} >{initPrice ? initPrice : 0.00}</div>
                   <div  className="pools-add-deposit-amount-2" >
                      <div className=" pools-add-deposit-box" >
                         <img className="pools-add-setting-img" src={require("../../assets/img/eth.png")} alt="" />
@@ -374,7 +386,7 @@ export function CPools_add() {
                      </div>
                   </div>
                   <div  className="pools-add-deposit-banlace" >
-                        <div   className="pools-add-deposit-banlace-text"  >Balance:2.78</div>
+                        <div   className="pools-add-deposit-banlace-text"  >Balance:10</div>
                         <div  className="pools-add-deposit-max" >MAX</div>
                   </div>
                </div>
@@ -406,7 +418,7 @@ export function CPools_add() {
                  This pool must be initialized before you can add liquidity. To initialize, select a starting price for the pool. Then, enter your liquidity price range and deposit amount. Gas fees will be higher than usual due to the initialization transaction.
                </div>
                <div  className="pools-add-per-input" >
-                 <InputNumber bordered={false} controls={false}  className="pools-input" />
+                 <InputNumber bordered={false} controls={false} onChange={initPriceChange} className="pools-input" />
                </div>
 
                <div  className="pools-add-per-current-text" >
@@ -440,7 +452,7 @@ export function CPools_add() {
                      </div>
                   </div>
                </div>
-               <div className="pools-add-full-range" onClick={() => { initPrice() }}> Full Range</div>
+               <div className="pools-add-full-range" onClick={() => { full() }}> Full Range</div>
                <div className="pools-add-but"  >{text1}</div>
             </div>
          </div>
@@ -514,14 +526,14 @@ export function CPools_add() {
                         <div className="model_box_1" >
                               <img  className="modal_img" src={require("../../assets/img/eth.png")} alt="" />
                                <div   style={{marginRight:"300px",marginLeft:"10px"}}  >ETH</div>
-                               <div  style={{width:"100px",textAlign:"right"}} >80</div>
+                               <div  style={{width:"100px",textAlign:"right"}} >10</div>
                         </div>
 
                         <div className="model_box_1 model_box_line" ></div>
 
                          <div className="model_box_1 model_box_1_text" >
                               <div style={{marginRight:"290px",color:"#FDFDFD"}} >Swap Fee</div>
-                              <div  style={{width:"100px",textAlign:"right"}} >0.5%</div>
+                              <div  style={{width:"100px",textAlign:"right"}} >1% </div>
                          </div>
 
 
