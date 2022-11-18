@@ -200,3 +200,7 @@
 .ant-menu-horizontal{
   line-height: 1.9625vw !important;
 }
+
+.ant-input-number-input-wrap{
+  width: 100%;
+}
