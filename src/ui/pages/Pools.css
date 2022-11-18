@@ -491,8 +491,8 @@ color: #FCFCFD;
 
 
 .pools-input{
-  font-size: 2.2917vw;
-  width: 100%;
+  font-size: 2.2917vw !important;
+  width: 100% !important;
 font-family: PingFang SC;
 font-weight: 400;
 color: #FFFFFF !important;
