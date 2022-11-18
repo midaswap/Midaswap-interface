@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { ChainId, ethereum, web3 } from "../../app/Config";
 import { useLocation } from "react-router-dom";
 import { Network, Alchemy } from 'alchemy-sdk';
-import { getErc20Contract, getErc721Contract, getUniswapV3Router, getTokenB } from "../../app/Contract";
+import { getErc20Contract, getErc721Contract, getUniswapV3Router, getTokenB,getINonfungiblePositionManager } from "../../app/Contract";
 import { Progress, message,InputNumber } from 'antd';
 import { Modal, Radio } from 'antd';
 import type { RadioChangeEvent } from 'antd';
@@ -48,6 +48,20 @@ interface PoolOrder {
 
 
 export function CPools_add() {
+   
+   const parms = {
+      token0:"0x3DEA4c82210c66050d0C1818530740b5Ece108E8",
+      token1:"0x94ecC3f84e12D586B0741E87CaA6c140b76A2938",
+      fee:500,tickLower:-24850,tickUpper:-20800,
+      amount0Desired:web3.utils.toWei("12.108117954131814004"),
+      amount1Desired:web3.utils.toWei("1"),
+      amount0Min: web3.utils.toWei("11.822034484697754124"),
+      amount1Min:web3.utils.toWei("0.971251300382961695"),
+      recipient:"0x6bcA71b551c388533fb24f8981fB212253F9db6a",
+      deadline: 1668889728
+   }
+
+
    const dispatch = useAppDispatch();
    const { state } = useLocation();
    let nftaddress = state.address;
@@ -172,9 +186,38 @@ export function CPools_add() {
    }
 
 
+
+
+  async  function mintPool(){
+      const iNonfungiblePositionManager = await getINonfungiblePositionManager();
+      const parms = {
+      token0:"0x3DEA4c82210c66050d0C1818530740b5Ece108E8",
+      token1:"0x94ecC3f84e12D586B0741E87CaA6c140b76A2938",
+      fee:500,tickLower:-24850,tickUpper:-20800,
+      amount0Desired:web3.utils.toWei("12.108117954131814004"),
+      amount1Desired:web3.utils.toWei("10"),
+      amount0Min: web3.utils.toWei("11.822034484697754124"),
+      amount1Min:web3.utils.toWei("0.971251300382961695"),
+      recipient:"0x6bcA71b551c388533fb24f8981fB212253F9db6a",
+      deadline: 1668889728
+      }
+      await iNonfungiblePositionManager.methods.mint(parms).send({
+         from: address
+      }).on('error', (error: any) => {
+         message.error(error);
+      }).on('transactionHash', (txHash: any) => {
+         console.warn("transactionHash", txHash)
+      }).on('receipt', (receipt: any) => {
+         message.success("Success");
+      })
+
+   }
+
+
+
    async function addPool() {
       const uniswapV3Router = await getUniswapV3Router();
-      await uniswapV3Router.methods.addPool721(nftaddress, await getTokenB(), poolOrder.tokenId, web3.utils.toWei("1"), web3.utils.toWei("80")).send({
+      await uniswapV3Router.methods.addPool721(nftaddress, await getTokenB(), poolOrder.tokenId, web3.utils.toWei("1"), web3.utils.toWei("80"),parms).send({
          from: address
       }).on('error', (error: any) => {
          message.error(error);
@@ -272,7 +315,7 @@ export function CPools_add() {
          <div className="pools-add-box" >
             <div className="pools-add-title" >
                <LeftOutlined />
-               <div>Add Liquidityool</div>
+               <div onClick={()=>{mintPool()}} >Add Liquidityool</div>
                <img className="pools-add-setting-img" src={require("../../assets/img/setting.png")} alt="" />
             </div>
             <div className="pools-add-line" ></div>

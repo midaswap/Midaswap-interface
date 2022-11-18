@@ -61,7 +61,7 @@
 #navigation[mode=web] .nav-search {
   width: 15.3125vw;
   height: 1.9792vw;
-  margin-left: 9.4271vw;
+  margin-left: 7.4271vw;
   background: transparent;
   border: 1px solid #FFFFFF ;
   border-radius: 0.9896vw;
@@ -118,9 +118,9 @@
   align-items: center;
   margin-left: 1.6667vw;
   border: 1px solid #FFFFFF;
-  border-radius: 30px;
-  padding-left: 10px ;
-  padding-right: 10px;
+  border-radius: 1.5625vw;
+  padding-left: .625rem ;
+  padding-right: .625rem;
   color: #FFFFFF;
 }
 
@@ -194,4 +194,9 @@
 
 .ant-drawer-header {
   border-bottom: 1px solid transparent !important;
+}
+
+
+.ant-menu-horizontal{
+  line-height: 1.9625vw !important;
 }
