@@ -159,6 +159,37 @@
             "inputs": [
                 {
                     "internalType": "address",
+                    "name": "owner_",
+                    "type": "address"
+                }
+            ],
+            "name": "getNftInfoList",
+            "outputs": [
+                {
+                    "components": [
+                        {
+                            "internalType": "uint256",
+                            "name": "tokenId",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "uri",
+                            "type": "string"
+                        }
+                    ],
+                    "internalType": "struct MyNft.NftInfo[]",
+                    "name": "",
+                    "type": "tuple[]"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
                     "name": "owner",
                     "type": "address"
                 },

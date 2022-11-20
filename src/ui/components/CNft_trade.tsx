@@ -127,52 +127,81 @@ export function CNft_trade() {
   }
 
   async function getNftsForContract() {
+    // const uniswapV3Router = await getUniswapV3Router();
+    // let fractionNFTAddress = await uniswapV3Router.methods.getFractionNFTAddress().call();
+    // const settings = {
+    //   apiKey: "xG8dip53YYKaskagE0xWN0NkGCNGV66u",
+    //   network: Network.MATIC_MUMBAI,
+    // };
+    // const alchemy = new Alchemy(settings);
+    // let e = await alchemy.nft.getNftsForOwner(fractionNFTAddress);
+    // let newArr = [] as Array<any>;
+    // for (let index = 0; index < e.ownedNfts.length; index++) {
+    //   let item = e.ownedNfts[index];
+    //   if (item.contract.address == teamJSON.nftAddrees.toLowerCase()) {
+    //     let data: { name: any, tokenUrl: any, tokenId: any } = { name: "", tokenUrl: '', tokenId: "" };
+    //     data.name = item.contract.name;
+    //     data.tokenUrl = item.tokenUri ? item.tokenUri.gateway : '';
+    //     data.tokenId = item.tokenId
+    //     newArr.push(data);
+    //   }
+    // }
+    // setNftList(newArr);
     const uniswapV3Router = await getUniswapV3Router();
     let fractionNFTAddress = await uniswapV3Router.methods.getFractionNFTAddress().call();
-    const settings = {
-      apiKey: "xG8dip53YYKaskagE0xWN0NkGCNGV66u",
-      network: Network.MATIC_MUMBAI,
-    };
-    const alchemy = new Alchemy(settings);
-    let e = await alchemy.nft.getNftsForOwner(fractionNFTAddress);
+    const contract = await getErc721Contract(fractionNFTAddress);
+    let nftList = await contract.methods.getNftInfoList(address).call();
+    console.log(JSON.stringify(nftList));
     let newArr = [] as Array<any>;
-    for (let index = 0; index < e.ownedNfts.length; index++) {
-      let item = e.ownedNfts[index];
-      if (item.contract.address == teamJSON.nftAddrees.toLowerCase()) {
-        let data: { name: any, tokenUrl: any, tokenId: any } = { name: "", tokenUrl: '', tokenId: "" };
-        data.name = item.contract.name;
-        data.tokenUrl = item.tokenUri ? item.tokenUri.gateway : '';
-        data.tokenId = item.tokenId
-        newArr.push(data);
-      }
+    for (let index = 0; index < nftList.length; index++) {
+       let data: { name: any, tokenUrl: any, tokenId: any } = { name: "Azuki" , tokenUrl: nftList[index][1], tokenId: nftList[index][0] };
+       newArr.push(data);
     }
     setNftList(newArr);
+
   }
+
+  // async function getNftsForOwner() {
+
+  //   if (!address) {
+  //     return;
+  //   }
+  //   const settings = {
+  //     apiKey: "xG8dip53YYKaskagE0xWN0NkGCNGV66u",
+  //     network: Network.MATIC_MUMBAI,
+  //   };
+  //   const alchemy = new Alchemy(settings);
+  //   let e = await alchemy.nft.getNftsForOwner(address);
+  //   let newArr = [] as Array<any>;
+  //   for (let index = 0; index < e.ownedNfts.length; index++) {
+  //     let item = e.ownedNfts[index];
+  //     if (item.contract.address == teamJSON.nftAddrees.toLowerCase()) {
+  //       let data: { name: any, tokenUrl: any, tokenId: any } = { name: "", tokenUrl: '', tokenId: "" };
+  //       data.name = item.contract.name;
+  //       data.tokenUrl = item.tokenUri ? item.tokenUri.gateway : '';
+  //       data.tokenId = item.tokenId
+  //       newArr.push(data);
+  //     }
+  //   }
+  //   setMyNfts(newArr);
+  // }
 
   async function getNftsForOwner() {
-
     if (!address) {
-      return;
+       return;
     }
-    const settings = {
-      apiKey: "xG8dip53YYKaskagE0xWN0NkGCNGV66u",
-      network: Network.MATIC_MUMBAI,
-    };
-    const alchemy = new Alchemy(settings);
-    let e = await alchemy.nft.getNftsForOwner(address);
+    const contract = await getErc721Contract(teamJSON.nftAddrees);
+    let nftList = await contract.methods.getNftInfoList(address).call();
+    console.log(JSON.stringify(nftList));
     let newArr = [] as Array<any>;
-    for (let index = 0; index < e.ownedNfts.length; index++) {
-      let item = e.ownedNfts[index];
-      if (item.contract.address == teamJSON.nftAddrees.toLowerCase()) {
-        let data: { name: any, tokenUrl: any, tokenId: any } = { name: "", tokenUrl: '', tokenId: "" };
-        data.name = item.contract.name;
-        data.tokenUrl = item.tokenUri ? item.tokenUri.gateway : '';
-        data.tokenId = item.tokenId
-        newArr.push(data);
-      }
+    for (let index = 0; index < nftList.length; index++) {
+       let data: { name: any, tokenUrl: any, tokenId: any } = { name: "Azuki" , tokenUrl: nftList[index][1], tokenId: nftList[index][0] };
+       newArr.push(data);
     }
     setMyNfts(newArr);
-  }
+ }
+
+
 
   useEffect( () => {
     getNftsForContract();

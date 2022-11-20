@@ -3,9 +3,8 @@ import Web3 from "web3";
 export const TestMode = true;
 
 export const MainChainId = 137;
-export const TestChainId = 80001;
+export const TestChainId = 31415;
 export const ChainId = TestMode ? TestChainId : MainChainId;
-
 // @ts-ignore
 export const ethereum = window["ethereum"] || undefined;
 export const web3 = new Web3(ethereum);
@@ -22,19 +21,29 @@ export type Chain = {
 	}
 }
 
+// export const TestChainDetail: Chain = {
+// 	chainId: web3.utils.toHex(TestChainId),
+// 	chainName: 'Mumbai',
+// 	rpcUrls: ['https://matic-mumbai.chainstacklabs.com'],
+// 	blockExplorerUrls:[''],
+// 	nativeCurrency: {
+// 		name: 'Mumbai',
+// 		symbol: 'MATIC',
+// 		decimals: 18,
+// 	}
+// }
+
 export const TestChainDetail: Chain = {
 	chainId: web3.utils.toHex(TestChainId),
-	chainName: 'Mumbai',
-	rpcUrls: ['https://matic-mumbai.chainstacklabs.com'],
-	blockExplorerUrls:[''],
+	chainName: 'Filecoin — Wallaby testnet',
+	rpcUrls: ['https://wallaby.node.glif.io/rpc/v0'],
+	blockExplorerUrls:['https://explorer.glif.io/wallaby'],
 	nativeCurrency: {
-		name: 'Mumbai',
-		symbol: 'MATIC',
+		name: 'tFIL',
+		symbol: 'tFIL',
 		decimals: 18,
 	}
 }
-
-
 
 export const MainChainDetail =  {
 	chainId: web3.utils.toHex(MainChainId),

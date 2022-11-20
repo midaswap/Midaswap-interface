@@ -114,6 +114,7 @@ export function CSwap() {
 
 
   async function initSwap() {
+    
     const uniswapV3Router = await getUniswapV3Router();
     let poolInfoList = await uniswapV3Router.methods.getPoolInfoArray().call();
     for (let index = 0; index < poolInfoList.length; index++) {

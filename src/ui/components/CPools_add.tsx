@@ -75,36 +75,43 @@ export function CPools_add() {
    const [myNfts, setMyNfts] = useState([] as Array<any>);
 
 
-
-
    async function getNftsForOwner() {
       if (!address) {
          return;
       }
-      const settings = {
-         apiKey: "xG8dip53YYKaskagE0xWN0NkGCNGV66u",
-         network: Network.MATIC_MUMBAI,
-      };
-      const alchemy = new Alchemy(settings);
-      let e = await alchemy.nft.getNftsForOwner(address);
+      // const settings = {
+      //    apiKey: "xG8dip53YYKaskagE0xWN0NkGCNGV66u",
+      //    network: Network.MATIC_MUMBAI,
+      // };
+      // const alchemy = new Alchemy(settings);
+      // let e = await alchemy.nft.getNftsForOwner(address);
+      // let newArr = [] as Array<any>;
+      // for (let index = 0; index < e.ownedNfts.length; index++) {
+      //    let item = e.ownedNfts[index];
+      //    if (item.contract.address == nftaddress.toLowerCase()) {
+      //       let data: { name: any, tokenUrl: any, tokenId: any } = { name: "", tokenUrl: '', tokenId: "" };
+      //       data.name = item.contract.name;
+      //       data.tokenUrl = item.tokenUri ? item.tokenUri.gateway : '';
+      //       data.tokenId = item.tokenId
+      //       newArr.push(data);
+      //    }
+      // }
+      const contract = await getErc721Contract(teamJSON.nftAddrees);
+      let nftList = await contract.methods.getNftInfoList(address).call();
+      console.log(JSON.stringify(nftList));
       let newArr = [] as Array<any>;
-      for (let index = 0; index < e.ownedNfts.length; index++) {
-         let item = e.ownedNfts[index];
-         if (item.contract.address == nftaddress.toLowerCase()) {
-            let data: { name: any, tokenUrl: any, tokenId: any } = { name: "", tokenUrl: '', tokenId: "" };
-            data.name = item.contract.name;
-            data.tokenUrl = item.tokenUri ? item.tokenUri.gateway : '';
-            data.tokenId = item.tokenId
-            newArr.push(data);
-         }
+      for (let index = 0; index < nftList.length; index++) {
+         let data: { name: any, tokenUrl: any, tokenId: any } = { name: "Azuki" , tokenUrl: nftList[index][1], tokenId: nftList[index][0] };
+         newArr.push(data);
       }
       setMyNfts(newArr);
    }
 
 
    async function initSwap() {
+      debugger
       const uniswapV3Router = await getUniswapV3Router();
-      let info = await uniswapV3Router.methods.getPoolInfo(nftaddress, "0xD5e240836E500a099D0504107432C7aC52C82cB8", 0).call();
+      let info = await uniswapV3Router.methods.getPoolInfo(nftaddress, teamJSON.tokenB, 0).call();
       console.log(info);
       if (info.length > 0) {
          poolInfo.poolsAddress = info[0];
@@ -315,7 +322,7 @@ export function CPools_add() {
    useEffect(() => {
       if (address) {
          getNftsForOwner();
-         initSwap();
+          initSwap();
       }
    }, [address, dispatch]);
 
