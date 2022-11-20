@@ -109,9 +109,8 @@ export function CPools_add() {
 
 
    async function initSwap() {
-      debugger
       const uniswapV3Router = await getUniswapV3Router();
-      let info = await uniswapV3Router.methods.getPoolInfo(nftaddress, teamJSON.tokenB, 0).call();
+      let info = await uniswapV3Router.methods.getPoolInfo(teamJSON.nftAddrees, teamJSON.tokenB, 0).call();
       console.log(info);
       if (info.length > 0) {
          poolInfo.poolsAddress = info[0];
@@ -224,8 +223,10 @@ export function CPools_add() {
 
 
    async function addPool() {
+      debugger
       const uniswapV3Router = await getUniswapV3Router();
-      await uniswapV3Router.methods.addPool721(nftaddress, teamJSON.tokenB, poolOrder.tokenId, web3.utils.toWei("1"), web3.utils.toWei("80")).send({
+      console.log(teamJSON.nftAddrees, teamJSON.tokenB, poolOrder.tokenId, web3.utils.toWei("1"), web3.utils.toWei("80"));
+      await uniswapV3Router.methods.addPool721(teamJSON.nftAddrees, teamJSON.tokenB, poolOrder.tokenId, web3.utils.toWei("1"), web3.utils.toWei("80")).send({
          from: address
       }).on('error', (error: any) => {
          message.error(error);
