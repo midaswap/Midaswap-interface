@@ -1,6 +1,6 @@
 import { State, useAppDispatch, useAppSelector } from "../../app/Store";
 import { useEffect, useState } from "react";
-import { getErc20Contract, getErc721Contract, getUniswapV3Router, getTokenB } from "../../app/Contract";
+import { getErc20Contract, getErc721Contract, getUniswapV3Router } from "../../app/Contract";
 import { Link } from "react-router-dom";
 import {
    ConnectSelectors,

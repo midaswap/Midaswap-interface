@@ -1,6 +1,7 @@
 import { State, useAppDispatch, useAppSelector } from "../../app/Store";
 import { useEffect, useState } from "react";
-import { getErc20Contract, getErc721Contract, getUniswapV3Router, getTokenB } from "../../app/Contract";
+import { getErc20Contract, getErc721Contract, getUniswapV3Router, } from "../../app/Contract";
+import teamJSON from "../../store/team.json";
 import { Link } from "react-router-dom";
 import {
    ConnectSelectors,
@@ -11,19 +12,11 @@ import {
    updateBalance,
    updateChainId
 } from "../../slices/ConnectSlice";
-
-
-
 export function CPools() {
    const dispatch = useAppDispatch();
    const { address, chainId } = useAppSelector(ConnectSelectors.userData);
    const [myPools, setMyPools] = useState([] as Array<any>);
-
-
    async function getMyAddPoolArr() {
-      if (!address) {
-         return;
-      }
       const uniswapV3Router = await getUniswapV3Router();
       let info = await uniswapV3Router.methods.getMyAddPoolArr(address).call();
       let newArr = [] as Array<any>;
@@ -53,7 +46,7 @@ export function CPools() {
       <div>
          <div className="pools-td" >
             <div className="pools-td-text" > Pools</div>
-            <Link to={'/PoolsAdd'} state={{ address: '0xcBF0C718a28e904b4f3101E29AEb44193F0C6340' }}>
+            <Link to={'/PoolsAdd'} state={{ address: teamJSON.nftAddrees }}>
                <div className="pools-td-Create" > + New Position</div>
             </Link>
          </div>

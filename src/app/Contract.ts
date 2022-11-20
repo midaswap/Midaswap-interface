@@ -50,9 +50,15 @@ export async function getINonfungiblePositionManager() {
 
 
 
-export async function getTokenB() {
-	// @ts-ignore
-	return '0xD5e240836E500a099D0504107432C7aC52C82cB8';
-}
+// export async function getTokenB() {
+// 	// @ts-ignore
+// 	return '0xD5e240836E500a099D0504107432C7aC52C82cB8';
+// }
+
+
+// export async function getNft() {
+// 	// @ts-ignore
+// 	return '0xD5e240836E500a099D0504107432C7aC52C82cB8';
+// }
 
 

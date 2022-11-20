@@ -1,4 +1,6 @@
 import { BasePage, page } from "./BasePage";
+import teamJSON from "../../store/team.json";
+
 
 import {
    LeftOutlined,
@@ -13,6 +15,10 @@ export class Collections extends BasePage {
 
  
   protected webContent() {
+
+
+
+
     return <div className="collections-content" >
         <div  className="Collections-text" >Collections</div>
         <div  className="Collections-text-1">
@@ -32,7 +38,7 @@ export class Collections extends BasePage {
                <div> Listings </div>
             </div>
 
-            <Link to={'/Nft_trade/0xcBF0C718a28e904b4f3101E29AEb44193F0C6340'}  >
+            <Link to={'/Nft_trade/'+nftAddress}  >
 
           <div className="Collections-table-td-list" >
                   <div    className="Collections-table-font Collections-table-td">

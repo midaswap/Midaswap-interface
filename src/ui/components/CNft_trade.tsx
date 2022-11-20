@@ -5,7 +5,8 @@ import { useParams, Link } from "react-router-dom";
 import { Button, Drawer } from 'antd';
 import { Network, Alchemy } from 'alchemy-sdk';
 import copy from 'copy-to-clipboard';
-import { getErc20Contract, getErc721Contract, getUniswapV3Router } from "../../app/Contract";
+import { getErc20Contract, getErc721Contract, getUniswapV3Router} from "../../app/Contract";
+import teamJSON from "../../store/team.json";
 import {
   ConnectSelectors,
 } from "../../slices/ConnectSlice";
@@ -19,7 +20,6 @@ import {
 
 
 export function CNft_trade() {
-  const [contractAddress, setContractAddress] = useState("0x4AD9607e706e99Bc6E4D5FDF72f322aa26730300");
   const [open, setOpen] = useState(false);
   const dispatch = useAppDispatch();
   const isConnected = useAppSelector(ConnectSelectors.isConnected);
@@ -29,7 +29,6 @@ export function CNft_trade() {
   const [buyNftList, setBuyNftList] = useState([] as Array<any>);
   const [sellNftList, setSellNftList] = useState([] as Array<any>);
   const [nftList, setNftList] = useState([] as Array<any>);
-
   const params = useParams();
 
   function switckLabel(tabName: string) {
@@ -139,7 +138,7 @@ export function CNft_trade() {
     let newArr = [] as Array<any>;
     for (let index = 0; index < e.ownedNfts.length; index++) {
       let item = e.ownedNfts[index];
-      if (item.contract.address == "0xcBF0C718a28e904b4f3101E29AEb44193F0C6340".toLowerCase()) {
+      if (item.contract.address == teamJSON.nftAddrees.toLowerCase()) {
         let data: { name: any, tokenUrl: any, tokenId: any } = { name: "", tokenUrl: '', tokenId: "" };
         data.name = item.contract.name;
         data.tokenUrl = item.tokenUri ? item.tokenUri.gateway : '';
@@ -151,6 +150,7 @@ export function CNft_trade() {
   }
 
   async function getNftsForOwner() {
+
     if (!address) {
       return;
     }
@@ -163,7 +163,7 @@ export function CNft_trade() {
     let newArr = [] as Array<any>;
     for (let index = 0; index < e.ownedNfts.length; index++) {
       let item = e.ownedNfts[index];
-      if (item.contract.address == "0xcBF0C718a28e904b4f3101E29AEb44193F0C6340".toLowerCase()) {
+      if (item.contract.address == teamJSON.nftAddrees.toLowerCase()) {
         let data: { name: any, tokenUrl: any, tokenId: any } = { name: "", tokenUrl: '', tokenId: "" };
         data.name = item.contract.name;
         data.tokenUrl = item.tokenUri ? item.tokenUri.gateway : '';
@@ -174,7 +174,7 @@ export function CNft_trade() {
     setMyNfts(newArr);
   }
 
-  useEffect(() => {
+  useEffect( () => {
     getNftsForContract();
     getNftsForOwner();
   }, [address, dispatch]);
@@ -213,8 +213,8 @@ export function CNft_trade() {
 
     <div className="Nft_trade_address_td" >
       <div className="Nft_trade_address" >
-        <div>0xcBF0C718a28e904b4f3101E29AEb44193F0C6340</div>
-        <img className="Nft_trade_copy" src={require("../../assets/img/copy.png")} alt="" onClick={() => { copyText("0xcBF0C718a28e904b4f3101E29AEb44193F0C6340") }}/>
+        <div>{teamJSON.nftAddrees}</div>
+        <img className="Nft_trade_copy" src={require("../../assets/img/copy.png")} alt="" onClick={() => { copyText(teamJSON.nftAddrees) }}/>
       </div>
       <div className="share-logo" >
         <img className="share-logo-img" src={require("../../assets/img/logo-etherscan.png")} alt="" />
@@ -235,7 +235,7 @@ export function CNft_trade() {
           <div className="Nft_trade_tabs_tag">{myNfts.length}</div>
         </div>
 
-        <Link to={'/Swap'} state={{ address: '0xcBF0C718a28e904b4f3101E29AEb44193F0C6340' }}   >
+        <Link to={'/Swap'} state={{ address: teamJSON.nftAddrees }}   >
           <div className="Nft_trade_tab" >
             Swap
           </div>

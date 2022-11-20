@@ -1,7 +1,7 @@
 import { BasePage, page, playVideo } from "./BasePage";
 import { Common } from "../../app/Common";
 import { Link } from 'react-router-dom'
-
+import teamJSON from "../../store/team.json";
 
 @page('HomePage')
 export class HomePage extends BasePage {
@@ -9,12 +9,13 @@ export class HomePage extends BasePage {
 
 
   protected webContent() {
+
     return <div className="home-content" >
       <div className="home-the" >The decentralized </div>
       <div className="home-nft" >NFT Marketplace </div>
 
       <div className="nft-list"  >
-        <Link to={'/Nft_trade/0xcBF0C718a28e904b4f3101E29AEb44193F0C6340'}  >
+        <Link to={'/Nft_trade/'+teamJSON.nftAddrees}  >
           <div className="nft-list-item">
             <img className="nft-logo" src={require("../../assets/img/logo.png")} alt="" />
             <div className="nft-name">RENGA Black Box</div>
@@ -63,7 +64,7 @@ export class HomePage extends BasePage {
           </div>
         </Link>
 
-        <Link  to={'/Nft_trade/0xcBF0C718a28e904b4f3101E29AEb44193F0C6340'}  >
+        <Link  to={'/Nft_trade/'+teamJSON.nftAddrees}  >
           <div className="nft-list-item" >
             <img className="nft-logo" src={require("../../assets/img/bayc.avif")} alt="" />
             <div className="nft-name">Bored Ape Yacht Club</div>
@@ -112,7 +113,7 @@ export class HomePage extends BasePage {
           </div>
         </Link>
 
-        <Link to={'/Nft_trade/0xcBF0C718a28e904b4f3101E29AEb44193F0C6340'}  >
+        <Link to={'/Nft_trade/'+teamJSON.nftAddrees}  >
           <div className="nft-list-item" >
             <img className="nft-logo" src={require("../../assets/img/orm.avif")} alt="" />
             <div className="nft-name">ORI by James Merrill</div>
@@ -160,7 +161,7 @@ export class HomePage extends BasePage {
           </div>
         </Link>
 
-        <Link to={'/Nft_trade/0xcBF0C718a28e904b4f3101E29AEb44193F0C6340'}  >
+        <Link to={'/Nft_trade/'+teamJSON.nftAddrees}  >
           <div className="nft-list-item" >
             <img className="nft-logo" src={require("../../assets/img/punk.avif")} alt="" />
             <div className="nft-name">CryptoPunks</div>

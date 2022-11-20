@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { ChainId, ethereum, web3 } from "../../app/Config";
 import { useLocation } from "react-router-dom";
 import { Network, Alchemy } from 'alchemy-sdk';
-import { getErc20Contract, getErc721Contract, getUniswapV3Router, getTokenB,getINonfungiblePositionManager } from "../../app/Contract";
+import { getErc20Contract, getErc721Contract, getUniswapV3Router, getINonfungiblePositionManager } from "../../app/Contract";
 import { Progress, message,InputNumber } from 'antd';
 import { Modal, Radio } from 'antd';
 import type { RadioChangeEvent } from 'antd';
+import teamJSON from "../../store/team.json";
 
 import {
    ConnectSelectors,
@@ -217,7 +218,7 @@ export function CPools_add() {
 
    async function addPool() {
       const uniswapV3Router = await getUniswapV3Router();
-      await uniswapV3Router.methods.addPool721(nftaddress, await getTokenB(), poolOrder.tokenId, web3.utils.toWei("1"), web3.utils.toWei("80"),parms).send({
+      await uniswapV3Router.methods.addPool721(nftaddress, teamJSON.tokenB, poolOrder.tokenId, web3.utils.toWei("1"), web3.utils.toWei("80"),parms).send({
          from: address
       }).on('error', (error: any) => {
          message.error(error);
@@ -235,7 +236,7 @@ export function CPools_add() {
    async function createPool() {
       const uniswapV3Router = await getUniswapV3Router();
       let scale = web3.utils.toWei("80");
-      await uniswapV3Router.methods.createPool(nftaddress, 0, getTokenB(), scale).send({
+      await uniswapV3Router.methods.createPool(nftaddress, 0, teamJSON.tokenB, scale).send({
          from: address
       }).on('error', (error: any) => {
          message.error(error);
