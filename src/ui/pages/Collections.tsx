@@ -38,7 +38,7 @@ export class Collections extends BasePage {
                <div> Listings </div>
             </div>
 
-            <Link to={'/Nft_trade/'+nftAddress}  >
+            <Link to={'/Nft_trade/'+teamJSON.nftAddrees}  >
 
           <div className="Collections-table-td-list" >
                   <div    className="Collections-table-font Collections-table-td">

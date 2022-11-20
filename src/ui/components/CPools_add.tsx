@@ -218,7 +218,7 @@ export function CPools_add() {
 
    async function addPool() {
       const uniswapV3Router = await getUniswapV3Router();
-      await uniswapV3Router.methods.addPool721(nftaddress, teamJSON.tokenB, poolOrder.tokenId, web3.utils.toWei("1"), web3.utils.toWei("80"),parms).send({
+      await uniswapV3Router.methods.addPool721(nftaddress, teamJSON.tokenB, poolOrder.tokenId, web3.utils.toWei("1"), web3.utils.toWei("80")).send({
          from: address
       }).on('error', (error: any) => {
          message.error(error);
