@@ -12,6 +12,9 @@
   font-weight: bold;
   color:  #4A4A4A ;
   margin-top: 1.5625vw;
+  background: linear-gradient(0deg, #eec6ee 0%, #d57aa4 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 }
 
  .Collections-text-1{
@@ -21,6 +24,9 @@
   font-family: PingFang SC;
   font-weight: 400;
   color:  #4A4A4A ;
+  background: linear-gradient(0deg, #eec6ee 0%, #d57aa4 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 }
 
 
@@ -74,7 +80,6 @@
   display: flex;
   align-items: center;
   padding: 0px 5.4167vw  0px 4.5313vw  ;
-  border-bottom: 1px solid #4A4A4A;
 }
 
 

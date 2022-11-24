@@ -301,7 +301,6 @@ export default function Header() {
     { value: 'vanilla', label: 'Vanilla' },
   ];
 
-
   const Web = <div className='nav-div' >
     <div className="nav-content" >
       <div className="nav-left">
@@ -309,7 +308,7 @@ export default function Header() {
           <Link to={'/'}><div className="nav-item nav-active">Midaswap</div></Link>
           <Link to={'/Collections'}><div className="nav-item " >Collections</div></Link>
           <Link to={'/Swap'}><div className="nav-item " >Swap</div></Link>
-          <Link to={'/Pools'}><div className="nav-item ">Pool</div></Link>
+          <Link to={'/pool'}><div className="nav-item ">Pool</div></Link>
           <Link to={'/Overview'}><div className="nav-item " >Overview</div></Link>
         </div>
       </div>

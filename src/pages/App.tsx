@@ -41,6 +41,8 @@ import Swap from './Swap'
 
 import Collections from './Collections'
 import Nft_trade from './Nft_trade'
+import Midaswap from './Midaswap'
+
 
 
 
@@ -184,7 +186,10 @@ export default function App() {
                   <Route path="Collections" element={<Collections />} />
 
                   <Route path='/Nft_trade/:address' element={<Nft_trade />} />
+                  
+                  <Route path='/' element={<Midaswap />} />
 
+                  
 
                   <Route path="pool/v2/find" element={<PoolFinder />} />
                   <Route path="pool/v2" element={<PoolV2 />} />
