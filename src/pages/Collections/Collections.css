@@ -1,0 +1,118 @@
+
+.Collections_div{
+  width: 100%;
+  color: aliceblue;
+  margin-bottom: 10.4167vw;
+}
+ .Collections-text{
+  width: 100%;
+  display: flex;justify-content: center;
+  font-size: 5.4167vw;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color:  #4A4A4A ;
+  margin-top: 1.5625vw;
+}
+
+ .Collections-text-1{
+  width: 100%;
+  display: flex;justify-content: center;
+  font-size: 30px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color:  #4A4A4A ;
+}
+
+
+ .Collections-table{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 3.3333vw;
+}
+
+
+ .Collections-table-header{
+  width: 87.0833vw;
+  height: 4.3229vw;
+  background: #282B33;
+  border-radius: 0.5208vw;
+  display: flex;
+  align-items: center;
+  padding: 0px 5.4167vw  0px 4.5313vw  ;
+}
+
+ .Collections-table-header{
+  width: 87.0833vw;
+  height: 4.3229vw;
+  background: #eceff5;
+  display: flex;
+  align-items: center;
+  padding: 0px 5.4167vw  0px 4.5313vw  ;
+}
+
+
+
+ .Collections-table-font{
+  font-size: 26px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #0c0b0b;
+}
+
+
+
+ .Collections-table-td-list{
+  border: 1px solid #4A4A4A;
+  margin-top: 1.3021vw;
+}
+
+ .Collections-table-td{
+  width: 87.0833vw;
+  height: 3.1771vw;
+  display: flex;
+  align-items: center;
+  padding: 0px 5.4167vw  0px 4.5313vw  ;
+  border-bottom: 1px solid #4A4A4A;
+}
+
+
+ .Collections-table-td-img{
+  width: 2.2396vw;
+  height: 2.2396vw;
+  margin-right: 0.5208vw;
+}
+
+
+ .Collections-table-page{
+  width: 87.0833vw;
+  height: 4.3229vw;
+  background: #eceff5;
+  border-radius: 0.5208vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.3542vw;
+}
+
+
+
+ .Collections-table-page-text{
+  width: 7.8646vw;
+  font-size: 1.25vw;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #0c0b0b;
+  margin-right: 1.0208vw;
+  margin-left: 1.0208vw;
+}
+
+
+
+
+.flex_align_center{
+  display: flex;
+  align-items: center;
+}
+

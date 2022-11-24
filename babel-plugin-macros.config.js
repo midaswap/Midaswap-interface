@@ -1,5 +1,8 @@
+const isDev = process.env.NODE_ENV === 'development'
+
 module.exports = {
-	'fontawesome-svg-core': {
-		'license': 'free'
-	}
+  styledComponents: {
+    fileName: isDev,
+    displayName: isDev,
+  },
 }

@@ -19,10 +19,6 @@ export const Common = {
 		window.open('https://midaswap.gitbook.io/untitled/', '_block');
 	},
 	closeNavigationTab() {
-	// 	const el = document.querySelector('.nav-dropdown') as HTMLElement;
-    // const navigation = document.querySelector('#navigation') as HTMLElement;
-    // el.style.display = 'none';
-    // navigation.style.borderColor = '#494951';
 	}
 
 }

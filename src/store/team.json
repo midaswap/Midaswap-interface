@@ -1,4 +1,16 @@
 {
-  "0xcBF0C718a28e904b4f3101E29AEb44193F0C6340":{"name":"AZUKE","type":"721","address":"0xcBF0C718a28e904b4f3101E29AEb44193F0C6340","logo":"AZUKE.png"},
-  "0xD5e240836E500a099D0504107432C7aC52C82cB8":{"name":"ETH","type":"erc20","address":"0xD5e240836E500a099D0504107432C7aC52C82cB8","logo":"eth.png"}
+  "nftAddrees": "0xcBF0C718a28e904b4f3101E29AEb44193F0C6340",
+  "tokenB": "0x954199fb9E7C2df862d380C70D03EE01CC220e49",
+  "0x7ab45924eB1E51D226Ef43685649770d7a8F3500": {
+    "name": "AZUKE",
+    "type": "721",
+    "address": "0x7ab45924eB1E51D226Ef43685649770d7a8F3500",
+    "logo": "AZUKE.png"
+  },
+  "0x954199fb9E7C2df862d380C70D03EE01CC220e49": {
+    "name": "ETH",
+    "type": "erc20",
+    "address": "0x954199fb9E7C2df862d380C70D03EE01CC220e49",
+    "logo": "eth.png"
+  }
 }

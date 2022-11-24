@@ -1,61 +1,83 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './ui/css/index.css';
-import { Navigation } from "./ui/components/Navigation";
-import { Provider } from "react-redux";
-import { Store } from "./app/Store";
-import { HomePage } from './ui/pages/home';
-import { Pools } from './ui/pages/Pools';
-import { PoolsAdd } from './ui/pages/Pools_add';
-import { Swap } from './ui/pages/Swap';
-import { Pools_detail } from './ui/pages/Pools_detail';
+import '@reach/dialog/styles.css'
+import 'inter-ui'
+import 'polyfills'
+import 'components/analytics'
 
-import { Pools_my_detail } from './ui/pages/Pools_my_detail';
+import { FeatureFlagsProvider } from 'featureFlags'
+import RelayEnvironment from 'graphql/RelayEnvironment'
+import { BlockNumberProvider } from 'lib/hooks/useBlockNumber'
+import { MulticallUpdater } from 'lib/state/multicall'
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { Provider } from 'react-redux'
+import { HashRouter } from 'react-router-dom'
+import { RelayEnvironmentProvider } from 'relay-hooks'
 
-import { Nft_trade } from './ui/pages/Nft_trade';
-import { Overview } from './ui/pages/Overview';
+import Blocklist from './components/Blocklist'
+import Web3Provider from './components/Web3Provider'
+import { LanguageProvider } from './i18n'
+import App from './pages/App'
+import * as serviceWorkerRegistration from './serviceWorkerRegistration'
+import store from './state'
+import ApplicationUpdater from './state/application/updater'
+import ListsUpdater from './state/lists/updater'
+import LogsUpdater from './state/logs/updater'
+import TransactionUpdater from './state/transactions/updater'
+import UserUpdater from './state/user/updater'
+import ThemeProvider, { ThemedGlobalStyle } from './theme'
+import RadialGradientByChainUpdater from './theme/RadialGradientByChainUpdater'
 
+const queryClient = new QueryClient()
 
+if (!!window.ethereum) {
+  window.ethereum.autoRefreshOnNetworkChange = false
+}
 
-import { Collections } from './ui/pages/Collections';
-import { Footer } from "./ui/components/Footer";
-import 'antd/dist/antd.css';
-import 'swiper/css';
-import {
-  HashRouter as Router, 
-  Route,
-  Routes
-} from "react-router-dom"
+function Updaters() {
+  return (
+    <>
+      <RadialGradientByChainUpdater />
+      <ListsUpdater />
+      <UserUpdater />
+      <ApplicationUpdater />
+      <TransactionUpdater />
+      <MulticallUpdater />
+      <LogsUpdater />
+    </>
+  )
+}
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const container = document.getElementById('root') as HTMLElement
 
-root.render(
-  <React.StrictMode>
-    <Router>
-      <Provider store={Store}>
-        <div className='indexBox'>
-          <div  className='indexContent' >
-            <Navigation />
-            <Routes>
-              <Route path='/' element={<HomePage />}></Route>
-              <Route path='/Collections' element={<Collections />}></Route>
-              <Route path='/Pools' element={<Pools />}></Route>
-              <Route path='/PoolsAdd' element={<PoolsAdd />}></Route>
-              <Route path='/Swap' element={<Swap />}></Route>
-              <Route path='/Pools_detail/:address' element={<Pools_detail />}></Route>
-              <Route path='/Nft_trade/:address' element={<Nft_trade />}></Route>
-              <Route path='/Pools_my_detail/:address' element={<Pools_my_detail />}></Route>
-
-              <Route path='/Overview' element={<Overview />}></Route>
-            </Routes>
-          </div>
-        </div>
-
-         <Footer></Footer>
-        </Provider>
-        
-    </Router>
-  </React.StrictMode>
+createRoot(container).render(
+  <StrictMode>
+    <Provider store={store}>
+      <FeatureFlagsProvider>
+        <QueryClientProvider client={queryClient}>
+          <HashRouter>
+            <LanguageProvider>
+              <Web3Provider>
+                <RelayEnvironmentProvider environment={RelayEnvironment}>
+                  <Blocklist>
+                    <BlockNumberProvider>
+                      <Updaters />
+                      <ThemeProvider>
+                        <ThemedGlobalStyle />
+                        <App />
+                      </ThemeProvider>
+                    </BlockNumberProvider>
+                  </Blocklist>
+                </RelayEnvironmentProvider>
+              </Web3Provider>
+            </LanguageProvider>
+          </HashRouter>
+        </QueryClientProvider>
+      </FeatureFlagsProvider>
+    </Provider>
+  </StrictMode>
 )
+
+if (process.env.REACT_APP_SERVICE_WORKER !== 'false') {
+  serviceWorkerRegistration.register()
+}
