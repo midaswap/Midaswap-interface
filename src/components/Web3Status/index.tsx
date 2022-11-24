@@ -148,8 +148,7 @@ function Web3StatusInner() {
   const hasPendingTransactions = !!pending.length
   const hasSocks = useHasSocks()
   const toggleWalletModal = useToggleWalletModal()
-  console.log("chainId============================================"+chainId);
-  if (!chainId) {
+  if (!chainId && chainId !=undefined) {
     return null
   } else if (error) {
     return (
