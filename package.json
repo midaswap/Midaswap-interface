@@ -16,7 +16,7 @@
     "i18n:pseudo": "lingui extract --locale pseudo && lingui compile",
     "prepare": "yarn contracts:compile && yarn graphql:generate && yarn i18n:compile",
     "start": "craco start",
-    "build": "craco build",
+    "build": "craco  --max_old_space_size=20096  build",
     "serve": "serve build -l 3000",
     "lint": "yarn eslint .",
     "test": "craco test --coverage",
