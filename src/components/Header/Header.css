@@ -201,9 +201,7 @@
   line-height: 1.9625vw !important;
 }
 
-.ant-input-number-input-wrap{
-  width: 100%;
-}
+
 
 a{text-decoration: none;}    
 a:visited{text-decoration: none;}  
@@ -215,7 +213,6 @@ a:active{text-decoration:none;}
 
 
 .ant-input-number-input{
-  height: 2.6042vw !important;
   text-align: right !important;
 }
 

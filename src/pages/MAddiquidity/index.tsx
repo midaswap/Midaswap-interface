@@ -335,15 +335,6 @@ export default function MAddiquidity() {
                      Azuki
                   </div>
                </div>
-
-
-{/*                
-               <div className="pools-add-token-empty" >
-                  <div style={{ width: "100%" }} >0.5%   swap fee</div>
-                  <div>5% royalty fee</div>
-               </div> */}
-
-
                <div className="pools-add-token-free" >
                   <div className="pools-add-token-free-min" >
                         <div style={{width:"200px",textAlign:"center"}}>
@@ -363,10 +354,6 @@ export default function MAddiquidity() {
                         </div>
                   </div>
                </div>
-
-
-
-
                <div className="pools-add-deposit" >Deposit Amounts</div>
                <div className="pools-add-deposit-amount" >
                   <div  style={{width:"50%"}} >{initPrice ? initPrice : 0.00}</div>
@@ -395,11 +382,7 @@ export default function MAddiquidity() {
                         <div  className="pools-add-deposit-max" >MAX</div>
                   </div> */}
                </div>
-
             </div>
-
-
-
             <div className="pools-add-amount" >
                {/* <div className="pools-add-text" >Deposit Amounts</div> */}
                <div className="pools-add-text" >Set Starting Price</div>
@@ -409,7 +392,7 @@ export default function MAddiquidity() {
                  This pool must be initialized before you can add liquidity. To initialize, select a starting price for the pool. Then, enter your liquidity price range and deposit amount. Gas fees will be higher than usual due to the initialization transaction.
                </div>
                <div  className="pools-add-per-input" >
-                 <InputNumber width={"100%"} bordered={false} controls={false} onChange={initPriceChange} className="pools-input" />
+                 <InputNumber  size={"large"}   width={"100%"} bordered={false} controls={false} onChange={initPriceChange} className="pools-input" />
                </div>
 
                <div  className="pools-add-per-current-text" >
