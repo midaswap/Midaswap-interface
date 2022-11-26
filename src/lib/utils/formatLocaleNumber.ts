@@ -16,6 +16,7 @@ export default function formatLocaleNumber({
   fixedDecimals,
   options = {},
 }: FormatLocaleNumberArgs): string {
+  debugger
   let localeArg: string | string[]
   if (!locale || (locale && !SUPPORTED_LOCALES.includes(locale))) {
     localeArg = DEFAULT_LOCALE

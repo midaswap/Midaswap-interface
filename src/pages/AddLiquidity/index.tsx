@@ -142,7 +142,6 @@ export default function AddLiquidity() {
     baseCurrency ?? undefined,
     existingPosition
   )
-  debugger
 
   const { onFieldAInput, onFieldBInput, onLeftRangeInput, onRightRangeInput, onStartPriceInput } =
     useV3MintActionHandlers(noLiquidity)

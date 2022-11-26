@@ -42,6 +42,10 @@ import Swap from './Swap'
 import Collections from './Collections'
 import Nft_trade from './Nft_trade'
 import Midaswap from './Midaswap'
+import MyPools from './MyPools'
+import MAddiquidity from './MAddiquidity'
+
+
 
 
 
@@ -188,14 +192,13 @@ export default function App() {
                   <Route path='/Nft_trade/:address' element={<Nft_trade />} />
                   
                   <Route path='/' element={<Midaswap />} />
-
-                  
-
                   <Route path="pool/v2/find" element={<PoolFinder />} />
                   <Route path="pool/v2" element={<PoolV2 />} />
-                  <Route path="pool" element={<Pool />} />
-                  <Route path="pool/:tokenId" element={<PositionPage />} />
+                  <Route path="pool" element={<MyPools />} />
 
+                  <Route path="pool/:tokenId" element={<PositionPage />} />
+                  <Route path="pool/:tokenId" element={<PositionPage />} />
+                  <Route path="MAddiquidity" element={<MAddiquidity />} />
                   <Route path="add/v2" element={<RedirectDuplicateTokenIdsV2 />}>
                     <Route path=":currencyIdA" />
                     <Route path=":currencyIdA/:currencyIdB" />

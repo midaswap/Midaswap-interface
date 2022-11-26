@@ -191,6 +191,8 @@ export default function Pool() {
 
   const { positions, loading: positionsLoading } = useV3Positions(account)
 
+  console.log(JSON.stringify(positions));
+
   if (!isSupportedChain(chainId)) {
     return <WrongNetworkCard />
   }

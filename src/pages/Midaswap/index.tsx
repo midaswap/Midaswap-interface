@@ -10,7 +10,6 @@ import down from "../../assets/img/down.png";
 import "./Midaswap.css"
 
 export default function Midaswap() {
-
    return <div className="home-content" >
    <div className="home-the" >The decentralized </div>
    <div className="home-nft" >NFT Marketplace </div>

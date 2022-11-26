@@ -1,0 +1,791 @@
+.pools-div {
+  width: 100%;
+  color: aliceblue;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 6.6667vw;
+}
+
+   .flex-center{
+    display: flex;
+    justify-content: center;
+  }
+
+   .flex-all-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+
+  .flex-center-width-full-between{
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    display: flex;
+  }
+
+  .flex-center-width-full{
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    display: flex;
+  }
+  
+
+
+
+  /* add pools */
+
+  .pools-add{
+    display: flex;
+    justify-content: flex-end;
+    width: 89.6875vw;
+  }
+
+  .pools-add-box{
+    width: 56.2396vw;
+    background: linear-gradient(0deg, #eec6ee 0%, #f0abcb 100%);
+    border: 1px solid #FFFFFF;
+    border-radius: 2.0833vw;
+    padding-left: 2.1875vw;
+    padding-right: 2.1875vw;
+    padding-top: 28px;
+    font-size: 30px;
+    font-family: PingFang SC;
+    font-weight: bold;
+    color: #817881;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-top: 3.5417vw ;
+      margin-right: 3.3854vw;
+
+  }
+
+
+.pools-add-title{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.5625vw;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #2c2b2c;
+  cursor: pointer;
+}
+
+.pools-add-setting-img{
+  width: 1.6146vw;
+  height: 1.6146vw;
+
+}
+
+.pools-add-token-erc20{
+  margin-left: 0.5208vw;
+  color: #252627;
+}
+
+
+.pools-add-line{
+  width: 53.9063vw;
+  height: 1px;
+  background: #928c90;
+  margin-top: 20px;
+}
+
+
+.pools-add-pair{
+  width: 48%;
+  margin-top: 1.5625vw;
+}
+
+.pools-add-amount{
+  width: 48%;
+  margin-top: 1.5625vw;
+}
+
+
+.pools-add-token-td{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.0417vw;
+
+}
+
+.pools-add-token{
+    width: 12.0833vw;
+    height: 3.0729vw;
+    background: #e0d7d7;
+    border: 1px solid #FFFFFF;
+    border-radius: 1.4063vw;
+    font-size: 1.0417vw;
+    font-family: PingFang SC;
+    font-weight: 400;
+    color: #363333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 2.8125vw;
+    padding-right: 1.1458vw;
+}
+
+
+.pools-add-token-name{
+  width: 12.0833vw;
+  height: 3.0729vw;
+  background: #e0d7d7;
+  border: 1px solid #FFFFFF;
+  border-radius: 1.4063vw;
+  font-size: 1.0417vw;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #363333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+.pools-add-token-free{
+  width: 24.7917vw;
+  height: 5.3646vw;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.3542vw;
+}
+
+.pools-add-token-free-min{
+  width: 12.1354vw;
+  height: 6.25vw;
+  background: #f7f7f8;
+  border: 1px solid #FFFFFF;
+  border-radius: .625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 1.2625vw;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #0d0d0e;
+}
+
+.pools-add-token-free-max{
+  width: 12.1354vw;
+  height: 6.25vw;
+  background: #f7f7f8;
+  border: 1px solid #FFFFFF;
+  border-radius: .625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 1.5625vw;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #111111;
+}
+
+
+
+
+
+.pools-add-text{
+  font-size: 1.25vw;
+font-family: PingFang SC;
+font-weight: 400;
+color: #55555c;
+}
+
+
+.pools-add-per-text{
+  margin-top: 1.0417vw;
+  width: 25.1563vw;
+  background: #e6e2e2;
+  border: 1px solid #FFFFFF;
+  border-radius: .625rem;
+  font-size: 14px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #555657;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  padding: 0.8625vw;
+}
+
+.pools-add-per-input{
+  width: 25.0521vw;
+  height: 2.5521vw;
+  border: .0625rem solid #FFFFFF ;
+  border-radius: 10px;
+  margin-top: .5625rem;
+  display: flex;
+  align-items: center;
+
+}
+
+
+.pools-input{
+  font-size: 2.2917vw !important;
+  width: 100% !important;
+font-family: PingFang SC;
+font-weight: 400;
+color: #FFFFFF !important;
+border: 0; 
+outline: none; 
+background-color: rgba(0, 0, 0, 0);
+text-align: left;
+}
+
+
+.pools-add-per-current-text{
+  width: 25.0521vw;
+  height: 2.5521vw;
+  background: #ebebf5;
+  border-radius: 10px;
+  margin-top: .625rem;
+  font-size: 0.8333vw;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #292828;
+  display: flex;
+  align-items: center;
+  padding-left: 1.6667vw;
+  margin-bottom :  1.6146vw ;
+}
+
+
+.pools-add-deposit{
+  font-size: 1.25vw;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #1d1d1f; 
+  margin-top: 4.4271vw;
+}
+
+
+.pools-add-deposit-amount{
+  width: 25.1563vw;
+  height: 6.1979vw;
+  border: 1px solid;
+  border-radius: 1.0417vw;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-left: 3.0729vw;
+  padding-right: 3.0729vw;
+}
+
+.pools-add-deposit-banlace{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 0.8333vw;
+font-family: PingFang SC;
+font-weight: 400;
+color: #FCFCFD;
+
+}
+
+.pools-add-deposit-banlace-text{
+  opacity: 0.78;
+  color: #080808;
+}
+
+.pools-add-deposit-max{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1354vw;
+  height: 1.0417vw;
+  background: #2781FF;
+  border-radius: .625rem;
+  font-size: .75rem;
+  margin-left: .3125rem;
+  color: #FEFEFE;
+}
+
+.pools-add-deposit-amount-2{
+  display: flex;
+  width: 50%;
+  align-content: center;
+  justify-content: flex-end;
+}
+.pools-add-deposit-box{
+  width: 6.5104vw !important;
+  height: 2.2396vw;
+  background: #f0f1f5;
+  border: 1px solid #FFFFFF;
+  border-radius: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.pools-add-deposit-nft-name{
+  width: 9.5833vw;
+height: 2.2396vw;
+background: #2781FF;
+border: 1px solid;
+border-radius: 1.1458vw;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.25vw;
+font-family: PingFang SC;
+font-weight: bold;
+color: #FEFEFE;
+
+}
+
+
+.pools-add-deposit-amount{
+  font-size: 1.0417vw;
+font-family: PingFang SC;
+font-weight: 400;
+color: #FEFEFE;
+margin-top: 0.9375vw;
+}
+
+
+.pools-add-deposit-nft{
+  width: 24.8958vw;
+height: 4.0104vw;
+background: #f5e6e6;
+border: 1px solid;
+border-radius: 1.0417vw;
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-bottom: 2.7083vw;
+}
+
+
+.pools-add-per{
+  width: 25.2083vw;
+  height: 12.5521vw;
+  margin-top: 1.0417vw;
+  background-image: url("../../assets/img/depost.png");
+  background-size:100% 100%;  
+}
+
+
+
+.pools-add-full-range{
+  width: 25.0521vw;
+height: 2.5521vw;
+background: #d9dbe4;
+border-radius: 0.5208vw;
+font-size: 0.8333vw;
+font-family: PingFang SC;
+font-weight: 400;
+color: #2b2a2a;
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 0.6771vw;
+}
+
+
+.pools-add-but{
+  width: 25.4688vw;
+  height: 3.0208vw;
+  background: #2781FF;
+  border-radius: 1.5104vw;
+  font-size: 1.1458vw;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #FEFEFE;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.6771vw;
+}
+
+
+.pools-add-min-max{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8333vw;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #FCFCFD;
+}
+
+
+
+.pools-add-section{
+  width: 12.1354vw;
+  height: 6.7188vw;
+  background: #ebebf5;
+  border: 1px solid  white ;
+  border-radius: 1.0417vw;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 0.7813vw;
+  align-items: center;
+  color: #2d2d30;
+}
+
+
+.pools-add-padding{
+  padding-left: 1.5104vw;
+  padding-right: 1.5104vw;
+  font-size: 1.3542vw;
+font-family: PingFang SC;
+font-weight: 400;
+color: #2d2d30;
+
+}
+
+
+
+.pools-add-your-nfts{
+  width: 25.0521vw;
+height: 47.8125vw;
+background: linear-gradient(0deg, #eec6ee 0%, #f0abcb 100%);
+}
+
+
+.pools-add-your-tokens{
+  width: 24.1146vw;
+  height: 2.2396vw;
+  background: linear-gradient(0deg, #eec6ee 0%, #f0abcb 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5208vw;
+}
+
+.pools-add-your-nft-list{
+  width: 100%;
+  padding:0px 1.0938vw 0px 0.5729vw;
+  height: 30.9896vw;
+  border-bottom: 1px solid white;
+  overflow:auto;
+}
+
+
+
+
+.pools-add-your-nft-list-item{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-top: 0.8333vw;
+}
+
+
+.pools-add-your-nft-list-item-img{
+  width: 4.2188vw;
+  height: 4.2188vw;
+  background-size:100% 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.pools-add-your-nfts-text{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-left: 0.9375vw;
+  font-size: 1.25vw;
+font-family: PingFang SC;
+font-weight: bold;
+color: #080808;
+margin-top: 2.0833vw;
+
+}
+
+.pools-add-your-nfts-setting{
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 0.7813vw;
+  margin-top: 1.7188vw
+}
+
+.pools-add-your-nfts-text-Your{
+  margin-left: 0.5208vw;
+
+}
+
+.pools-add-your-nfts-text-Clear{
+  margin-left: 11.6563vw;
+  width: 3.5417vw;
+  height: 1.6146vw;
+  background: #2781FF;
+  opacity: 0.74;
+  border-radius: 0.2604vw;
+  display: flex;
+  justify-content: center;
+  font-size: 0.8333vw;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+  align-items: center;
+}
+
+
+
+.pools-add-x-img{
+  width: 0.8854vw;
+  height: 0.8854vw;
+margin-left: 22;
+
+}
+
+.pools-add-your-nft-list-item-name{
+  margin-left: 0.8854vw;
+  width: 80%;
+}
+
+.pools-add-your-nft-list-item-name-text{
+  font-size: 0.7292vw;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #FCFCFD;
+}
+
+
+.pools-add-your-nft-list-item-id-text{
+  font-size: 0.9375vw;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #FCFCFD;
+}
+
+
+
+
+.pools-add-your-nft-but{
+  width: 21.7188vw;
+height: 2.7083vw;
+background: #2781FF;
+border-radius: 1.0417vw;
+font-size: 0.9896vw;
+font-family: PingFang SC;
+font-weight: 400;
+color: #FEFEFE;
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 0.5208vw;
+
+}
+
+
+.pools-add-your-nft-cost{
+  font-size: 0.9375vw;
+font-family: PingFang SC;
+font-weight: bold;
+color: #FEFEFE;
+margin-left: 1.7188vw;
+margin-top: 10px;
+}
+
+
+.modal_content{
+   display: flex;
+   justify-content: center;
+   width: 100%;
+   flex-wrap: wrap;
+}
+
+
+.modal_content_1{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 36px;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #FDFDFD;
+  margin-top: 10px;
+  }
+
+  .modal_content_1_text{
+    margin-left: 15px;
+  }
+
+.model_min_max{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 10px;
+}
+
+
+.model_Range{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  font-size: 20px;
+font-family: PingFang SC;
+font-weight: bold;
+color: #FCEFF7;
+margin-top: 35px;
+
+}
+
+.model_Range_but{
+  width: 121px;
+  height: 36px;
+  background: #080808;
+  border: 1px solid #FDFDFD;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.model_box_1{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  font-size: 22px;
+font-family: PingFang SC;
+font-weight: bold;
+color: #FDFDFD;
+font-size: 14px;
+font-family: PingFang SC;
+font-weight: 400;
+color: #F9FAFC;
+opacity: 0.49;
+
+}
+
+
+
+.model_box{
+  width: 522px;
+  height: 215px;
+  background: #1F2127;
+  border: 1px solid FFFFFF;
+  border-radius: 10px;
+  margin-top: 36px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  color: #FFFFFF !important;
+}
+
+
+
+.model_min{
+  width: 250px;
+  height: 171px;
+  background: #1F2127;
+  border: 1px solid #FFFFFF;
+  border-radius: 15px;
+  text-align: center;
+  line-height: 30px;
+  color: #F9FAFC;
+  padding: 10px;
+}
+
+
+.model_max{
+  width: 250px;
+  height: 171px;
+  background: #1F2127;
+  border: 1px solid #FFFFFF;
+  border-radius: 15px;
+  text-align: center;
+  line-height: 30px;
+  color: #F9FAFC;
+  padding: 10px;
+}
+
+.model_price{
+  width: 522px;
+  height: 122px;
+  background: #1F2127;
+  border: 1px solid #FFFFFF;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.model_but{
+  width: 525px;
+  height: 78px;
+  background: #2781FF;
+  border: 1px solid;
+  border-radius: 30px;
+  font-size: 33px;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #FCEFF7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+
+.modal_img{
+  width: 36px;
+  height: 36px;
+}
+
+
+.model_box_line{
+  height: 1px;
+  background-color: #FCEFF7;
+  margin-top: 10px;
+}
+
+.model_box_1_text{
+  font-size: 18px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF !important;
+}
+
+
+.model_price_1{
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+font-family: PingFang SC;
+font-weight: 400;
+color: #F9FAFC;
+}
+
+.model_price_2{
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+font-family: PingFang SC;
+font-weight: 400;
+color: #F9FAFC;
+margin-top: 10px;
+}
+
+.model_price_3{
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #F9FAFC;
+  margin-top: 10px;
+}
