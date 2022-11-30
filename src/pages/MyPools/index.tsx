@@ -14,15 +14,15 @@ import myChange from '../../assets/img/my_change.png';
 
 
 
-import { getErc20Contract, getErc721Contract, getUniswapV3Router } from "../../app/Contract";
+import { getErc20Contract, getErc721Contract, getMidaswapV3Router } from "../../app/Contract";
 export default function MyPools() {
-   const { account, chainId } = useWeb3React()
+   const { account, chainId,provider } = useWeb3React()
    const [myPools, setMyPools] = useState([] as Array<any>);
    async function getMyAddPoolArr() {
       if (!account) {
          return;
       }
-      const uniswapV3Router = await getUniswapV3Router();
+      const uniswapV3Router = await getMidaswapV3Router(provider?.getSigner());
       let info = await uniswapV3Router.methods.getMyAddPoolArr(account).call();
       let newArr = [] as Array<any>;
       if (info.length > 0) {
@@ -40,7 +40,7 @@ export default function MyPools() {
 
    useEffect(() => {
       if (account) {
-         getMyAddPoolArr();
+        // getMyAddPoolArr();
       }
    }, [account]);
 

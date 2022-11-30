@@ -8,16 +8,7 @@ import { Link,useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import eth from '../../assets/img/eth.png';
 import azuki from '../../assets/img/azuki.png';
-import copyImg from "../../assets/img/copy.png";
-import logoEtherscan from "../../assets/img/logo-etherscan.png";
-import web from "../../assets/img/web.png";
-import discode from "../../assets/img/discode.png";
-import email from "../../assets/img/email.png";
-import tg from "../../assets/img/tg_r.png";
-import x from "../../assets/img/x.png";
 import setting from "../../assets/img/setting.png";
-
-
 
 import {ChainId, web3} from "../../app/Config";
 import { Network, Alchemy } from 'alchemy-sdk';
@@ -25,7 +16,7 @@ import { useWeb3React } from '@web3-react/core';
 import { Progress, message,InputNumber } from 'antd';
 import { Modal, Radio } from 'antd';
 import "./MAddiquidity.css";
-import { getErc20Contract, getErc721Contract, getUniswapV3Router ,getINonfungiblePositionManager} from "../../app/Contract";
+import { getErc20Contract, getErc721Contract,getMidaswapV3Router ,getINonfungiblePositionManager} from "../../app/Contract";
 interface PoolInfo {
    poolsAddress: any,
    nft_address: any,
@@ -49,7 +40,7 @@ interface PoolOrder {
 
 
 export default function MAddiquidity() {
-   const { account, chainId } = useWeb3React()
+   const { account, chainId,provider } = useWeb3React()
    const parms = {
       token0:"0x3DEA4c82210c66050d0C1818530740b5Ece108E8",
       token1:"0x94ecC3f84e12D586B0741E87CaA6c140b76A2938",
@@ -65,8 +56,6 @@ export default function MAddiquidity() {
    let nftaddress = teamJSON.nftAddrees;
    const [poolInfo, setPoolInfo] = useState({} as PoolInfo);
    const [poolOrder, setPoolOrder] = useState({} as PoolOrder);
-
-
    const [addPoolModalOpen, setAddPoolModalOpen] = useState(false);
    const [myNfts, setMyNfts] = useState([] as Array<any>);
 
@@ -96,7 +85,7 @@ export default function MAddiquidity() {
 
 
    async function initSwap() {
-      const uniswapV3Router = await getUniswapV3Router();
+      const uniswapV3Router = await getMidaswapV3Router(provider?.getSigner());
       let info = await uniswapV3Router.methods.getPoolInfo(nftaddress, "0xD5e240836E500a099D0504107432C7aC52C82cB8", 0).call();
       console.log(info);
       if (info.length > 0) {
@@ -128,7 +117,7 @@ export default function MAddiquidity() {
    }
 
    async function initOrder() {
-      const contract = await getUniswapV3Router();
+      const contract = await getMidaswapV3Router(provider?.getSigner());
       poolOrder._amountA = web3.utils.toWei("1");
       poolOrder._amountB = await contract.methods.getTokenOut(poolInfo.poolsAddress, poolInfo.tokenB, web3.utils.toWei("1")).call();
       setPoolOrder({ ...poolOrder });
@@ -205,9 +194,8 @@ export default function MAddiquidity() {
    }
 
 
-
    async function addPool() {
-      const uniswapV3Router = await getUniswapV3Router();
+      const uniswapV3Router = await getMidaswapV3Router(provider?.getSigner());
       await uniswapV3Router.methods.addPool721(nftaddress, teamJSON.tokenB, poolOrder.tokenId, web3.utils.toWei("1"), web3.utils.toWei("80"),parms).send({
          from: account
       }).on('error', (error: any) => {
@@ -224,7 +212,7 @@ export default function MAddiquidity() {
    }
 
    async function createPool() {
-      const uniswapV3Router = await getUniswapV3Router();
+      const uniswapV3Router = await getMidaswapV3Router(provider?.getSigner());
       let scale = web3.utils.toWei("80");
       await uniswapV3Router.methods.createPool(nftaddress, 0, teamJSON.tokenB, scale).send({
          from: account
@@ -246,9 +234,6 @@ export default function MAddiquidity() {
       poolOrder.tokenId = e.target.value;
       setPoolOrder({ ...poolOrder });
       initOrder();
-      // if(minPrice == 0){
-      //    initPrice();
-      // }
    }
 
    
@@ -311,8 +296,6 @@ export default function MAddiquidity() {
 
 
 
-
-
    return <div className="pools-content" >
       <div className="pools-add" >
          <div className="pools-add-box" >
@@ -326,14 +309,18 @@ export default function MAddiquidity() {
             <div className="pools-add-pair" >
                <div className="pools-add-text" >Select Pair</div>
                <div className="pools-add-token-td" >
+                
+                  <div  className="pools-add-token-name" >
+                     Azuki
+                  </div>
+
                   <div className="pools-add-token" >
                      <img className="pools-add-setting-img" src={eth} alt="" />
                      <div>ETH</div>
                      <DownOutlined />
                   </div>
-                  <div  className="pools-add-token-name" >
-                     Azuki
-                  </div>
+
+
                </div>
                <div className="pools-add-token-free" >
                   <div className="pools-add-token-free-min" >

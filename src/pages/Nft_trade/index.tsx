@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { Button, Drawer } from 'antd';
 import { Network, Alchemy } from 'alchemy-sdk';
 import copy from 'copy-to-clipboard';
-import { getErc20Contract, getErc721Contract, getUniswapV3Router } from "../../app/Contract";
+import { getErc20Contract, getErc721Contract, getMidaswapV3Router } from "../../app/Contract";
 import teamJSON from "../../store/team.json";
 import { useWeb3React } from '@web3-react/core'
 import logo_r from "../../assets/img/logo_r.png";
@@ -28,7 +28,7 @@ import "./Nft_trade.css"
 
 export default function Nft_trade() {
    const [open, setOpen] = useState(false);
-   const { account, chainId } = useWeb3React()
+   const { account, chainId ,provider} = useWeb3React()
    // const dispatch = useAppDispatch();
    // const isConnected = useAppSelector(ConnectSelectors.isConnected);
    // const { address, chainId } = useAppSelector(ConnectSelectors.userData);
@@ -134,7 +134,7 @@ export default function Nft_trade() {
    }
 
    async function getNftsForContract() {
-      const uniswapV3Router = await getUniswapV3Router();
+      const uniswapV3Router = await getMidaswapV3Router(provider?.getSigner());
       let fractionNFTAddress = await uniswapV3Router.methods.getFractionNFTAddress().call();
       debugger
       const settings = {

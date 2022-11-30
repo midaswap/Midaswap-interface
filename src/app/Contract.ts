@@ -1,10 +1,12 @@
 
 import erc20 from "./contracts/erc20.json";
 import erc721 from "./contracts/erc721.json";
-import UniswapV3Router from "./contracts/UniswapV3Router.json";
+import MidaswapV3Router from "./contracts/MidaswapV3Router.json";
 import INonfungiblePositionManager from "./contracts/INonfungiblePositionManager.json";
 import {ChainId, web3} from "./Config";
 import {AbiItem} from "web3-utils";
+import { useWeb3React } from '@web3-react/core';
+import {ethers} from "ethers";
 
 export async function getErc20Contract(address:any) {
 		// @ts-ignore
@@ -23,12 +25,9 @@ export async function getErc721Contract(address:any) {
 		);
 }
 
-export async function getUniswapV3Router() {
+export async function getMidaswapV3Router(signer:any) {
 		// @ts-ignore
-		return new web3.eth.Contract(
-			UniswapV3Router.abi as AbiItem[],
-			UniswapV3Router.address
-		);
+		return new ethers.Contract(MidaswapV3Router.address, MidaswapV3Router.abi, signer);
 }
 
 

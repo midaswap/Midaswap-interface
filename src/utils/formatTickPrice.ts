@@ -9,7 +9,6 @@ export function formatTickPrice(
   direction: Bound,
   placeholder?: string
 ) {
-  debugger
   if (atLimit[direction]) {
     return direction === Bound.LOWER ? '0' : '∞'
   }

@@ -3,9 +3,9 @@ export const TestMode = true;
 export const MainChainId = 137;
 export const TestChainId = 31415;
 export const ChainId = TestMode ? TestChainId : MainChainId;
+
 // @ts-ignore
 export const ethereum = window["ethereum"] || undefined;
-
 export const web3 = new Web3(new Web3.providers
 	.HttpProvider("https://matic-mumbai.chainstacklabs.com"));
 export type Chain = {

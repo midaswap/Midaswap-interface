@@ -2,7 +2,7 @@ import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
 import { Trans } from '@lingui/macro'
 import { Currency, CurrencyAmount, Percent } from '@uniswap/sdk-core'
-import { FeeAmount, NonfungiblePositionManager } from '@uniswap/v3-sdk'
+import { FeeAmount, NonfungiblePositionManager ,toHex} from '@uniswap/v3-sdk'
 import { useWeb3React } from '@web3-react/core'
 import { ElementName, Event, EventName } from 'components/AmplitudeAnalytics/constants'
 import { TraceEvent } from 'components/AmplitudeAnalytics/TraceEvent'
@@ -60,6 +60,25 @@ import { currencyId } from '../../utils/currencyId'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { Dots } from '../Pool/styleds'
 import { Review } from './Review'
+import eth from '../../assets/img/eth.png';
+import azuki from '../../assets/img/azuki.png';
+import setting from "../../assets/img/setting.png";
+import {ChainId, web3} from "../../app/Config";
+import {ethers} from "ethers";
+import MidaswapV3RouterAbi from "../../app/contracts/MidaswapV3Router.json";
+
+
+import {
+  LeftOutlined,
+  RightOutlined,
+  DownOutlined
+} from '@ant-design/icons';
+import { Modal, Radio } from 'antd';
+import { getErc20Contract, getErc721Contract, getMidaswapV3Router ,getINonfungiblePositionManager} from "../../app/Contract";
+import { Progress, message,InputNumber } from 'antd';
+
+import { Network, Alchemy } from 'alchemy-sdk';
+import teamJSON from "../../store/team.json";
 import {
   CurrencyDropdown,
   DynamicSection,
@@ -76,22 +95,113 @@ import {
 } from './styled'
 
 const DEFAULT_ADD_IN_RANGE_SLIPPAGE_TOLERANCE = new Percent(50, 10_000)
+interface PoolOrder {
+  nft_address: any,
+  tokenB: any,
+  tokenId: any,
+  _amountA: any,
+  _amountB: any,
+  nftApprove: false,
+  tokenBApprove: any,
+  tokenAApprove: any
+}
 
-export default function AddLiquidity() {
+interface PoolInfo {
+  poolsAddress: any,
+  nft_address: any,
+  id: any,
+  tokenA: any,
+  tokenB: any,
+  fractionNFTAddress: any
+}
+
+
+export default  function AddLiquidity() {
+  ///====================================
+  const [poolOrder, setPoolOrder] = useState({} as PoolOrder);
+  const [poolInfo, setPoolInfo] = useState({} as PoolInfo);
+  const [myNfts, setMyNfts] = useState([] as Array<any>);
+  const onChange = (e: any) => {
+    if (!poolOrder.nftApprove) {
+       approve721();
+    }
+    poolOrder.tokenId = e.target.value;
+    setPoolOrder({ ...poolOrder });
+ }
+
+ async function approve721() {
+  const contract = await getErc721Contract(poolInfo.nft_address);
+  contract.methods.setApprovalForAll(poolInfo.fractionNFTAddress, true).send({
+     from: account
+  }).on('error', (error: any) => {
+     message.error(error);
+     getErc721Approve();
+  }).on('transactionHash', (txHash: any) => {
+     console.warn("transactionHash", txHash)
+  }).on('receipt', (receipt: any) => {
+     message.success("Success");
+     getErc721Approve();
+  })
+}
+
+
+async function getErc721Approve() {
+  const contract = await getErc721Contract(poolInfo.nft_address);
+  poolOrder.nftApprove = await contract.methods.isApprovedForAll(account, poolInfo.fractionNFTAddress).call();
+  setPoolOrder({ ...poolOrder });
+}
+
+async function getTokenAaddrees() {
+  const contract = await getErc721Contract(poolInfo.nft_address);
+  poolOrder.nftApprove = await contract.methods.isApprovedForAll(account, poolInfo.fractionNFTAddress).call();
+  setPoolOrder({ ...poolOrder });
+}
+
+async function getNftsForOwner() {
+  if (!account) {
+     return;
+  }
+  const settings = {
+     apiKey: "xG8dip53YYKaskagE0xWN0NkGCNGV66u",
+     network: Network.MATIC_MUMBAI,
+  };
+  const alchemy = new Alchemy(settings);
+  let e = await alchemy.nft.getNftsForOwner(account);
+  let newArr = [] as Array<any>;
+  for (let index = 0; index < e.ownedNfts.length; index++) {
+     let item = e.ownedNfts[index];
+     if (item.contract.address == teamJSON.nftAddrees.toLowerCase()) {
+        let data: { name: any, tokenUrl: any, tokenId: any } = { name: "", tokenUrl: '', tokenId: "" };
+        data.name = item.contract.name;
+        data.tokenUrl = item.tokenUri ? item.tokenUri.gateway : '';
+        data.tokenId = item.tokenId
+        newArr.push(data);
+     }
+  }
+  setMyNfts(newArr);
+}
+
+// async function getTokenA(address_:any) {
+//   return address_?'0x0B5844E92D8F450D5e542574e9ba6DDf77c04832':"0x0B5844E92D8F450D5e542574e9ba6DDf77c04832" as string;
+// }
+
+
   const navigate = useNavigate()
   const {
-    currencyIdA,
+    nftaddress,
     currencyIdB,
     feeAmount: feeAmountFromUrl,
     tokenId,
-  } = useParams<{ currencyIdA?: string; currencyIdB?: string; feeAmount?: string; tokenId?: string }>()
-  const { account, chainId, provider } = useWeb3React()
+  } = useParams<{ nftaddress?: string; currencyIdB?: string; feeAmount?: string; tokenId?: string }>()
+
+ const currencyIdA=nftaddress?'0xB22Bfd62C58Cee5d7867e58AFf6C491361a779bC':"0xB22Bfd62C58Cee5d7867e58AFf6C491361a779bC" as string;
+  const {account, chainId, provider } = useWeb3React()
   const theme = useContext(ThemeContext)
   const toggleWalletModal = useToggleWalletModal() // toggle wallet when disconnected
   const expertMode = useIsExpertMode()
   const addTransaction = useTransactionAdder()
   const positionManager = useV3NFTPositionManagerContract()
-  const parsedQs = useParsedQueryString()
+  const parsedQs = useParsedQueryString();
 
   // check for existing position if tokenId in url
   const { position: existingPositionDetails, loading: positionLoading } = useV3PositionFromTokenId(
@@ -106,6 +216,8 @@ export default function AddLiquidity() {
       ? parseFloat(feeAmountFromUrl)
       : undefined
 
+
+      
   const baseCurrency = useCurrency(currencyIdA)
   const currencyB = useCurrency(currencyIdB)
   // prevent an error if they input ETH/WETH
@@ -142,6 +254,7 @@ export default function AddLiquidity() {
     baseCurrency ?? undefined,
     existingPosition
   )
+
 
   const { onFieldAInput, onFieldBInput, onLeftRangeInput, onRightRangeInput, onStartPriceInput } =
     useV3MintActionHandlers(noLiquidity)
@@ -229,101 +342,156 @@ export default function AddLiquidity() {
   )
 
   async function onAdd() {
+    debugger
     if (!chainId || !provider || !account) return
 
     if (!positionManager || !baseCurrency || !quoteCurrency) {
       return
     }
-
+     const  MidaswapV3Router =await getMidaswapV3Router(provider.getSigner());
+     await MidaswapV3Router.addStep(1);
+     MidaswapV3Router.on("addStepEvet",(sender,num)=>{
+         console.log("sender:"+sender+" num:"+num);
+    })
     if (position && account && deadline) {
-      const useNative = baseCurrency.isNative ? baseCurrency : quoteCurrency.isNative ? quoteCurrency : undefined
-      const { calldata, value } =
-        hasExistingPosition && tokenId
-          ? NonfungiblePositionManager.addCallParameters(position, {
-            tokenId,
-            slippageTolerance: allowedSlippage,
-            deadline: deadline.toString(),
-            useNative,
-          })
-          : NonfungiblePositionManager.addCallParameters(position, {
-            slippageTolerance: allowedSlippage,
-            recipient: account,
-            deadline: deadline.toString(),
-            useNative,
-            createPool: noLiquidity,
-          })
-
-      let txn: { to: string; data: string; value: string } = {
-        to: NONFUNGIBLE_POSITION_MANAGER_ADDRESSES[chainId],
-        data: calldata,
-        value,
+      // const { amount0: amount0Desired, amount1: amount1Desired } = position.mintAmounts
+      // const minimumAmounts = position.mintAmountsWithSlippage(allowedSlippage);
+      // const amount0Min = toHex(minimumAmounts.amount0)
+      // const amount1Min = toHex(minimumAmounts.amount1)
+      // const parms =  {
+      //   token0: position.pool.token0.address,
+      //   token1: position.pool.token1.address,
+      //   fee: position.pool.fee,
+      //   tickLower: position.tickLower,
+      //   tickUpper: position.tickUpper,
+      //   amount0Desired: toHex(amount0Desired),
+      //   amount1Desired: toHex(amount1Desired),
+      //   amount0Min,
+      //   amount1Min,
+      //   recipient: account,
+      //   deadline:  deadline?.toNumber()
+      // }
+      let poolAddress="0x0000000000000000000000000000000000000000";
+      if(noLiquidity){
+        poolAddress="0x0000000000000000000000000000000000000000";
       }
 
-      if (argentWalletContract) {
-        const amountA = parsedAmounts[Field.CURRENCY_A]
-        const amountB = parsedAmounts[Field.CURRENCY_B]
-        const batch = [
-          ...(amountA && amountA.currency.isToken
-            ? [approveAmountCalldata(amountA, NONFUNGIBLE_POSITION_MANAGER_ADDRESSES[chainId])]
-            : []),
-          ...(amountB && amountB.currency.isToken
-            ? [approveAmountCalldata(amountB, NONFUNGIBLE_POSITION_MANAGER_ADDRESSES[chainId])]
-            : []),
-          {
-            to: txn.to,
-            data: txn.data,
-            value: txn.value,
-          },
-        ]
-        const data = argentWalletContract.interface.encodeFunctionData('wc_multiCall', [batch])
-        txn = {
-          to: argentWalletContract.address,
-          data,
-          value: '0x0',
-        }
-      }
 
-      setAttemptingTxn(true)
 
-      provider
-        .getSigner()
-        .estimateGas(txn)
-        .then((estimate) => {
-          const newTxn = {
-            ...txn,
-            gasLimit: calculateGasMargin(estimate),
-          }
+      
+      // const parms = {
+      //   token0:"0x3DEA4c82210c66050d0C1818530740b5Ece108E8",
+      //   token1:"0x94ecC3f84e12D586B0741E87CaA6c140b76A2938",
+      //   fee:500,tickLower:-24850,tickUpper:-20800,
+      //   amount0Desired:web3.utils.toWei("12.108117954131814004"),
+      //   amount1Desired:web3.utils.toWei("10"),
+      //   amount0Min: web3.utils.toWei("11.822034484697754124"),
+      //   amount1Min:web3.utils.toWei("0.971251300382961695"),
+      //   recipient:"0x6bcA71b551c388533fb24f8981fB212253F9db6a",
+      //   deadline: 1668889728
+      //   }
 
-          return provider
-            .getSigner()
-            .sendTransaction(newTxn)
-            .then((response: TransactionResponse) => {
-              setAttemptingTxn(false)
-              addTransaction(response, {
-                type: TransactionType.ADD_LIQUIDITY_V3_POOL,
-                baseCurrencyId: currencyId(baseCurrency),
-                quoteCurrencyId: currencyId(quoteCurrency),
-                createPool: Boolean(noLiquidity),
-                expectedAmountBaseRaw: parsedAmounts[Field.CURRENCY_A]?.quotient?.toString() ?? '0',
-                expectedAmountQuoteRaw: parsedAmounts[Field.CURRENCY_B]?.quotient?.toString() ?? '0',
-                feeAmount: position.pool.fee,
-              })
-              setTxHash(response.hash)
-              sendEvent({
-                category: 'Liquidity',
-                action: 'Add',
-                label: [currencies[Field.CURRENCY_A]?.symbol, currencies[Field.CURRENCY_B]?.symbol].join('/'),
-              })
-            })
-        })
-        .catch((error) => {
-          console.error('Failed to send transaction', error)
-          setAttemptingTxn(false)
-          // we only care if the error is something _other_ than the user rejected the tx
-          if (error?.code !== 4001) {
-            console.error(error)
-          }
-        })
+       
+
+      //  const uniswapV3Router = await getMidaswapV3Router();
+      //  await uniswapV3Router.methods.mintFromNFTs(teamJSON.nftAddrees,teamJSON.tokenB,poolAddress,web3.utils.toWei("20"),[1],0,web3.utils.toWei("1"),parms).send({
+      //    from: "0x4AD9607e706e99Bc6E4D5FDF72f322aa26730300"
+      // }).on('error', (error: any) => {
+      //    message.error(error);
+      // }).on('transactionHash', (txHash: any) => {
+      //    console.warn("transactionHash", txHash)
+      // }).on('receipt', (receipt: any) => {
+      //    message.success("Success");
+      //    getNftsForOwner();
+      // })
+
+      // const useNative = baseCurrency.isNative ? baseCurrency : quoteCurrency.isNative ? quoteCurrency : undefined
+      // const { calldata, value } =
+      //   hasExistingPosition && tokenId
+      //     ? NonfungiblePositionManager.addCallParameters(position, {
+      //       tokenId,
+      //       slippageTolerance: allowedSlippage,
+      //       deadline: deadline.toString(),
+      //       useNative,
+      //     })
+      //     : NonfungiblePositionManager.addCallParameters(position, {
+      //       slippageTolerance: allowedSlippage,
+      //       recipient: account,
+      //       deadline: deadline.toString(),
+      //       useNative,
+      //       createPool: noLiquidity,
+      //     })
+
+      // let txn: { to: string; data: string; value: string } = {
+      //   to: NONFUNGIBLE_POSITION_MANAGER_ADDRESSES[chainId],
+      //   data: calldata,
+      //   value,
+      // }
+
+      // if (argentWalletContract) {
+      //   const amountA = parsedAmounts[Field.CURRENCY_A]
+      //   const amountB = parsedAmounts[Field.CURRENCY_B]
+      //   const batch = [
+      //     ...(amountA && amountA.currency.isToken
+      //       ? [approveAmountCalldata(amountA, NONFUNGIBLE_POSITION_MANAGER_ADDRESSES[chainId])]
+      //       : []),
+      //     ...(amountB && amountB.currency.isToken
+      //       ? [approveAmountCalldata(amountB, NONFUNGIBLE_POSITION_MANAGER_ADDRESSES[chainId])]
+      //       : []),
+      //     {
+      //       to: txn.to,
+      //       data: txn.data,
+      //       value: txn.value,
+      //     },
+      //   ]
+      //   const data = argentWalletContract.interface.encodeFunctionData('wc_multiCall', [batch])
+      //   txn = {
+      //     to: argentWalletContract.address,
+      //     data,
+      //     value: '0x0',
+      //   }
+      // }
+
+      // setAttemptingTxn(true)
+
+      // provider
+      //   .getSigner()
+      //   .estimateGas(txn)
+      //   .then((estimate) => {
+      //     const newTxn = {
+      //       ...txn,
+      //       gasLimit: calculateGasMargin(estimate),
+      //     }
+      //     return provider
+      //       .getSigner()
+      //       .sendTransaction(newTxn)
+      //       .then((response: TransactionResponse) => {
+      //         setAttemptingTxn(false)
+      //         addTransaction(response, {
+      //           type: TransactionType.ADD_LIQUIDITY_V3_POOL,
+      //           baseCurrencyId: currencyId(baseCurrency),
+      //           quoteCurrencyId: currencyId(quoteCurrency),
+      //           createPool: Boolean(noLiquidity),
+      //           expectedAmountBaseRaw: parsedAmounts[Field.CURRENCY_A]?.quotient?.toString() ?? '0',
+      //           expectedAmountQuoteRaw: parsedAmounts[Field.CURRENCY_B]?.quotient?.toString() ?? '0',
+      //           feeAmount: position.pool.fee,
+      //         })
+      //         setTxHash(response.hash)
+      //         sendEvent({
+      //           category: 'Liquidity',
+      //           action: 'Add',
+      //           label: [currencies[Field.CURRENCY_A]?.symbol, currencies[Field.CURRENCY_B]?.symbol].join('/'),
+      //         })
+      //       })
+      //   })
+      //   .catch((error) => {
+      //     console.error('Failed to send transaction', error)
+      //     setAttemptingTxn(false)
+      //     // we only care if the error is something _other_ than the user rejected the tx
+      //     if (error?.code !== 4001) {
+      //       console.error(error)
+      //     }
+      //   })
     } else {
       return
     }
@@ -502,7 +670,7 @@ export default function AddLiquidity() {
     )
 
   return (
-    <>
+    <div  className='pools_addliquidity'  >
       <ScrollablePage>
         <TransactionConfirmationModal
           isOpen={showConfirm}
@@ -545,29 +713,6 @@ export default function AddLiquidity() {
           >
             {!hasExistingPosition && (
               <Row justifyContent="flex-end" style={{ width: 'fit-content', minWidth: 'fit-content' }}>
-                <MediumOnly>
-                  <ButtonText onClick={clearAll} margin="0 15px 0 0">
-                    <ThemedText.DeprecatedBlue fontSize="12px">
-                      <Trans>Clear All</Trans>
-                    </ThemedText.DeprecatedBlue>
-                  </ButtonText>
-                </MediumOnly>
-                {baseCurrency && quoteCurrency ? (
-                  <RateToggle
-                    currencyA={baseCurrency}
-                    currencyB={quoteCurrency}
-                    handleRateToggle={() => {
-                      if (!ticksAtLimit[Bound.LOWER] && !ticksAtLimit[Bound.UPPER]) {
-                        onLeftRangeInput((invertPrice ? priceLower : priceUpper?.invert())?.toSignificant(6) ?? '')
-                        onRightRangeInput((invertPrice ? priceUpper : priceLower?.invert())?.toSignificant(6) ?? '')
-                        onFieldAInput(formattedAmounts[Field.CURRENCY_B] ?? '')
-                      }
-                      navigate(
-                        `/add/${currencyIdB as string}/${currencyIdA as string}${feeAmount ? '/' + feeAmount : ''}`
-                      )
-                    }}
-                  />
-                ) : null}
               </Row>
             )}
           </AddRemoveTabs>
@@ -933,7 +1078,58 @@ export default function AddLiquidity() {
           />
         )}
       </ScrollablePage>
-      <SwitchLocaleLink />
-    </>
+
+      <div className="pools-add-your-nfts" >
+            <div className="pools-add-your-nfts-text" >
+               <LeftOutlined />
+               <div className="pools-add-your-nfts-text-Your"  >Your NFTs</div>
+               <div className="pools-add-your-nfts-setting"  >
+               <img className="pools-add-setting-img" src={setting} alt="" />
+              </div>
+            </div>
+
+            {/* <div className="flex-center-width-full" >
+               <div className="pools-add-your-tokens" >
+                  Buy Total:
+               </div>
+            </div> */}
+
+
+            <div className="pools-add-your-nft-list" >
+               <Radio.Group onChange={e => onChange(e)} style={{ width: "100%" }} >
+                  {myNfts.length > 0 ?
+                     myNfts.map((item, i) => {
+                        return <div key={i} className="pools-add-your-nft-list-item" >
+                           <div className="pools-add-your-nft-list-item-img" style={{ backgroundImage: "url(" + item.tokenUrl + ")" }} >
+                              <Radio value={item.tokenId}></Radio>
+                           </div>
+
+                           <div className="pools-add-your-nft-list-item-name" >
+                              <div className="pools-add-your-nft-list-item-name-text">{item.name}</div>
+                              <div className="pools-add-your-nft-list-item-id-text" >name #{item.tokenId}</div>
+                           </div>
+                        </div>
+                     })
+                     :
+                     <div></div>
+                  }
+               </Radio.Group>
+            </div>
+
+            <div className="pools-add-your-nft-cost" >
+               TOKEN ID:{poolOrder.tokenId ? '#' + poolOrder.tokenId : ''}
+            </div>
+            {/* <div className="flex-center-width-full" >
+               <div className="pools-add-your-nft-but" >
+                 {poolOrder.nftApprove ? <div>TOKEN ID:#{poolOrder.tokenId}</div>:<div onClick={approve721} >Approve</div> }
+               </div>
+            </div> */}
+         </div>
+
+            <div className='flex-all-center' >
+            <SwitchLocaleLink />
+            </div>
+
+    </div>
   )
 }

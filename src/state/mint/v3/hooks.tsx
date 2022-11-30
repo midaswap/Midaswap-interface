@@ -461,7 +461,6 @@ export function useV3DerivedMintInfo(
   }
 
   const invalidPool = poolState === PoolState.INVALID
-
   return {
     dependentField,
     currencies,

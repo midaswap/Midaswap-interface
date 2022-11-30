@@ -78,8 +78,8 @@
 }
 
 .pools-add-setting-img{
-  width: 1.6146vw;
-  height: 1.6146vw;
+  width: 20px;
+  height: 20px;
 
 }
 
@@ -451,8 +451,10 @@ color: #2d2d30;
 
 .pools-add-your-nfts{
   width: 25.0521vw;
-height: 47.8125vw;
-background: linear-gradient(0deg, #eec6ee 0%, #f0abcb 100%);
+  max-width: 880px;
+  background: linear-gradient(0deg, #eec6ee 0%, #f0abcb 100%);
+  margin-left: 15px;
+  margin-top: 1rem
 }
 
 
@@ -468,8 +470,8 @@ background: linear-gradient(0deg, #eec6ee 0%, #f0abcb 100%);
 
 .pools-add-your-nft-list{
   width: 100%;
+  height:500px;
   padding:0px 1.0938vw 0px 0.5729vw;
-  height: 30.9896vw;
   border-bottom: 1px solid white;
   overflow:auto;
 }
@@ -497,25 +499,23 @@ background: linear-gradient(0deg, #eec6ee 0%, #f0abcb 100%);
   display: flex;
   align-items: center;
   width: 100%;
-  padding-left: 0.9375vw;
-  font-size: 1.25vw;
-font-family: PingFang SC;
-font-weight: bold;
-color: #080808;
-margin-top: 2.0833vw;
-
+    padding-left: 0.9375vw;
+    font-size: 20px;
+  font-family: PingFang SC;
+  color: #080808;
+  padding: 1rem 1rem 0px;
 }
 
 .pools-add-your-nfts-setting{
+  width: 50%;
   display: flex;
   justify-content: flex-end;
   padding-right: 0.7813vw;
-  margin-top: 1.7188vw
 }
 
 .pools-add-your-nfts-text-Your{
   margin-left: 0.5208vw;
-
+  width: 40%;
 }
 
 .pools-add-your-nfts-text-Clear{
@@ -785,4 +785,9 @@ margin-top: 10px;
   font-weight: 400;
   color: #F9FAFC;
   margin-top: 10px;
+}
+
+.pools_addliquidity{
+  display: flex;
+  flex-wrap: wrap;
 }

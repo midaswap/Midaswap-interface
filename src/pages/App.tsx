@@ -194,9 +194,9 @@ export default function App() {
                   <Route path='/' element={<Midaswap />} />
                   <Route path="pool/v2/find" element={<PoolFinder />} />
                   <Route path="pool/v2" element={<PoolV2 />} />
+                  <Route path="pool/v2" element={<PoolV2 />} />
+                  <Route path="swpPool" element={<Pool />} />
                   <Route path="pool" element={<MyPools />} />
-
-                  <Route path="pool/:tokenId" element={<PositionPage />} />
                   <Route path="pool/:tokenId" element={<PositionPage />} />
                   <Route path="MAddiquidity" element={<MAddiquidity />} />
                   <Route path="add/v2" element={<RedirectDuplicateTokenIdsV2 />}>

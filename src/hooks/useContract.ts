@@ -127,8 +127,6 @@ export function useInterfaceMulticall() {
 }
 
 export function useV3NFTPositionManagerContract(withSignerIfPossible?: boolean): NonfungiblePositionManager | null {
-  debugger
-  console.log(NONFUNGIBLE_POSITION_MANAGER_ADDRESSES);
   return useContract<NonfungiblePositionManager>(
     NONFUNGIBLE_POSITION_MANAGER_ADDRESSES,
     NFTPositionManagerABI,
