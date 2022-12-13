@@ -195,7 +195,9 @@ async function getNftsForOwner() {
   } = useParams<{ nftaddress?: string; currencyIdB?: string; feeAmount?: string; tokenId?: string }>()
 
  const currencyIdA=nftaddress?'0xB22Bfd62C58Cee5d7867e58AFf6C491361a779bC':"0xB22Bfd62C58Cee5d7867e58AFf6C491361a779bC" as string;
-  const {account, chainId, provider } = useWeb3React()
+  
+ 
+ const {account, chainId, provider } = useWeb3React()
   const theme = useContext(ThemeContext)
   const toggleWalletModal = useToggleWalletModal() // toggle wallet when disconnected
   const expertMode = useIsExpertMode()
@@ -348,37 +350,38 @@ async function getNftsForOwner() {
     if (!positionManager || !baseCurrency || !quoteCurrency) {
       return
     }
-     const  MidaswapV3Router =await getMidaswapV3Router(provider.getSigner());
-     await MidaswapV3Router.addStep(1);
-     MidaswapV3Router.on("addStepEvet",(sender,num)=>{
-         console.log("sender:"+sender+" num:"+num);
-    })
+    //  const  MidaswapV3Router =await getMidaswapV3Router(provider.getSigner());
+    //  await MidaswapV3Router.addStep(1);
+    //  MidaswapV3Router.on("addStepEvet",(sender,num)=>{
+    //      console.log("sender:"+sender+" num:"+num);
+    // })
     if (position && account && deadline) {
-      // const { amount0: amount0Desired, amount1: amount1Desired } = position.mintAmounts
-      // const minimumAmounts = position.mintAmountsWithSlippage(allowedSlippage);
-      // const amount0Min = toHex(minimumAmounts.amount0)
-      // const amount1Min = toHex(minimumAmounts.amount1)
-      // const parms =  {
-      //   token0: position.pool.token0.address,
-      //   token1: position.pool.token1.address,
-      //   fee: position.pool.fee,
-      //   tickLower: position.tickLower,
-      //   tickUpper: position.tickUpper,
-      //   amount0Desired: toHex(amount0Desired),
-      //   amount1Desired: toHex(amount1Desired),
-      //   amount0Min,
-      //   amount1Min,
-      //   recipient: account,
-      //   deadline:  deadline?.toNumber()
-      // }
+      const { amount0: amount0Desired, amount1: amount1Desired } = position.mintAmounts
+      const minimumAmounts = position.mintAmountsWithSlippage(allowedSlippage);
+      const amount0Min = toHex(minimumAmounts.amount0)
+      const amount1Min = toHex(minimumAmounts.amount1)
+      const parms =  {
+        token0: position.pool.token0.address,
+        token1: position.pool.token1.address,
+        fee: position.pool.fee,
+        tickLower: position.tickLower,
+        tickUpper: position.tickUpper,
+        amount0Desired: toHex(amount0Desired),
+        amount1Desired: toHex(amount1Desired),
+        amount0Min,
+        amount1Min,
+        recipient: account,
+        deadline:  deadline?.toNumber()
+      }
       let poolAddress="0x0000000000000000000000000000000000000000";
       if(noLiquidity){
         poolAddress="0x0000000000000000000000000000000000000000";
       }
-
-
-
-      
+      const  MidaswapV3Router =await getMidaswapV3Router(provider.getSigner());
+      console.log(JSON.stringify([teamJSON.nftAddrees,teamJSON.tokenB,poolAddress,web3.utils.toWei("20"),[1],0,web3.utils.toWei("1"),parms]));
+      let tx=  await MidaswapV3Router.mintFromNFTs(teamJSON.nftAddrees,teamJSON.tokenB,poolAddress,web3.utils.toWei("20"),[1],0,web3.utils.toWei("1"),parms);
+      console.log(tx);
+    
       // const parms = {
       //   token0:"0x3DEA4c82210c66050d0C1818530740b5Ece108E8",
       //   token1:"0x94ecC3f84e12D586B0741E87CaA6c140b76A2938",
